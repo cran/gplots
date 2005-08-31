@@ -1,4 +1,4 @@
-# $Id: qqnorm.aov.R,v 1.4 2004/09/03 17:27:45 warneg Exp $
+# $Id: qqnorm.aov.R,v 1.5 2005/06/09 14:20:27 nj7w Exp $
 
 if(is.R())
 qqnorm.aov <- function (y, full = FALSE, label = FALSE, omit = NULL,

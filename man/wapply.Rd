@@ -1,6 +1,12 @@
-% $Id: wapply.Rd,v 1.8 2003/12/03 02:46:51 warnes Exp $
+% $Id: wapply.Rd,v 1.9 2005/06/09 14:20:28 nj7w Exp $
 %
 % $Log: wapply.Rd,v $
+% Revision 1.9  2005/06/09 14:20:28  nj7w
+% Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
+%
+% Revision 1.1.1.1  2005/05/25 22:15:31  nj7w
+% Initial submission as an individual package
+%
 % Revision 1.8  2003/12/03 02:46:51  warnes
 % - match function argument defaults with 'usage'
 %

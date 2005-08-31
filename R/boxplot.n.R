@@ -1,4 +1,4 @@
-# $Id: boxplot.n.R,v 1.5 2004/09/03 17:27:44 warneg Exp $
+# $Id: boxplot.n.R,v 1.6 2005/06/09 14:20:27 nj7w Exp $
 
 boxplot.n  <- function( ..., top=FALSE, shrink=1.0, textcolor=NULL )
   {

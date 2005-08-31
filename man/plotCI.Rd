@@ -1,6 +1,12 @@
-% $Id: plotCI.Rd,v 1.6 2004/07/29 14:49:02 warnes Exp $
+% $Id: plotCI.Rd,v 1.7 2005/06/09 14:20:28 nj7w Exp $
 %
 % $Log: plotCI.Rd,v $
+% Revision 1.7  2005/06/09 14:20:28  nj7w
+% Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
+%
+% Revision 1.1.1.1  2005/05/25 22:15:31  nj7w
+% Initial submission as an individual package
+%
 % Revision 1.6  2004/07/29 14:49:02  warnes
 % Integrate changes from the version of plotCI maintained by Martin Maechler.
 %

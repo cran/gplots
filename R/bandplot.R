@@ -1,4 +1,4 @@
-# $Id: bandplot.R,v 1.5 2005/02/22 21:01:47 warnes Exp $
+# $Id: bandplot.R,v 1.6 2005/06/09 14:20:27 nj7w Exp $
 
 bandplot  <-  function(x,y,
                        ...,

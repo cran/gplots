@@ -1,5 +1,22 @@
-% $Id: barplot2.Rd,v 1.9 2004/06/28 20:16:44 warnes Exp $
+%% Revision 2.1 2005/06/06
+%% - Modified default behavior with 0's and NA's in
+%%   'height' so that these values are not plotted.
+%% - Warning messages added in the case of the above.
+
+%% Revision 2.0 2005/04/27
+%% - Added panel.first and panel.last arguments
+%% - As per R 2.0.0, the default barplot() method by default uses a
+%%   gamma-corrected grey palette (rather than the heat color
+%%   palette) for coloring its output when given a matrix.
+
+% $Id: barplot2.Rd,v 1.10 2005/06/09 14:20:28 nj7w Exp $
 %% $Log: barplot2.Rd,v $
+%% Revision 1.10  2005/06/09 14:20:28  nj7w
+%% Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
+%%
+%% Revision 1.3  2005/06/06 21:44:51  nj7w
+%% Changes based on Marc Schwartz's suggestions to handel 0's and NA's appropriately.
+%%
 %% Revision 1.9  2004/06/28 20:16:44  warnes
 %% - Default 2-d color set to grey as in (v2.0.0) r-devel
 %% - The default (v1.9.1) barplot method now handles vectors and 1-d arrays
@@ -65,7 +82,7 @@
         ci.u = NULL, ci.color = "black", ci.lty = "solid", ci.lwd = 1,
         plot.grid = FALSE, grid.inc = NULL,
         grid.lty = "dotted", grid.lwd = 1, grid.col = "black",
-        add = FALSE, \dots)
+        add = FALSE, panel.first = NULL, panel.last = NULL, \dots)
 }
 \arguments{
   \item{height}{either a vector or matrix of values describing the
@@ -160,6 +177,14 @@
   \item{grid.lwd}{the line width for the grid}
   \item{grid.col}{the line color for the grid}
   \item{add}{logical, if \code{TRUE} add barplot to current plot.}
+  \item{panel.first}{An expression to be evaluated after the plot region
+    coordinates have been set up, but prior to the drawing of the bars
+    and other plot region contents. This can be useful to add additional
+    plot region content behind the bars. This will also work if
+    \code{add} = \code{TRUE}}
+  \item{panel.last}{An expression to be evaluated after the bars have
+    been drawn, but prior to the addition of confidence intervals, a
+    legend and the axis annotation}
   \item{\dots}{further graphical parameters (\code{\link{par}}) are
     passed to \code{\link{plot.window}()}, \code{\link{title}()} and
     \code{\link{axis}}.}
@@ -182,11 +207,15 @@
   midpoints of each \emph{group} of bars, see example.
 }
 \author{Original barplot() by R-Core. Enhancements by Marc
-  Schwartz \email{mschwartz@medanalytics.com}
+  Schwartz \email{mschwartz@mn.rr.com}
 }
 \note{
   Prior to \R 1.6.0, \code{barplot} behaved as if \code{axis.lty = 1},
   unintentionally.
+  0 (zero) and NA values in \code{height} will not be plotted if
+  using logarithmic scales.
+  If there are NA values in \code{height} and \code{beside = FALSE},
+  values after the NA will not be plotted in stacked bars.
 }
 \seealso{
   \code{\link{plot}(\dots, type = "h")}, \code{\link{dotchart}},

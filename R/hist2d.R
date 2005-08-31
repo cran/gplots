@@ -1,4 +1,4 @@
-# $Id: hist2d.R,v 1.6 2004/09/03 17:27:44 warneg Exp $
+# $Id: hist2d.R,v 1.7 2005/06/09 14:20:27 nj7w Exp $
 
 if(is.R())
 hist2d <- function( x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE, col=c("black", heat.colors(12)), ... )

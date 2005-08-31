@@ -1,4 +1,4 @@
-# $Id: wapply.R,v 1.10 2004/09/03 17:27:45 warneg Exp $
+# $Id: wapply.R,v 1.11 2005/06/09 14:20:27 nj7w Exp $
 
 "wapply" <- function( x, y, fun=mean, method="range",
                     width, n=50, drop.na=TRUE, pts, ...)

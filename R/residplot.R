@@ -1,4 +1,4 @@
-# $Id: residplot.R,v 1.4 2004/09/03 17:27:45 warneg Exp $
+# $Id: residplot.R,v 1.5 2005/06/09 14:20:27 nj7w Exp $
 
 residplot  <-  function(model, formula, ...)
   {

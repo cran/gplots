@@ -1,7 +1,13 @@
-# $Log: barplot2.R,v $
-# Revision 1.9  2004/09/03 17:27:44  warneg
-# initial bundle checkin
-#
+# Revision 2.1 2005/06/06
+# - Modified default behavior with 0's and NA's in
+#   'height' so that these values are not plotted.
+# - Warning messages added in the case of the above.
+
+# Revision 2.0 2005/04/27
+# - Added panel.first and panel.last arguments
+# - As per R 2.0.0, the default barplot() method by default uses a
+#   gamma-corrected grey palette (rather than the heat color
+#   palette) for coloring its output when given a matrix.
 
 barplot2 <- function(height, ...) UseMethod("barplot2")
 
@@ -19,7 +25,7 @@ function(height, width = 1, space = NULL, names.arg = NULL,
        ci.color = "black", ci.lty = "solid", ci.lwd = 1,
        plot.grid = FALSE, grid.inc = NULL,
        grid.lty = "dotted", grid.lwd = 1, grid.col = "black",
-       add = FALSE, ...)
+       add = FALSE, panel.first = NULL, panel.last = NULL, ...)
 {
     if (!missing(inside)) .NotYetUsed("inside", error = FALSE)# -> help(.)
 
@@ -41,7 +47,7 @@ function(height, width = 1, space = NULL, names.arg = NULL,
         if(is.null(col)) col <- "grey"
     } else if (is.matrix(height)) {
         ## In the matrix case, we use "colors" by default.
-        if(is.null(col)) col <- heat.colors(nrow(height))
+        if(is.null(col)) col <- grey.colors(nrow(height))
     }
     else
 	stop(paste(sQuote("height"), "must be a vector or a matrix"))
@@ -118,9 +124,29 @@ function(height, width = 1, space = NULL, names.arg = NULL,
     # adjust appropriate ranges and bar base values
     if ((logx && horiz) || (logy && !horiz))
     {
-      if (min(height + offset) <= 0)
-        stop("log scale error: at least one 'height + offset' value <= 0")
+      # Check for NA values and issue warning if required
+      height.na <- sum(is.na(height))
+      if (height.na > 0)
+      {  
+         warning(sprintf("%.0f values == NA in 'height' omitted from logarithmic plot",
+                          height.na), domain = NA)
+      }   
 
+      # Check for 0 values and issue warning if required
+      # _FOR NOW_ change 0's to NA's so that other calculations are not
+      # affected. 0's and NA's affect plot output in the same way anyway,
+      # except for stacked bars, so don't change those.
+      height.lte0 <- sum(height <= 0, na.rm = TRUE)
+      if (height.lte0 > 0)
+      {  
+        warning(sprintf("%0.f values <=0 in 'height' omitted from logarithmic plot",
+                         height.lte0), domain = NA)
+        
+        # If NOT stacked bars, modify 'height'
+        if (beside)
+          height[height <= 0] <- NA
+      }  
+      
       if (plot.ci && (min(ci.l) <= 0))
         stop("log scale error: at least one lower c.i. value <= 0")
 
@@ -133,9 +159,15 @@ function(height, width = 1, space = NULL, names.arg = NULL,
       # arbitrary adjustment to display some of bar for min(height) since
       # 0 cannot be used with log scales. If plot.ci, also check ci.l
       if (plot.ci)
-        rectbase <- 0.9 * min(height, ci.l)
+      {
+        rectbase <- c(height[is.finite(height)], ci.l)
+        rectbase <- min(0.9 * rectbase[rectbase > 0])
+      }  
       else
-        rectbase <- 0.9 * min(height)
+      {
+        rectbase <- height[is.finite(height)]
+        rectbase <- min(0.9 * rectbase[rectbase > 0])
+      }  
 
       # if axis limit is set to < above, adjust bar base value
       # to draw a full bar
@@ -155,7 +187,8 @@ function(height, width = 1, space = NULL, names.arg = NULL,
         else
           height
 
-      rangeadj <- (0.9 * lim + offset)
+      rangeadj <- c(0.9 * lim + offset, lim + offset)
+      rangeadj <- rangeadj[rangeadj > 0]
     }
     else
     {
@@ -174,19 +207,19 @@ function(height, width = 1, space = NULL, names.arg = NULL,
           height
 
       # use original range adjustment factor
-      rangeadj <- (-0.01 * lim + offset)
+      rangeadj <- c(-0.01 * lim + offset, lim + offset)
     }
 
     # define xlim and ylim, adjusting for log-scale if needed
     if (horiz)
     {
-      if (missing(xlim)) xlim <- range(rangeadj, lim + offset, na.rm=TRUE)
+      if (missing(xlim)) xlim <- range(rangeadj, na.rm=TRUE)
       if (missing(ylim)) ylim <- c(min(w.l), max(w.r))
     }
     else
     {
       if (missing(xlim)) xlim <- c(min(w.l), max(w.r))
-      if (missing(ylim)) ylim <- range(rangeadj, lim + offset, na.rm=TRUE)
+      if (missing(ylim)) ylim <- range(rangeadj, na.rm=TRUE)
     }
 
     if (beside)
@@ -207,6 +240,10 @@ function(height, width = 1, space = NULL, names.arg = NULL,
         plot.window(xlim, ylim, log = log, ...)
       }
 
+      # Execute the panel.first expression. This will work here
+      # even if 'add = TRUE'
+      panel.first
+      
       # Set plot region coordinates
       usr <- par("usr")
 
@@ -286,6 +323,9 @@ function(height, width = 1, space = NULL, names.arg = NULL,
                  col = col, border = border)
       }
 
+      # Execute the panel.last expression here
+      panel.last
+      
       if (plot.ci)
       {
         # CI plot width = barwidth / 2

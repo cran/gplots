@@ -1,4 +1,4 @@
-# $Id: textplot.R,v 1.9 2005/01/14 19:05:57 warnes Exp $
+# $Id: textplot.R,v 1.10 2005/06/09 14:20:27 nj7w Exp $
 
 textplot <- function(object, halign="center", valign="center", cex, ... )
   UseMethod('textplot')

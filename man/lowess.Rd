@@ -1,6 +1,12 @@
-% $Id: lowess.Rd,v 1.6 2003/12/03 02:46:51 warnes Exp $
+% $Id: lowess.Rd,v 1.7 2005/06/09 14:20:28 nj7w Exp $
 %
 % $Log: lowess.Rd,v $
+% Revision 1.7  2005/06/09 14:20:28  nj7w
+% Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
+%
+% Revision 1.1.1.1  2005/05/25 22:15:30  nj7w
+% Initial submission as an individual package
+%
 % Revision 1.6  2003/12/03 02:46:51  warnes
 % - match function argument defaults with 'usage'
 %

@@ -1,4 +1,4 @@
-# $Id: sinkplot.R,v 1.2 2004/09/03 17:27:45 warneg Exp $
+# $Id: sinkplot.R,v 1.3 2005/06/09 14:20:27 nj7w Exp $
 
 sinkplot <- function(operation=c("start","plot","cancel"),...)
   {

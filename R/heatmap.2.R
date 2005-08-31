@@ -1,4 +1,4 @@
-# $Id: heatmap.2.R,v 1.14 2005/02/26 01:15:12 nj7w Exp $
+# $Id: heatmap.2.R,v 1.15 2005/06/09 14:20:27 nj7w Exp $
 
 heatmap.2 <- function (x,
 

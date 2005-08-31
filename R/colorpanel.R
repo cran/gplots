@@ -1,4 +1,4 @@
-# $Id: colorpanel.R,v 1.2 2004/09/03 17:27:44 warneg Exp $
+# $Id: colorpanel.R,v 1.3 2005/06/09 14:20:27 nj7w Exp $
 
 colorpanel <- function(n,low,mid,high)
   {

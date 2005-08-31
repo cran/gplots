@@ -1,0 +1,9 @@
+CHANGES IN GPLOTS 2.0.8
+-----------------------
+
+ - Added DESCRIPTION and removed DESCRIPTION.in
+
+ - Updated barplot2
+
+ - Updated heatmap.2
+

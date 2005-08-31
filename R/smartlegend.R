@@ -1,4 +1,4 @@
-# $Id: smartlegend.R,v 1.3 2004/09/03 17:27:45 warneg Exp $
+# $Id: smartlegend.R,v 1.4 2005/06/09 14:20:27 nj7w Exp $
 
 smartlegend <- function(x=c("left","center","right"),
                         y=c("top","center","bottom"),
