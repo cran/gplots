@@ -1,3 +1,29 @@
+CHANGES IN GPLOTS 2.2.0
+-----------------------
+
+ - plotmeans.R: Fixed bug in plotmeans - based on Stefano Calza's
+	        suggestion (the function didn't account for factors 
+		unused levels, returning an error.)
+
+ - exported plot.lm to NAMESPACE, Remove .Alias calls in plot.lm.R
+ 		since .Alias is defunct.
+
+ - barplot2.R: Changed the default greay colors to heat colors, if
+	       height is matrix
+
+ - Updated Greg's email address
+
+ - balloonplot.R: Recent changes to align row totals with the
+	  	  overall total broke how the marginal cumulative
+	  	  fractions were displayed. Added example using
+	  	  Titanic data that exercises the multi-factor display.
+ 		  Added -.tex, .pdf files and figuers, and RNEWS article
+		  in inst/doc
+
+ - colorpanel.R: colorpanel now allows only 2 colors to be specified
+		 if no 'middle' color is desired.
+
+
 CHANGES IN GPLOTS 2.0.8
 -----------------------
 

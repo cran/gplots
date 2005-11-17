@@ -1,4 +1,4 @@
-# $Id: balloonplot.R,v 1.13 2005/11/18 01:17:01 warnes Exp $
+# $Id: balloonplot.R,v 1.14 2005/11/18 19:50:01 warnes Exp $
 
 balloonplot <- function(x,...)
   UseMethod("balloonplot",x)
@@ -237,22 +237,20 @@ balloonplot.default <- function(x,y,z,
   if(show.margins)
     {
       ## column totals
-      rowsumz <- c(sum(rowsumz), rowsumz)
       text(
            x=(1:nx) + nlabels.y*rowmar + 0.25 -1,
            y=0.25,
-           labels=format(rowsumz,digits=label.digits)[-1],
+           labels=format(c(sumz, rowsumz), digits=label.digits)[-1],
            font=1,
            cex=par("cex")*0.75,
            adj=c(0.5,0.0)
            )
 
       ## row totals
-      colsumz <- c(sum(colsumz), colsumz)
       text(
            x=nx + nlabels.y*rowmar+0.25+strwidth("'"),
            y= (1:ny),
-           labels=format(colsumz, digits=label.digits)[-1],
+           labels=format(c(sumz, colsumz), digits=label.digits)[-1],
            font=1,
            cex=par("cex")*0.75,
            adj=c(1.0,0.5)           

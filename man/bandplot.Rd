@@ -1,6 +1,9 @@
-% $Id: bandplot.Rd,v 1.6 2005/06/09 14:20:28 nj7w Exp $
+% $Id: bandplot.Rd,v 1.7 2005/12/01 16:46:52 nj7w Exp $
 %
 % $Log: bandplot.Rd,v $
+% Revision 1.7  2005/12/01 16:46:52  nj7w
+% Updated Greg's email address
+%
 % Revision 1.6  2005/06/09 14:20:28  nj7w
 % Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
 %
@@ -56,7 +59,7 @@
 \value{
   Invisibly returns a list containing the x,y points plotted for each line.
 }
-\author{ Gregory R. Warnes \email{Gregory\_R\_Warnes\@groton.pfizer.com}
+\author{ Gregory R. Warnes \email{gregory.r.warnes@pfizer.com}
 }
 \seealso{ \code{\link{wapply}}, \code{\link{lowess}}}
 \examples{

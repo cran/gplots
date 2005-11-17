@@ -9,8 +9,14 @@
 %%   gamma-corrected grey palette (rather than the heat color
 %%   palette) for coloring its output when given a matrix.
 
-% $Id: barplot2.Rd,v 1.10 2005/06/09 14:20:28 nj7w Exp $
+% $Id: barplot2.Rd,v 1.12 2005/12/07 18:48:54 nj7w Exp $
 %% $Log: barplot2.Rd,v $
+%% Revision 1.12  2005/12/07 18:48:54  nj7w
+%% Changed the default grey colors to heat colors, if height is matrix
+%%
+%% Revision 1.11  2005/12/06 22:41:08  nj7w
+%% Fixed minor error in documentation of barplot2
+%%
 %% Revision 1.10  2005/06/09 14:20:28  nj7w
 %% Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
 %%

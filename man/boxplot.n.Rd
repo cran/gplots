@@ -1,6 +1,9 @@
-% $Id: boxplot.n.Rd,v 1.4 2005/06/09 14:20:28 nj7w Exp $
+% $Id: boxplot.n.Rd,v 1.5 2005/12/01 16:46:52 nj7w Exp $
 %
 % $Log: boxplot.n.Rd,v $
+% Revision 1.5  2005/12/01 16:46:52  nj7w
+% Updated Greg's email address
+%
 % Revision 1.4  2005/06/09 14:20:28  nj7w
 % Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
 %
@@ -35,7 +38,7 @@ boxplot.n(..., top=FALSE, shrink=1, textcolor=NULL)
   \item{shrink}{ value to shrink character size (cex) when annotating.}
   \item{textcolor}{ text color. }
 }
-\author{ Gregory R. Warnes \email{Gregory\_R\_Warnes@groton.pfizer.com}}
+\author{ Gregory R. Warnes \email{gregory.r.warnes@pfizer.com}}
 \seealso{ \code{\link{boxplot}}, \code{\link{text}}}
 
 \examples{

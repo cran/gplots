@@ -12,6 +12,7 @@ export(
        ooplot,
        overplot,
        panel.overplot,
+       plot.lm2,
        plotCI,
        plotmeans,
        qqnorm.aov,

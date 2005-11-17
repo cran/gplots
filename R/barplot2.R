@@ -12,11 +12,21 @@
 barplot2 <- function(height, ...) UseMethod("barplot2")
 
 barplot2.default <-
-function(height, width = 1, space = NULL, names.arg = NULL,
-       legend.text = NULL, beside = FALSE, horiz = FALSE,
-       density = NULL, angle = 45,
-       col = NULL, prcol = NULL, border = par("fg"),
-       main = NULL, sub = NULL, xlab = NULL, ylab = NULL,
+  function(
+           height,
+           width = 1,
+           space = NULL,
+           names.arg = NULL,
+           legend.text = NULL,
+           beside = FALSE,
+           horiz = FALSE,
+           density = NULL,
+           angle = 45,
+           col = NULL,
+           prcol = NULL,
+           border = par("fg"),
+           main = NULL,
+           sub = NULL, xlab = NULL, ylab = NULL,
        xlim = NULL, ylim = NULL, xpd = TRUE, log = "",
        axes = TRUE, axisnames = TRUE,
        cex.axis = par("cex.axis"), cex.names = par("cex.axis"),
@@ -46,8 +56,8 @@ function(height, width = 1, space = NULL, names.arg = NULL,
         ## specs work as most likely expected by the users.
         if(is.null(col)) col <- "grey"
     } else if (is.matrix(height)) {
-        ## In the matrix case, we use "colors" by default.
-        if(is.null(col)) col <- grey.colors(nrow(height))
+        ## In the matrix case, we use " heat colors" by default.
+        if(is.null(col)) col <- heat.colors(nrow(height))
     }
     else
 	stop(paste(sQuote("height"), "must be a vector or a matrix"))
