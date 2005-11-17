@@ -10,26 +10,37 @@
 }
 \usage{
 balloonplot(x, ...)
-\method{balloonplot}{table}(x, xlab, ylab, zlab, ...)
-\method{balloonplot}{default}(x, y, z,
-    xlab = deparse(substitute(x)),
-    ylab = deparse(substitute(y)), 
-    zlab = deparse(substitute(z)),
-    dotsize = 2/max(strwidth(19), strheight(19)),
-    dotchar = 19, dotcolor = "skyblue",
-    main, label = TRUE, label.digits = 2,
-    scale.method = c("volume", "diameter"),
-    colsrt = par("srt"),
-    rowsrt = par("srt"),
-    colmar = 1,
-    rowmar = 1,
-     ...) 
+\method{balloonplot}{table}(x, xlab, ylab, zlab, show.zeros=FALSE,show.margins=TRUE,...)
+\method{balloonplot}{default}(x,y,z,
+                                xlab,
+                                ylab,
+                                zlab=deparse(substitute(z)),
+                                dotsize=2/max(strwidth(19),strheight(19)),
+                                dotchar=19,
+                                dotcolor="skyblue",
+                                main,
+                                label=TRUE,
+                                label.digits=2,
+                                scale.method=c("volume","diameter"),
+                                colsrt=par("srt"),
+                                rowsrt=par("srt"),
+                                colmar=1,
+                                rowmar=2,
+                                show.zeros=FALSE,
+                                show.margins=TRUE,
+                                cum.margins=TRUE,
+                                sorted=TRUE,
+                                label.lines=TRUE,
+                                fun=function(x)sum(x,na.rm=T),
+                                hide.duplicates=TRUE,
+                                ... )
 }
 \arguments{
-  \item{x}{Either a table object, or a vector of values for the first
-    (x) dimension of the plotted matrix.}
-  \item{y}{Vector of values for the second (y) dimension of the plotted
-    matrix.}
+  \item{x}{A table object, or either a vector or a list of several
+    categorical vectors containing grouping variables for the first 
+    (x) margin of the plotted matrix.}
+  \item{y}{Vector or list of vectors for grouping variables for the
+     second (y) dimension of the plotted matrix.}
   \item{z}{Vector of values for the size of the dots in the plotted matrix.}
   \item{xlab}{Text label for the x dimension. This will be displayed on the
     x axis and in the plot title.}
@@ -52,6 +63,24 @@ balloonplot(x, ...)
   \item{rowsrt, colsrt}{Angle of rotation for row and column labels.}
   \item{rowmar, colmar}{Space allocated for row and column labels. Each
     unit is the width/height of one cell in the table.}
+  \item{show.zeros}{boolean. If \code{FALSE}, entries containing zero will be left
+    blank in the plotted matrix.  If \code{TRUE}, zeros will be
+    displayed.}
+  \item{show.margins}{boolean. If \code{TRUE}, row and column sums are
+    printed in the bottom and right margins, respectively.}
+  \item{cum.margins}{boolean. If \code{TRUE}, marginal fractions are
+    graphically presented in grey behind the row/column label area.}
+  \item{sorted}{boolean. If \code{TRUE}, the rows will be
+    arranged in sorted order by using the levels of the first y factor,
+    then the second y factor, etc. The same process is used for the
+    columns, based on the x factors}
+  \item{label.lines}{boolean. If \code{TRUE}, borders will be drawn for
+    row and column level headers.}
+  \item{hide.duplicates}{boolean. If \code{TRUE}, column and row headers
+    will omit duplicates within row/column to reduce clutter.  Defaults
+    to \code{TRUE}.}
+  \item{fun}{function to be used to combine data elements with the same
+    levels of the grouping variables \code{x} and \code{y}. Defaults to \code{sum}}
   \item{\dots}{ Additional arguments passed to \code{balloonplot.default}
     or \code{plot}, as appropriate.}
 }
@@ -76,7 +105,7 @@ balloonplot(x, ...)
 \references{Function inspired by question posed on R-help by Ramon
   Alonso-Allende \email{allende@cnb.uam.es}.}
 
-\author{ Gregory R. Warnes \email{Gregory\_R\_Warnes@groton.pfizer.com}}
+\author{ Gregory R. Warnes \email{Gregory\_R\_Warnes@groton.pfizer.com} }
 
 \seealso{ \code{\link{plot.table}} }
 
@@ -113,6 +142,30 @@ ynames <- sample( 1:5, 50, replace=2)
 tab <- table(xnames, ynames)
 
 balloonplot(tab)
+
+# Example of multiple classification variabls using the Titanic data
+library(datasets)
+data(Titanic)
+
+dframe <- as.data.frame(Titanic) # convert to 1 entry per row format
+attach(dframe)
+balloonplot(x=Class, y=list(Survived, Age, Sex), z=Freq, sort=TRUE)
+
+# colorize: surviors lightblue, non-survivors: grey
+Colors <- Titanic
+Colors[,,,"Yes"] <- "skyblue"
+Colors[,,,"No"] <- "grey"
+colors <- as.character(as.data.frame(Colors)$Freq)
+
+balloonplot(x=list(Age,Sex),
+            y=list(Class=Class,
+            Survived=reorder.factor(Survived,c(2,1))),
+            z=Freq,
+            zlab="Number of Passengers",
+            sort=TRUE,
+            dotcol = colors,
+            show.zeros=TRUE,
+            show.margins=TRUE)
 
 
 }

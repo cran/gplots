@@ -1,6 +1,9 @@
-% $Id: plotCI.Rd,v 1.7 2005/06/09 14:20:28 nj7w Exp $
+% $Id: plotCI.Rd,v 1.8 2005/11/08 16:19:42 nj7w Exp $
 %
 % $Log: plotCI.Rd,v $
+% Revision 1.8  2005/11/08 16:19:42  nj7w
+% Updated Greg's email
+%
 % Revision 1.7  2005/06/09 14:20:28  nj7w
 % Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
 %
@@ -112,7 +115,7 @@ plotCI(x, y = NULL, uiw, liw = uiw, ui, li, err='y', ylim=NULL,
   Sep. 20, 1997.  Enhanced version posted to r-help by Ben Bolker
   \email{ben@zoo.ufl.edu} on Apr. 16, 2001.  This version was modified
   and extended by Gregory R. Warnes
-  \email{Gregory\_R\_Warnes@groton.pfizer.com}.  Additional changes
+  \email{gregory.r.warnes@pfizer.com}.  Additional changes
   suggested by Martin Maechler \email{maechler@stat.math.ethz.ch}
   integrated on July 29, 2004.
   }

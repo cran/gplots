@@ -1,6 +1,9 @@
-% $Id: hist2d.Rd,v 1.5 2005/06/09 14:20:28 nj7w Exp $
+% $Id: hist2d.Rd,v 1.6 2005/09/12 15:44:36 nj7w Exp $
 %
 % $Log: hist2d.Rd,v $
+% Revision 1.6  2005/09/12 15:44:36  nj7w
+% Updated Greg's email
+%
 % Revision 1.5  2005/06/09 14:20:28  nj7w
 % Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
 %
@@ -60,7 +63,7 @@ hist2d(x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE,
   \item{y}{lower y limit of each bin}
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Gregory R. Warnes \email{gregory\_r\_warnes\@groton.pfizer.com}}
+\author{ Gregory R. Warnes \email{gregory.r.warnes@pfizer.com}}
 %\note{ ~~further notes~~ }
 
 \seealso{ \code{\link{image}}, \code{\link{persp}}, \code{\link{hist}} }

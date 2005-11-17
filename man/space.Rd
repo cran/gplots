@@ -1,6 +1,9 @@
-% $Id: space.Rd,v 1.8 2005/06/09 14:20:28 nj7w Exp $
+% $Id: space.Rd,v 1.9 2005/09/12 15:44:37 nj7w Exp $
 %
 % $Log: space.Rd,v $
+% Revision 1.9  2005/09/12 15:44:37  nj7w
+% Updated Greg's email
+%
 % Revision 1.8  2005/06/09 14:20:28  nj7w
 % Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
 %
@@ -60,7 +63,7 @@ space(x, y, s=1/50, na.rm=TRUE, direction="x")
   \item{x}{(modified) x location for each input point}
   \item{y}{y location of each input point}
 }
-\author{ Gregory R. Warnes \email{gregory\_r\_warnes\@groton.pfizer.com} }
+\author{ Gregory R. Warnes \email{gregory.r.warnes@pfizer.com} }
 \seealso{ \code{\link{jitter}}, \code{link}[base]{sunflowerplot} }
 
 \examples{

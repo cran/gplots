@@ -4,12 +4,12 @@
   Rich color palettes
 }
 \description{
-  Create a vector of \code{n} colors that are roughly equidistant and in
-  an order that is easy to interpret.
+  Create a vector of \code{n} colors that are perceptually equidistant
+  and in an order that is easy to interpret.
 }
 \usage{
-rich.colors(n, palette=c("temperature", "blues"),
-                        rgb.matrix=FALSE, plot.colors=FALSE)
+rich.colors(n, palette="temperature", rgb.matrix=FALSE,
+            plot.colors=FALSE)
 }
 \arguments{
   \item{n}{number of colors to generate.}
@@ -43,7 +43,7 @@ barplot(rep(1,20), col=rich.colors(40)[11:30]) # choose subset
 rich.colors(100, plot=TRUE, rgb=TRUE)  # describe rgb recipe
 
 par(mfrow=c(2,2))
-barplot(m, main="\nheat.colors")
+barplot(m, col=heat.colors(15), main="\nheat.colors")
 barplot(m, col=1:15, main="\ndefault palette")
 barplot(m, col=rich.colors(15), main="\nrich.colors")
 barplot(m, col=rainbow(15), main="\nrainbow")

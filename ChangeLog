@@ -1,5 +1,11 @@
 2005-08-31 12:28  nj7w (Nitin Jain)
 
+        * Modified balloonplot based on Romain Francois 
+	 (francoisromain@free.fr) suggestions.
+      
+
+2005-08-31 12:28  nj7w (Nitin Jain)
+
 	* DESCRIPTION: Added DESCRIPTION file
 
 2005-08-31 12:27  nj7w (Nitin Jain)

@@ -23,17 +23,21 @@ redblue(n)
 \arguments{
   \item{n}{Desired number of color elements in the panel.}
   \item{low, mid, high}{Colors to use for the Lowest, middle,
-                        and highest values.}
+                        and highest values. \code{mid} may be ommited.}
 }
 \details{
   The values for \code{low, mid, high} can be given as
   color names ('red'), plot color index (2=red), and HTML-style RGB,
   ("\#FF0000"=red). 
-  
-  The returned color panel will consist of \code{n - floor(n/2)} HTML-style RGB
-  elements which vary smoothly between \code{low} and \code{mid}, then 
-  between \code{mid} and \code{high}.  Note that if \code{n} is even,
-  the color \code{mid} will occur twice at the center of the sequence.
+
+  If \code{mid} is supplied, then the returned color panel will consist
+  of \code{n - floor(n/2)} HTML-style RGB elements which vary smoothly
+  between \code{low} and \code{mid}, then between \code{mid} and
+  \code{high}. Note that if \code{n} is even, the color \code{mid} will
+  occur twice at the center of the sequence.
+
+  If \code{mid} is omitted, the color panel will vary
+  smoothly beween \code{low} and \code{high}. 
 }
 \value{
   Vector of HTML-style RGB colors.
@@ -47,8 +51,12 @@ showpanel <- function(col)
   image(z=matrix(1:100, ncol=1), col=col, xaxt="n", yaxt="n" )
 }
 
-par(mfrow=c(2,3))
+par(mfrow=c(3,3))
 
+# two colors only:
+showpanel(colorpanel(8,low="red",high="green"))
+
+# three colors
 showpanel(colorpanel(8,"red","black","green"))
 # note the duplicatation of black at the center, using an odd
 # number of elements resolves this:

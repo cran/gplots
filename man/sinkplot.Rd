@@ -32,7 +32,7 @@ sinkplot(operation = c("start", "plot", "cancel"), ...)
 \references{Functionality requested by Kevin Wright
    \email{kwright@eskimo.com} in the R-devel newlist posting
    \url{https://www.stat.math.ethz.ch/pipermail/r-devel/2004-January/028483.html}}
-\author{ Gregory R. Warnes \email{gregory\_r\_warnes\@groton.pfizer.com}  }
+\author{ Gregory R. Warnes \email{gregory.r.warnes@pfizer.com}  }
 \seealso{ \code{\link[utils]{capture.output}}, \code{\link{textplot}} }
 \examples{
 \dontrun{
