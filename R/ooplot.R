@@ -1,4 +1,4 @@
-# $Id: ooplot.R,v 1.6 2005/06/09 14:20:27 nj7w Exp $
+# $Id: ooplot.R 625 2005-06-09 14:20:30Z nj7w $
 
 ooplot <- function(data, ...) UseMethod("ooplot")
 

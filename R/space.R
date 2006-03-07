@@ -1,4 +1,4 @@
-# $Id: space.R,v 1.8 2005/06/09 14:20:27 nj7w Exp $
+# $Id: space.R 625 2005-06-09 14:20:30Z nj7w $
 
 # When there are two or more points with the same (x,y) value (or
 # within x+-s[1] and x+-s[2]), space these out in the y direction so

@@ -1,4 +1,4 @@
-# $Id: textplot.R,v 1.10 2005/06/09 14:20:27 nj7w Exp $
+# $Id: textplot.R 625 2005-06-09 14:20:30Z nj7w $
 
 textplot <- function(object, halign="center", valign="center", cex, ... )
   UseMethod('textplot')

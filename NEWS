@@ -1,3 +1,14 @@
+CHANGES IN GPLOTS 2.3.0
+-----------------------
+
+ - heatmap.2.R, heatmap.2.Rd:
+          Updated the code and man page to make sure the Rowv and Colv
+          values are properly handled
+
+ - Added the tests directory
+
+
+
 CHANGES IN GPLOTS 2.2.0
 -----------------------
 

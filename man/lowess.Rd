@@ -1,6 +1,6 @@
-% $Id: lowess.Rd,v 1.7 2005/06/09 14:20:28 nj7w Exp $
+% $Id: lowess.Rd 625 2005-06-09 14:20:30Z nj7w $
 %
-% $Log: lowess.Rd,v $
+% $Log$
 % Revision 1.7  2005/06/09 14:20:28  nj7w
 % Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
 %

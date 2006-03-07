@@ -1,6 +1,6 @@
-% $Id: hist2d.Rd,v 1.6 2005/09/12 15:44:36 nj7w Exp $
+% $Id: hist2d.Rd 671 2005-09-12 15:44:37Z nj7w $
 %
-% $Log: hist2d.Rd,v $
+% $Log$
 % Revision 1.6  2005/09/12 15:44:36  nj7w
 % Updated Greg's email
 %

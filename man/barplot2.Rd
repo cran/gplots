@@ -9,8 +9,8 @@
 %%   gamma-corrected grey palette (rather than the heat color
 %%   palette) for coloring its output when given a matrix.
 
-% $Id: barplot2.Rd,v 1.12 2005/12/07 18:48:54 nj7w Exp $
-%% $Log: barplot2.Rd,v $
+% $Id: barplot2.Rd 785 2005-12-07 18:48:54Z nj7w $
+%% $Log$
 %% Revision 1.12  2005/12/07 18:48:54  nj7w
 %% Changed the default grey colors to heat colors, if height is matrix
 %%

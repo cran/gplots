@@ -1,4 +1,4 @@
-# $Id: bandplot.R,v 1.6 2005/06/09 14:20:27 nj7w Exp $
+# $Id: bandplot.R 625 2005-06-09 14:20:30Z nj7w $
 
 bandplot  <-  function(x,y,
                        ...,

@@ -1,4 +1,4 @@
-# $Id: plotCI.R,v 1.12 2005/06/09 14:20:27 nj7w Exp $
+# $Id: plotCI.R 625 2005-06-09 14:20:30Z nj7w $
 
 
 plotCI <- function (x,

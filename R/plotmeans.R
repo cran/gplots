@@ -1,4 +1,4 @@
-## $Id: plotmeans.R,v 1.17 2005/12/12 22:20:15 nj7w Exp $
+## $Id: plotmeans.R 802 2005-12-12 22:20:15Z nj7w $
 
 plotmeans  <- function (formula, data = NULL, subset, na.action,
                         bars=TRUE, p=0.95,

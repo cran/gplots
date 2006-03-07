@@ -1,6 +1,6 @@
-% $Id: bandplot.Rd,v 1.7 2005/12/01 16:46:52 nj7w Exp $
+% $Id: bandplot.Rd 776 2005-12-01 16:54:02Z nj7w $
 %
-% $Log: bandplot.Rd,v $
+% $Log$
 % Revision 1.7  2005/12/01 16:46:52  nj7w
 % Updated Greg's email address
 %

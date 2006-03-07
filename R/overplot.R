@@ -1,4 +1,4 @@
-# $Id: overplot.R,v 1.10 2005/06/09 14:20:27 nj7w Exp $
+# $Id: overplot.R 625 2005-06-09 14:20:30Z nj7w $
 
 panel.overplot <- function(formula, data, subset, col, lty, ...)
   {

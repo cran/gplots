@@ -1,4 +1,4 @@
-# $Id: balloonplot.R,v 1.14 2005/11/18 19:50:01 warnes Exp $
+# $Id: balloonplot.R 908 2006-03-02 21:43:24Z warnes $
 
 balloonplot <- function(x,...)
   UseMethod("balloonplot",x)
@@ -247,10 +247,12 @@ balloonplot.default <- function(x,y,z,
            )
 
       ## row totals
+      rowlabs <- format(c(sumz, colsumz), digits=label.digits)[-1]
+      width <- max(strwidth(rowlabs),na.rm=TRUE)
       text(
-           x=nx + nlabels.y*rowmar+0.25+strwidth("'"),
-           y= (1:ny),
-           labels=format(c(sumz, colsumz), digits=label.digits)[-1],
+           x=nx + nlabels.y*rowmar-0.25+width,
+           y= (ny:1),
+           labels=rowlabs,
            font=1,
            cex=par("cex")*0.75,
            adj=c(1.0,0.5)           
@@ -258,12 +260,12 @@ balloonplot.default <- function(x,y,z,
 
       ## overall total
       text(
-           x=nx + nlabels.y*rowmar,
+           x=nx + nlabels.y*rowmar-0.25+width,
            y=0.25,
            labels=sumz,
            font=1,
            cex=par("cex")*0.75,
-           adj=c(0.5,0.0)           
+           adj=c(1.0,0.0)           
            )
     }
      

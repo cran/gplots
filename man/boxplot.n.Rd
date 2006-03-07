@@ -1,6 +1,6 @@
-% $Id: boxplot.n.Rd,v 1.5 2005/12/01 16:46:52 nj7w Exp $
+% $Id: boxplot.n.Rd 776 2005-12-01 16:54:02Z nj7w $
 %
-% $Log: boxplot.n.Rd,v $
+% $Log$
 % Revision 1.5  2005/12/01 16:46:52  nj7w
 % Updated Greg's email address
 %

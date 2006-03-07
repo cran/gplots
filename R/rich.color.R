@@ -1,4 +1,4 @@
-# $Id: rich.color.R,v 1.4 2005/10/19 16:56:48 arnima Exp $
+# $Id: rich.color.R 696 2005-10-19 16:56:48Z arnima $
 
 rich.colors <- function(n, palette="temperature",
                         rgb.matrix=FALSE, plot.colors=FALSE)

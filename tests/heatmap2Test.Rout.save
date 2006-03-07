@@ -1,0 +1,113 @@
+
+R : Copyright 2005, The R Foundation for Statistical Computing
+Version 2.1.1  (2005-06-20), ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for a HTML browser interface to help.
+Type 'q()' to quit R.
+
+[1] "Repostitories set to: CRAN, CRANextra, BioC, Omegahat -> ~/.Rprofile"
+> invisible(options(echo = TRUE))
+> .libPaths("~/Rlib")
+> library(gplots)
+Loading required package: gtools
+Loading required package: gdata
+
+Attaching package: 'gplots'
+
+
+	The following object(s) are masked from package:stats :
+
+	 lowess 
+
+> 
+> #source("/home/jainn02/projects/gregmisc/gplots/R/heatmap.2.R")
+> 
+>  data(mtcars)
+>  x  <- as.matrix(mtcars)
+>  rc <- rainbow(nrow(x), start=0, end=.3)
+>  cc <- rainbow(ncol(x), start=0, end=.3)
+> 
+> heatmap.2(x)  ## default - dendrogram plotted and reordering done.
+> heatmap.2(x, dendrogram="none") ##  no dendrogram plotted, but reordering done.
+> heatmap.2(x, dendrogram="row") ## row dendrogram plotted and row reordering done.
+> heatmap.2(x, dendrogram="col") ## col dendrogram plotted and col reordering done.
+> 
+> heatmap.2(x, keysize=2)  ## default - dendrogram plotted and reordering done.
+> 
+> 
+> heatmap.2(x, Colv=FALSE)
+Warning message:
+Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, Colv = FALSE) 
+> heatmap.2(x, Colv=NULL)
+Warning message:
+Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, Colv = NULL) 
+> 
+> heatmap.2(x, Rowv=FALSE)
+Warning message:
+Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, Rowv = FALSE) 
+> heatmap.2(x, Rowv=NULL)
+Warning message:
+Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, Rowv = NULL) 
+> 
+> heatmap.2(x, Rowv=FALSE, dendrogram="both") ## generate warning!
+Warning message:
+Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, Rowv = FALSE, dendrogram = "both") 
+> heatmap.2(x, Rowv=NULL, dendrogram="both")  ## generate warning!
+Warning message:
+Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, Rowv = NULL, dendrogram = "both") 
+> heatmap.2(x, Colv=FALSE, dendrogram="both") ## generate warning!
+Warning message:
+Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, Colv = FALSE, dendrogram = "both") 
+> 
+> 
+> 
+> heatmap.2(x,dendrogram="both", Rowv=FALSE) ## row and col reordering done, but only col dendrogram plotted 
+Warning message:
+Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, dendrogram = "both", Rowv = FALSE) 
+> heatmap.2(x,dendrogram="row",  Rowv=FALSE) 
+Warning message:
+Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, dendrogram = "row", Rowv = FALSE) 
+> 
+> 
+> heatmap.2(x,dendrogram="col",  Rowv=FALSE)
+> heatmap.2(x,dendrogram="none", Rowv=FALSE) 
+> 
+> 
+> heatmap.2(x,dendrogram="both", Colv=FALSE) ## row and col reordering done, but only row dendrogram plotted
+Warning message:
+Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, dendrogram = "both", Colv = FALSE) 
+> heatmap.2(x,dendrogram="row",  Colv=FALSE)
+> heatmap.2(x,dendrogram="col",  Colv=FALSE)
+Warning message:
+Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, dendrogram = "col", Colv = FALSE) 
+> heatmap.2(x,dendrogram="none", Colv=FALSE) 
+> 
+> ## above statement is same as heatmap.2(x,Colv=FALSE)
+> heatmap.2(x,dendrogram="col", Colv=FALSE) ## col reordering done, but no dendrogram plotted 
+Warning message:
+Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, dendrogram = "col", Colv = FALSE) 
+> 
+> 
+> hv <- heatmap.2(x, col=cm.colors(256), scale="column", 
++ 	       RowSideColors=rc, ColSideColors=cc, margin=c(5, 10), 
++ 	       xlab="specification variables", ylab= "Car Models", 
++ 	       main="heatmap(<Mtcars data>, \n        ..., scale=\"column\")", 
++                tracecol="green", density="density")
+> 
+> str(hv) # the two re-ordering index vectors
+List of 2
+ $ rowInd: int [1:32] 31 17 16 15 5 25 29 24 7 6 ...
+ $ colInd: int [1:11] 2 9 8 11 6 5 10 7 1 4 ...
+> 
+> proc.time()
+[1] 3.65 0.47 6.82 0.01 0.00
+> 

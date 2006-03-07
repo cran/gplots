@@ -1,4 +1,4 @@
-# $Id: lowess.R,v 1.11 2005/06/09 14:20:27 nj7w Exp $
+# $Id: lowess.R 625 2005-06-09 14:20:30Z nj7w $
 
 if(is.R())
   {

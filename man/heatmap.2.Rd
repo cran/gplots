@@ -12,8 +12,8 @@
 heatmap.2 (x,
 
                      # dendrogram control
-                     Rowv=NULL,
-                     Colv=if(symm)"Rowv" else NULL,
+                     Rowv = TRUE,
+                     Colv=if(symm)"Rowv" else TRUE,
                      distfun = dist,
                      hclustfun = hclust,
                      dendrogram = c("both","row","column","none"),
@@ -59,9 +59,11 @@ heatmap.2 (x,
 
                      # color key + density info
                      key = TRUE,
+                     keysize = 1.5,
                      density.info=c("histogram","density","none"),
                      denscol=tracecol,
-                     symkey = TRUE,
+                     #symkey = TRUE, # should be something like
+                     symkey = min(x < 0, na.rm=TRUE),
                      densadj = 0.25,
 
                      # plot labels
@@ -77,10 +79,12 @@ heatmap.2 (x,
   % Dendogram Control
   \item{x}{numeric matrix of the values to be plotted. }
   \item{Rowv}{determines if and how the \emph{row} dendrogram should be
-    reordered.	Either a \code{\link{dendrogram}} or a vector of values
-    used to reorder the row dendrogram or \code{\link{FALSE}} to
-    suppress reordering or by default, \code{\link{NULL}}, see
-    \emph{Details} below.}
+    reordered.	By default, it is TRUE, which implies dendrogram is
+    computed and reordered based on row means. If NULL or FALSE, then no
+    dendrogram is computed and reordering is done. If a
+    \code{\link{dendrogram}}, then it is used "as-is", ie
+    without any reordering. If a vector of integers, then dendrogram is
+    computed and reordered based on the order of the vector.}
   \item{Colv}{determines if and how the \emph{column} dendrogram should be
     reordered.	Has the options as the \code{Rowv} argument above and
     \emph{additionally} when \code{x} is a square matrix, \code{Colv =
@@ -91,7 +95,9 @@ heatmap.2 (x,
     when \code{Rowv} or \code{Colv} are not dendrograms.  Defaults to
     \code{\link{hclust}}.}
   \item{dendrogram}{character string indicating whether to draw 'none', 
-    'row', 'column' or 'both' dendrograms.  Defaults to 'both'.}
+    'row', 'column' or 'both' dendrograms.  Defaults to 'both'. However,
+  if Rowv (or Colv) is FALSE or NULL and dendrogram is 'both', then a
+  warning is issued and Rowv (or Colv) arguments are honoured.}
   \item{symm}{logical indicating if \code{x} should be treated
     \bold{symm}etrically; can only be true when \code{x} is a square matrix.}
   % data scaling
@@ -159,6 +165,7 @@ heatmap.2 (x,
     respectively.}
   % Color key and density info
   \item{key}{logical indicating whether a color-key should be shown.}
+  \item{keysize}{numeric value indicating the size of the key}
   \item{density.info}{character string indicating whether to superimpose
     a 'histogram', a 'density' plot, or no plot ('none') on the
     color-key.}
@@ -228,10 +235,27 @@ heatmap.2 (x,
 \seealso{\code{\link{image}}, \code{\link{hclust}}}
 
 \examples{
+ library(gplots)
  data(mtcars)
  x  <- as.matrix(mtcars)
  rc <- rainbow(nrow(x), start=0, end=.3)
  cc <- rainbow(ncol(x), start=0, end=.3)
+
+ heatmap.2(x)  ## default - dendrogram plotted and reordering done. 
+ heatmap.2(x, dendrogram="none") ##  no dendrogram plotted, but reordering done.
+ heatmap.2(x, dendrogram="row") ## row dendrogram plotted and row reordering done.
+ heatmap.2(x, dendrogram="col") ## col dendrogram plotted and col reordering done.
+
+ heatmap.2(x, keysize=2)  ## default - dendrogram plotted and reordering done.
+
+
+ heatmap.2(x, Rowv=FALSE, dendrogram="both") ## generate warning!
+ heatmap.2(x, Rowv=NULL, dendrogram="both")  ## generate warning!
+ heatmap.2(x, Colv=FALSE, dendrogram="both") ## generate warning!
+
+
+
+
  hv <- heatmap.2(x, col=cm.colors(256), scale="column", 
 	       RowSideColors=rc, ColSideColors=cc, margin=c(5, 10), 
 	       xlab="specification variables", ylab= "Car Models", 
@@ -251,6 +275,7 @@ heatmap.2 (x,
 
  # without reorder
  heatmap.2(Ca, Rowv=FALSE, symm=TRUE, margin=c(6, 6), trace="none" )
+
 
  ## For variable clustering, rather use distance based on cor():
  data(USJudgeRatings)

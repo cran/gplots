@@ -1,4 +1,4 @@
-% $Id: residplot.Rd,v 1.3 2005/09/12 15:44:37 nj7w Exp $
+% $Id: residplot.Rd 671 2005-09-12 15:44:37Z nj7w $
 
 \name{residplot}
 \alias{residplot}

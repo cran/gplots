@@ -1,6 +1,6 @@
-% $Id: plotCI.Rd,v 1.8 2005/11/08 16:19:42 nj7w Exp $
+% $Id: plotCI.Rd 726 2005-11-08 16:19:42Z nj7w $
 %
-% $Log: plotCI.Rd,v $
+% $Log$
 % Revision 1.8  2005/11/08 16:19:42  nj7w
 % Updated Greg's email
 %

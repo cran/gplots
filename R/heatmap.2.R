@@ -1,10 +1,10 @@
-# $Id: heatmap.2.R,v 1.15 2005/06/09 14:20:27 nj7w Exp $
+# $Id: heatmap.2.R 933 2006-03-09 22:39:52Z nj7w $
 
 heatmap.2 <- function (x,
 
                      # dendrogram control
-                     Rowv=NULL,
-                     Colv=if(symm)"Rowv" else NULL,
+                     Rowv = TRUE,
+                     Colv=if(symm)"Rowv" else TRUE,
                      distfun = dist,
                      hclustfun = hclust,
                      dendrogram = c("both","row","column","none"),
@@ -50,9 +50,11 @@ heatmap.2 <- function (x,
 
                      # color key + density info
                      key = TRUE,
+                     keysize = 1.5,
                      density.info=c("histogram","density","none"),
                      denscol=tracecol,
-                     symkey = TRUE,
+                     #symkey = TRUE, # should be something like
+                     symkey = min(x < 0, na.rm=TRUE),
                      densadj = 0.25,
 
                      # plot labels
@@ -89,6 +91,9 @@ heatmap.2 <- function (x,
 
 
 
+  if ( (Colv=="Rowv") && (!isTRUE(Rowv) || is.null(Rowv) ) )
+    Colv <- FALSE
+  
     if(length(di <- dim(x)) != 2 || !is.numeric(x))
       stop("`x' must be a numeric matrix")
 
@@ -103,56 +108,114 @@ heatmap.2 <- function (x,
 
     if(missing(cellnote))
       cellnote <- matrix("", ncol=ncol(x), nrow=nrow(x))
+
+  ## Check if Rowv and dendrogram arguments are consistent
+  if ( ( (!isTRUE(Rowv)) || (is.null(Rowv))) && (dendrogram %in% c("both","row") ) )
+  {
+    if (is.logical(Colv) && (Colv))
+      dendrogram <- "column"
+    else
+      dedrogram <- "none"
     
-    ## by default order by row/col mean
-    if(is.null(Rowv)) Rowv <- rowMeans(x, na.rm = na.rm)
-    if(is.null(Colv)) Colv <- colMeans(x, na.rm = na.rm)
+    warning("Discrepancy: Rowv is FALSE, while dendrogram is `",
+            dendrogram, "'. Omitting row dendogram.")
+    
+  }
+
+ ## Check if Colv and dendrogram arguments are consistent
+  if ( ( (!isTRUE(Colv)) || (is.null(Colv)))
+      && (dendrogram %in% c("both","column")) )
+   {
+     if (is.logical(Rowv) && (Rowv))
+       dendrogram <- "row"
+     else
+       dendrogram <- "none"
+     
+    warning("Discrepancy: Colv is FALSE, while dendrogram is `",
+            dendrogram, "'. Omitting column dendogram.")
+   }
+
+  
+  
+  ## by default order by row/col mean
+  ## if(is.null(Rowv)) Rowv <- rowMeans(x, na.rm = na.rm)
+  ## if(is.null(Colv)) Colv <- colMeans(x, na.rm = na.rm)
 
     ## get the dendrograms and reordering indices
 
-    if( dendrogram %in% c("both","row") )
+   ## if( dendrogram %in% c("both","row") )
+    ##  { ## dendrogram option is used *only* for display purposes
+  if(inherits(Rowv, "dendrogram"))
+    {
+      ddr <- Rowv ## use Rowv 'as-is', when it is dendrogram
+      rowInd <- order.dendrogram(ddr)      
+    }
+else if (is.integer(Rowv))
+    { ## Compute dendrogram and do reordering based on given vector
+      hcr <- hclustfun(distfun(x))
+      ddr <- as.dendrogram(hcr)
+      ddr <-  reorder(ddr, Rowv)
+      
+      rowInd <- order.dendrogram(ddr)
+      if(nr != length(rowInd))
+        stop("row dendrogram ordering gave index of wrong length")
+    }
+  else if (isTRUE(Rowv)) 
+    { ## If TRUE, compute dendrogram and do reordering based on rowMeans
+      Rowv <- rowMeans(x, na.rm = na.rm)
+      hcr <- hclustfun(distfun(x))
+      ddr <- as.dendrogram(hcr)
+      ddr <- reorder(ddr, Rowv)
+      
+      rowInd <- order.dendrogram(ddr)
+      if(nr != length(rowInd))
+        stop("row dendrogram ordering gave index of wrong length")
+    } else {
+      rowInd <- nr:1
+    }
+  
+  ## if( dendrogram %in% c("both","column") )
+  ##   {
+  if(inherits(Colv, "dendrogram"))
+    {
+      ddc <- Colv ## use Colv 'as-is', when it is dendrogram
+      colInd <- order.dendrogram(ddc)
+    }
+  else if(identical(Colv, "Rowv")) {
+    if(nr != nc)
+      stop('Colv = "Rowv" but nrow(x) != ncol(x)')
+    if(exists("ddr"))
       {
-        if(inherits(Rowv, "dendrogram"))
-          ddr <- Rowv
-        else {
-          hcr <- hclustfun(distfun(x))
-          ddr <- as.dendrogram(hcr)
-          if(!is.logical(Rowv) || Rowv)
-	    ddr <- reorder(ddr, Rowv)
-        }
-        rowInd <- order.dendrogram(ddr)
-        if(nr != length(rowInd))
-          stop("row dendrogram ordering gave index of wrong length")
-      }
-    else
-      {
-        rowInd <- order(Rowv)
-      }
-
-    if( dendrogram %in% c("both","column") )
-      {
-        if(inherits(Colv, "dendrogram"))
-          ddc <- Colv
-        else if(identical(Colv, "Rowv")) {
-          if(nr != nc)
-            stop('Colv = "Rowv" but nrow(x) != ncol(x)')
-          ddc <- ddr
-        }
-        else {
-          hcc <- hclustfun(distfun(if(symm)x else t(x)))
-          ddc <- as.dendrogram(hcc)
-          if(!is.logical(Colv) || Colv)
-	    ddc <- reorder(ddc, Colv)
-        }
+        ddc <- ddr
         colInd <- order.dendrogram(ddc)
-        if(nc != length(colInd))
-          stop("column dendrogram ordering gave index of wrong length")
-      }
-    else
-      {
-        colInd <- order(Colv)
-      }
+      } else
+    colInd <- rowInd
+  } else if(is.integer(Colv))
+    {## Compute dendrogram and do reordering based on given vector
+      hcc <- hclustfun(distfun(if(symm)x else t(x)))
+      ddc <- as.dendrogram(hcc)
+      ddc <- reorder(ddc, Colv)
 
+      colInd <- order.dendrogram(ddc)
+      if(nc != length(colInd))
+        stop("column dendrogram ordering gave index of wrong length")
+    }
+else if (isTRUE(Colv))
+  {## If TRUE, compute dendrogram and do reordering based on rowMeans
+    Colv <- colMeans(x, na.rm = na.rm)
+    hcc <- hclustfun(distfun(if(symm)x else t(x)))
+    ddc <- as.dendrogram(hcc)
+    ddc <- reorder(ddc, Colv)
+
+    colInd <- order.dendrogram(ddc)
+    if(nc != length(colInd))
+      stop("column dendrogram ordering gave index of wrong length")
+  }
+else
+  {
+    colInd <- 1:nc
+  }
+  
     ## reorder x & cellnote
     x <- x[rowInd, colInd]
     x.unscaled <- x
@@ -206,7 +269,7 @@ heatmap.2 <- function (x,
 
     ## Calculate the plot layout
     lmat <- rbind(4:3, 2:1)
-    lwid <- lhei <- c(1, 4)
+    lhei <- lwid <- c(keysize, 4)
     if(!missing(ColSideColors)) { ## add middle row to layout
 	if(!is.character(ColSideColors) || length(ColSideColors) != nc)
 	    stop("'ColSideColors' must be a character vector of length ncol(x)")
@@ -343,7 +406,8 @@ heatmap.2 <- function (x,
       plot.new()
 
     par(mar = c(0, 0, if(!is.null(main)) 5 else 0, margins[2]))
-    if( dendrogram %in% c("both","column") )
+
+  if( dendrogram %in% c("both","column") )
       {
         plot(ddc, axes = FALSE, xaxs = "i", leaflab = "none")
       }

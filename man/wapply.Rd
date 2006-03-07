@@ -1,6 +1,6 @@
-% $Id: wapply.Rd,v 1.10 2005/12/01 16:46:52 nj7w Exp $
+% $Id: wapply.Rd 776 2005-12-01 16:54:02Z nj7w $
 %
-% $Log: wapply.Rd,v $
+% $Log$
 % Revision 1.10  2005/12/01 16:46:52  nj7w
 % Updated Greg's email address
 %

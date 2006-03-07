@@ -1,4 +1,4 @@
-% $Id: plotmeans.Rd,v 1.11 2005/12/01 16:46:52 nj7w Exp $
+% $Id: plotmeans.Rd 776 2005-12-01 16:54:02Z nj7w $
 
 \name{plotmeans}
 \alias{plotmeans}
