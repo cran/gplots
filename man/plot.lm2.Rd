@@ -40,7 +40,7 @@
   \item{rug}{logical vector indicating whether rug should be added to
     the existing plot }
 }
-\author{Gregory R. Warnes \email{gregory.r.warnes@pfizer.com} and Nitin
+\author{Gregory R. Warnes \email{warnes@bst.rochester.edu} and Nitin
   Jain \email{nitin.jain@pfizer.com}}
 \examples{
   ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)

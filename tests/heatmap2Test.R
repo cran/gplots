@@ -1,12 +1,9 @@
-#.libPaths("~/Rlib")
 library(gplots)
 
-#source("/home/jainn02/projects/gregmisc/gplots/R/heatmap.2.R")
-
- data(mtcars)
- x  <- as.matrix(mtcars)
- rc <- rainbow(nrow(x), start=0, end=.3)
- cc <- rainbow(ncol(x), start=0, end=.3)
+data(mtcars)
+x  <- as.matrix(mtcars)
+rc <- rainbow(nrow(x), start=0, end=.3)
+cc <- rainbow(ncol(x), start=0, end=.3)
 
 heatmap.2(x)  ## default - dendrogram plotted and reordering done.
 heatmap.2(x, dendrogram="none") ##  no dendrogram plotted, but reordering done.

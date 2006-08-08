@@ -1,4 +1,4 @@
-% $Id: bandplot.Rd 776 2005-12-01 16:54:02Z nj7w $
+% $Id: bandplot.Rd 977 2006-08-02 22:21:49Z warnes $
 %
 % $Log$
 % Revision 1.7  2005/12/01 16:46:52  nj7w
@@ -59,7 +59,7 @@
 \value{
   Invisibly returns a list containing the x,y points plotted for each line.
 }
-\author{ Gregory R. Warnes \email{gregory.r.warnes@pfizer.com}
+\author{ Gregory R. Warnes \email{warnes@bst.rochester.edu}
 }
 \seealso{ \code{\link{wapply}}, \code{\link{lowess}}}
 \examples{

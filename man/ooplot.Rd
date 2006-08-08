@@ -157,7 +157,7 @@ ooplot.default(data, width=1, space=NULL, names.arg=NULL,
   midpoints of each \emph{group} of bars, see example.
 }
 \author{Lodewijk Bonebakker \email{bonebakker@comcast.net} with modifications
-  by Gregory R. Warnes \email{gregory.r.warnes@pfizer.com}.
+  by Gregory R. Warnes \email{warnes@bst.rochester.edu}.
   Based on barplot2().
   }
 \seealso{ \code{\link[plot]{plot}}, \code{\link[plot]{boxplot}} }

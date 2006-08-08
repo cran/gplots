@@ -1,4 +1,4 @@
-% $Id: wapply.Rd 776 2005-12-01 16:54:02Z nj7w $
+% $Id: wapply.Rd 977 2006-08-02 22:21:49Z warnes $
 %
 % $Log$
 % Revision 1.10  2005/12/01 16:46:52  nj7w
@@ -103,7 +103,7 @@ wapply(x, y, fun=mean, method="range", width, n=50, drop.na=TRUE,
   \item{x }{x location'}
   \item{y }{Result of applying \code{fun} to the window about each x location}
 }
-\author{ Gregory R. Warnes \email{gregory.r.warnes@pfizer.com}
+\author{ Gregory R. Warnes \email{warnes@bst.rochester.edu}
   }
 \examples{
 

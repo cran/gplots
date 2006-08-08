@@ -55,7 +55,7 @@ overplot(formula, data = parent.frame(), same.scale = FALSE, xlab, ylab,
 \value{
   A copy of the data split by the conditioning variable.
 }
-\author{ Gregory R. Warnes \email{gregory.r.warnes@pfizer.com} }
+\author{ Gregory R. Warnes \email{warnes@bst.rochester.edu} }
 \seealso{ \code{\link[base]{interaction.plot}},
   \code{\link[base]{coplot}} for alternative visualizations of 3-way data.}
 \examples{

@@ -1,4 +1,4 @@
-% $Id: space.Rd 671 2005-09-12 15:44:37Z nj7w $
+% $Id: space.Rd 977 2006-08-02 22:21:49Z warnes $
 %
 % $Log$
 % Revision 1.9  2005/09/12 15:44:37  nj7w
@@ -63,7 +63,7 @@ space(x, y, s=1/50, na.rm=TRUE, direction="x")
   \item{x}{(modified) x location for each input point}
   \item{y}{y location of each input point}
 }
-\author{ Gregory R. Warnes \email{gregory.r.warnes@pfizer.com} }
+\author{ Gregory R. Warnes \email{warnes@bst.rochester.edu} }
 \seealso{ \code{\link{jitter}}, \code{link}[base]{sunflowerplot} }
 
 \examples{

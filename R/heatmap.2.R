@@ -1,4 +1,4 @@
-# $Id: heatmap.2.R 933 2006-03-09 22:39:52Z nj7w $
+# $Id: heatmap.2.R 967 2006-06-26 21:08:21Z nj7w $
 
 heatmap.2 <- function (x,
 
@@ -109,6 +109,7 @@ heatmap.2 <- function (x,
     if(missing(cellnote))
       cellnote <- matrix("", ncol=ncol(x), nrow=nrow(x))
 
+   if(!inherits(Rowv, "dendrogram")) {
   ## Check if Rowv and dendrogram arguments are consistent
   if ( ( (!isTRUE(Rowv)) || (is.null(Rowv))) && (dendrogram %in% c("both","row") ) )
   {
@@ -121,7 +122,9 @@ heatmap.2 <- function (x,
             dendrogram, "'. Omitting row dendogram.")
     
   }
+}
 
+    if(!inherits(Colv, "dendrogram")) {
  ## Check if Colv and dendrogram arguments are consistent
   if ( ( (!isTRUE(Colv)) || (is.null(Colv)))
       && (dendrogram %in% c("both","column")) )
@@ -134,7 +137,7 @@ heatmap.2 <- function (x,
     warning("Discrepancy: Colv is FALSE, while dendrogram is `",
             dendrogram, "'. Omitting column dendogram.")
    }
-
+}
   
   
   ## by default order by row/col mean

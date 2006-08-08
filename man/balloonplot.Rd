@@ -105,7 +105,7 @@ balloonplot(x, ...)
 \references{Function inspired by question posed on R-help by Ramon
   Alonso-Allende \email{allende@cnb.uam.es}.}
 
-\author{ Gregory R. Warnes \email{gregory.r.warnes@pfizer.com} }
+\author{ Gregory R. Warnes \email{warnes@bst.rochester.edu} }
 
 \seealso{ \code{\link{plot.table}} }
 
