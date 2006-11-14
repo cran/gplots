@@ -1,7 +1,25 @@
-CHANGES IN GPLOTS 2.3.0
------------------------
+Release 2.3.2
+-------------
+
+- heatmap.2.Rd: Fix example that was broken by changes in 2.3.0.
+
+
+Release 2.3.1
+-------------
+
+- Changed maintainer back to Greg Warnes
+
+- Updated Greg's email address
+
+- heatmap.2.R: Fixed a bug which displayed warnings when Rowv and Colv
+  were specified as dendrograms
+
+
+Release 2.3.0
+-------------
 
  - heatmap.2.R, heatmap.2.Rd:
+
           Updated the code and man page to make sure the Rowv and Colv
           values are properly handled
 
@@ -9,17 +27,17 @@ CHANGES IN GPLOTS 2.3.0
 
 
 
-CHANGES IN GPLOTS 2.2.0
------------------------
+Release 2.2.0
+-------------
 
  - plotmeans.R: Fixed bug in plotmeans - based on Stefano Calza's
 	        suggestion (the function didn't account for factors 
 		unused levels, returning an error.)
-
+ 
  - exported plot.lm to NAMESPACE, Remove .Alias calls in plot.lm.R
  		since .Alias is defunct.
 
- - barplot2.R: Changed the default greay colors to heat colors, if
+ - barplot2.R: Changed the default grey colors to heat colors, if
 	       height is matrix
 
  - Updated Greg's email address
@@ -35,8 +53,8 @@ CHANGES IN GPLOTS 2.2.0
 		 if no 'middle' color is desired.
 
 
-CHANGES IN GPLOTS 2.0.8
------------------------
+Release 2.0.8
+-------------
 
  - Added DESCRIPTION and removed DESCRIPTION.in
 

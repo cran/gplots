@@ -285,7 +285,7 @@ heatmap.2 (x,
               distfun=function(c) as.dist(1 - c), trace="none")
 
  ## The Correlation matrix with same reordering:
- hM <- format(round(cU[hU[[1]], hU[[2]]], 2))
+ hM <- format(round(cU, 2))
  hM
 
  # now with the correlation matrix on the plot itself
