@@ -9,7 +9,7 @@
 }
 \usage{
 ooplot(data, ...)
-ooplot.default(data, width=1, space=NULL, names.arg=NULL, 
+\method{ooplot}{default}(data, width=1, space=NULL, names.arg=NULL, 
                            legend.text=NULL, horiz=FALSE, 
                            density=NULL, angle=45, kmg="fpnumkMGTP", 
                            kmglim=TRUE, 
@@ -229,6 +229,8 @@ ooplot.default(data, width=1, space=NULL, names.arg=NULL,
      ooplot(test3f,type="stackbar",col=c("red","blue","green"))
      ooplot(test5r,type="stackbar",col=c("red","blue","green"))
 
+     # restore default layout (1 plot/page)
+     layout(1)
 }
 \keyword{hplot}
 

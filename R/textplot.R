@@ -1,4 +1,4 @@
-# $Id: textplot.R 625 2005-06-09 14:20:30Z nj7w $
+# $Id: textplot.R 1213 2007-11-01 20:20:10Z warnes $
 
 textplot <- function(object, halign="center", valign="center", cex, ... )
   UseMethod('textplot')
@@ -35,6 +35,9 @@ textplot.matrix <- function(object,
                             hadj=1,
                             vadj=1,
                             mar= c(1,1,4,1)+0.1,
+                            col.data=par("col"),
+                            col.rownames=par("col"),
+                            col.colnames=par("col"),
                             ... )
 {
 
@@ -43,6 +46,22 @@ textplot.matrix <- function(object,
   else
     object <- as.matrix(object)
 
+  # check dimensions of col.data, col.rownames, col.colnames
+  if(length(col.data)==1)
+    col.data <- matrix(col.data, nrow=nrow(object), ncol=ncol(object))
+  else
+    if( nrow(col.data)!=nrow(object) || ncol(col.data)!=ncol(object) )
+      stop("Dimensions of 'col.data' do not match dimensions of 'object'.")
+
+  if(length(col.rownames)==1)
+      col.rownames <- rep(col.rownames, nrow(object))      
+
+  if(length(col.colnames)==1)
+    if(show.rownames)
+      col.colnames <- rep(col.colnames, ncol(object)+1)
+    else
+      col.colnames <- rep(col.colnames, ncol(object))
+  
   halign=match.arg(halign)
   valign=match.arg(valign)
 
@@ -63,15 +82,17 @@ textplot.matrix <- function(object,
     rownames(object) <- paste( "[", 1:nrow(object), ",]", sep="")
 
 
-  # extend the matrix to include them
+  # extend the matrix to include row and column labels
   if( show.rownames )
     {
       object <- cbind( rownames(object), object )
+      col.data <- cbind( col.rownames, col.data )
+      
     }
   if( show.colnames )
     {
-
       object <- rbind( colnames(object), object )
+      col.data <- rbind( col.colnames, col.data )
     }
 
   # set the character size
@@ -143,9 +164,11 @@ textplot.matrix <- function(object,
     for(j in 1:nrow(object)) {
       ypos<-y-(j-1)*rowheight
       if( (show.rownames && i==1) || (show.colnames && j==1) )
-        text(xpos, ypos, object[j,i], adj=c(hadj,vadj), cex=cex, font=2, ... )
+        text(xpos, ypos, object[j,i], adj=c(hadj,vadj), cex=cex, font=2,
+             col=col.data[j,i], ... )
       else
-        text(xpos, ypos, object[j,i], adj=c(hadj,vadj), cex=cex, font=1, ... )
+        text(xpos, ypos, object[j,i], adj=c(hadj,vadj), cex=cex, font=1,
+             col=col.data[j,i], ... )
     }
   }
 
@@ -159,9 +182,11 @@ textplot.character <- function (object,
                                 cspace=1,
                                 lspace=1,
                                 mar=c(0,0,3,0)+0.1,
+                                tab.width=8,
                                 ...)
   {
     object <- paste(object,collapse="\n",sep="")
+    object <- replaceTabs(object, width=tab.width)
 
     halign = match.arg(halign)
     valign = match.arg(valign)

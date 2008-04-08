@@ -1,4 +1,4 @@
-# $Id: overplot.R 625 2005-06-09 14:20:30Z nj7w $
+# $Id: overplot.R 1212 2007-11-01 20:18:30Z warnes $
 
 panel.overplot <- function(formula, data, subset, col, lty, ...)
   {
@@ -21,7 +21,8 @@ overplot <- function (formula, data = parent.frame(),
                       log='',
                       panel='panel.overplot',
                       subset,
-                      plot=TRUE, groups,
+                      plot=TRUE,
+                      groups,
                       main,
                       f=2/3,
                       ... )

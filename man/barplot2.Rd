@@ -9,7 +9,7 @@
 %%   gamma-corrected grey palette (rather than the heat color
 %%   palette) for coloring its output when given a matrix.
 
-% $Id: barplot2.Rd 785 2005-12-07 18:48:54Z nj7w $
+% $Id: barplot2.Rd 1254 2008-04-07 17:09:41Z warnes $
 %% $Log$
 %% Revision 1.12  2005/12/07 18:48:54  nj7w
 %% Changed the default grey colors to heat colors, if height is matrix
@@ -213,7 +213,7 @@
   midpoints of each \emph{group} of bars, see example.
 }
 \author{Original barplot() by R-Core. Enhancements by Marc
-  Schwartz \email{mschwartz@mn.rr.com}
+  Schwartz \email{marc\_schwartz@comcast.net}
 }
 \note{
   Prior to \R 1.6.0, \code{barplot} behaved as if \code{axis.lty = 1},

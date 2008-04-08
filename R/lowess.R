@@ -1,4 +1,4 @@
-# $Id: lowess.R 625 2005-06-09 14:20:30Z nj7w $
+# $Id: lowess.R 1012 2006-11-14 22:25:06Z ggorjan $
 
 if(is.R())
   {

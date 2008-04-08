@@ -1,4 +1,4 @@
-% $Id: hist2d.Rd 977 2006-08-02 22:21:49Z warnes $
+% $Id: hist2d.Rd 1222 2007-11-06 16:24:50Z warnes $
 %
 % $Log$
 % Revision 1.6  2005/09/12 15:44:36  nj7w
@@ -23,7 +23,7 @@
 \alias{hist2d}
 \title{ Compute and Plot a 2-Dimensional Histogram }
 \description{
-  Compute and plot a 2-dimensional histogram. }
+  Compute and plot a 2-dimensional histogram.
 }
 \usage{
 hist2d(x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE,

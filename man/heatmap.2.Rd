@@ -71,6 +71,11 @@ heatmap.2 (x,
                      xlab = NULL,
                      ylab = NULL,
 
+                     # plot layout
+                     lmat = NULL,
+                     lhei = NULL,
+                     lwid = NULL,
+
                      # extras
                      ...
                      )
@@ -81,7 +86,7 @@ heatmap.2 (x,
   \item{Rowv}{determines if and how the \emph{row} dendrogram should be
     reordered.	By default, it is TRUE, which implies dendrogram is
     computed and reordered based on row means. If NULL or FALSE, then no
-    dendrogram is computed and reordering is done. If a
+    dendrogram is computed and no reordering is done. If a
     \code{\link{dendrogram}}, then it is used "as-is", ie
     without any reordering. If a vector of integers, then dendrogram is
     computed and reordered based on the order of the vector.}
@@ -180,6 +185,9 @@ heatmap.2 (x,
     0.25.}
   % plot labels
   \item{main, xlab, ylab}{main, x- and y-axis titles; defaults to none.}
+  % figure layout
+  \item{lmat, lhei, lwid}{visual layout: position matrix, column height,
+    column width.  See below for details}
   \item{...}{additional arguments passed on to \code{\link{image}} } %
 }
 \details{
@@ -209,7 +217,18 @@ heatmap.2 (x,
   as the \pkg{RColorBrewer} package, 
   \url{http://cran.r-project.org/src/contrib/PACKAGES.html#RColorBrewer}
   to select better colors.
-  
+
+  By default four components will be displayed in the plot.  At the top
+  left is the color key, top right is the column dendogram, bottom left
+  is the row dendogram, bottom right is the image plot.  When
+  RowSideColor or ColSideColor are provided, an additional row or column
+  is inserted in the appropriate location.   This layout can be
+  overriden by specifiying appropriate values for \code{lmat},
+  \code{lwid}, and \code{lhei}.  \code{lmat} controls the relative
+  postition of each element, while \code{lwid} controls the column
+  width, and \code{lhei} controls the row height. See the help page for
+  \code{\link[graphics]{layout}} for details on how to use these
+  arguments.
 }
 \note{
   The original rows and columns are reordered \emph{in any case} to
@@ -276,6 +295,11 @@ heatmap.2 (x,
  # without reorder
  heatmap.2(Ca, Rowv=FALSE, symm=TRUE, margin=c(6, 6), trace="none" )
 
+ ## Place the color key below the image plot
+ heatmap.2(x, lmat=rbind( c(0, 3), c(2,1), c(0,4) ), lhei=c(1.5, 4, 2 ) )
+
+ ## Place the color key to the top right of the image plot
+ heatmap.2(x, lmat=rbind( c(0, 3, 4), c(2,1,0 ) ), lwid=c(1.5, 4, 2 ) )
 
  ## For variable clustering, rather use distance based on cor():
  data(USJudgeRatings)
@@ -312,5 +336,6 @@ heatmap.2 (x,
                main="SpikeIn@pm Fold Changes\nrelative to 12.50 sample", 
                xlab="Relative Concentration", ylab="Probeset")
  }
+
 }
 \keyword{hplot}

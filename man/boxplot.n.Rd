@@ -1,4 +1,4 @@
-% $Id: boxplot.n.Rd 977 2006-08-02 22:21:49Z warnes $
+% $Id: boxplot.n.Rd 1012 2006-11-14 22:25:06Z ggorjan $
 %
 % $Log$
 % Revision 1.5  2005/12/01 16:46:52  nj7w

@@ -1,4 +1,4 @@
-% $Id: plotCI.Rd 977 2006-08-02 22:21:49Z warnes $
+% $Id: plotCI.Rd 1012 2006-11-14 22:25:06Z ggorjan $
 %
 % $Log$
 % Revision 1.8  2005/11/08 16:19:42  nj7w

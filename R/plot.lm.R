@@ -74,7 +74,7 @@ plot.lm2 <- function(
 	     ylim = ylim, type = "n", ...)
 	panel(yh, r, ...)
         if(rug)  rug(yh)                    ## GRW 2001-06-08
-        if(band) bandplot(yh,r,add=TRUE,lty=3) ## GRW 2001-06-08
+        if(band) bandplot(yh,r,add=TRUE)    ## GRW 2001-06-08
 	if (one.fig)
 	    title(sub = sub.caption, ...)
 	mtext(caption[1], 3, 0.25)
@@ -107,7 +107,7 @@ plot.lm2 <- function(
 
         abline(h=mean(sqrtabsr),lty = 3, col = "gray")
         if(rug)  rug(yh)                             ## GRW 2001-06-08
-        if(band) bandplot(yhn0,sqrtabsr,add=TRUE,lty=3) ## GRW 2001-06-08
+        if(band) bandplot(yhn0,sqrtabsr,add=TRUE) ## GRW 2001-06-08
 
 	if (one.fig)
 	    title(sub = sub.caption, ...)
@@ -141,7 +141,7 @@ plot.lm2 <- function(
                                xlab=names(data)[i], ylab="Residuals", type="n")
                           panel( data[,i], r, ... )
                           if(rug)  rug(data[,i])
-                          if(band) bandplot(data[,i],r,add=TRUE,lty=3)
+                          if(band) bandplot(data[,i],r,add=TRUE)
                           abline(h=0,lty = 3, col = "gray")
                         }
                        )

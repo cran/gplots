@@ -1,4 +1,4 @@
-% $Id: bandplot.Rd 977 2006-08-02 22:21:49Z warnes $
+% $Id: bandplot.Rd 1215 2007-11-02 18:18:56Z warnes $
 %
 % $Log$
 % Revision 1.7  2005/12/01 16:46:52  nj7w
@@ -29,6 +29,7 @@
 \usage{
   bandplot(x, y, ..., add = FALSE, sd = c(-2:2),
            sd.col = c("lightblue", "blue", "red", "blue", "lightblue"),
+           sd.lwd = c(1, 2, 3, 2, 1), sd.lty = c(2, 1, 1, 1, 2),
            method = "frac", width = 1/5, n=50) 
 }
 \arguments{
@@ -41,7 +42,7 @@
   \item{sd}{Vector of multiples of the standard devation that should be
     plotted.  \code{0} gives the mean, \code{-1} gives the mean minus
     one standard deviation, etc.  Defaults to -2:2.}
-  \item{sd.col}{Color of each plotted line.}
+  \item{sd.col,sd.lwd,sd.lty}{Color, line width, and line type of each plotted line.}
   \item{method, width, n}{ Parameters controlling the smoothing. See the
     help page for \code{\link{wapply}} for details.}
 }

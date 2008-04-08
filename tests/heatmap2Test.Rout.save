@@ -1,6 +1,6 @@
 
-R version 2.4.0 (2006-10-03)
-Copyright (C) 2006 The R Foundation for Statistical Computing
+R version 2.6.0 (2007-10-03)
+Copyright (C) 2007 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -42,36 +42,45 @@ Attaching package: 'gplots'
 > 
 > heatmap.2(x, Colv=FALSE)
 Warning message:
-Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, Colv = FALSE) 
+In heatmap.2(x, Colv = FALSE) :
+  Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram.
 > heatmap.2(x, Colv=NULL)
 Warning message:
-Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, Colv = NULL) 
+In heatmap.2(x, Colv = NULL) :
+  Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram.
 > 
 > heatmap.2(x, Rowv=FALSE)
 Warning message:
-Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, Rowv = FALSE) 
+In heatmap.2(x, Rowv = FALSE) :
+  Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram.
 > heatmap.2(x, Rowv=NULL)
 Warning message:
-Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, Rowv = NULL) 
+In heatmap.2(x, Rowv = NULL) :
+  Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram.
 > 
 > heatmap.2(x, Rowv=FALSE, dendrogram="both") ## generate warning!
 Warning message:
-Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, Rowv = FALSE, dendrogram = "both") 
+In heatmap.2(x, Rowv = FALSE, dendrogram = "both") :
+  Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram.
 > heatmap.2(x, Rowv=NULL, dendrogram="both")  ## generate warning!
 Warning message:
-Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, Rowv = NULL, dendrogram = "both") 
+In heatmap.2(x, Rowv = NULL, dendrogram = "both") :
+  Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram.
 > heatmap.2(x, Colv=FALSE, dendrogram="both") ## generate warning!
 Warning message:
-Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, Colv = FALSE, dendrogram = "both") 
+In heatmap.2(x, Colv = FALSE, dendrogram = "both") :
+  Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram.
 > 
 > 
 > 
 > heatmap.2(x,dendrogram="both", Rowv=FALSE) ## row and col reordering done, but only col dendrogram plotted 
 Warning message:
-Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, dendrogram = "both", Rowv = FALSE) 
+In heatmap.2(x, dendrogram = "both", Rowv = FALSE) :
+  Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram.
 > heatmap.2(x,dendrogram="row",  Rowv=FALSE) 
 Warning message:
-Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram. in: heatmap.2(x, dendrogram = "row", Rowv = FALSE) 
+In heatmap.2(x, dendrogram = "row", Rowv = FALSE) :
+  Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram.
 > 
 > 
 > heatmap.2(x,dendrogram="col",  Rowv=FALSE)
@@ -80,17 +89,20 @@ Discrepancy: Rowv is FALSE, while dendrogram is `column'. Omitting row dendogram
 > 
 > heatmap.2(x,dendrogram="both", Colv=FALSE) ## row and col reordering done, but only row dendrogram plotted
 Warning message:
-Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, dendrogram = "both", Colv = FALSE) 
+In heatmap.2(x, dendrogram = "both", Colv = FALSE) :
+  Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram.
 > heatmap.2(x,dendrogram="row",  Colv=FALSE)
 > heatmap.2(x,dendrogram="col",  Colv=FALSE)
 Warning message:
-Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, dendrogram = "col", Colv = FALSE) 
+In heatmap.2(x, dendrogram = "col", Colv = FALSE) :
+  Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram.
 > heatmap.2(x,dendrogram="none", Colv=FALSE) 
 > 
 > ## above statement is same as heatmap.2(x,Colv=FALSE)
 > heatmap.2(x,dendrogram="col", Colv=FALSE) ## col reordering done, but no dendrogram plotted 
 Warning message:
-Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram. in: heatmap.2(x, dendrogram = "col", Colv = FALSE) 
+In heatmap.2(x, dendrogram = "col", Colv = FALSE) :
+  Discrepancy: Colv is FALSE, while dendrogram is `row'. Omitting column dendogram.
 > 
 > 
 > hv <- heatmap.2(x, col=cm.colors(256), scale="column", 

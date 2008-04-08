@@ -56,7 +56,8 @@ overplot(formula, data = parent.frame(), same.scale = FALSE, xlab, ylab,
   A copy of the data split by the conditioning variable.
 }
 \author{ Gregory R. Warnes \email{warnes@bst.rochester.edu} }
-\seealso{ \code{\link[base]{interaction.plot}},
+\seealso{
+  \code{\link[base]{interaction.plot}},
   \code{\link[base]{coplot}} for alternative visualizations of 3-way data.}
 \examples{
 
@@ -66,11 +67,11 @@ data(rtPCR)
 # same scale
 overplot( RQ ~ Conc..ug.ml. | Test.Substance,
          data=rtPCR,
-         subset=Detector=="ProbeType 7" & Conc..ug.ml. > 0,
+         subset=Detector=="ProbeType 1" & Conc..ug.ml. > 0,
          same.scale=TRUE,
          log="xy",
          f=3/4,
-         main="Detector=ProbeType 7",
+         main="Detector=ProbeType 1",
          xlab="Concentration (ug/ml)",
          ylab="Relative Gene Quantification"
          )
@@ -78,10 +79,10 @@ overplot( RQ ~ Conc..ug.ml. | Test.Substance,
 # different scales, but force lower limit to 0.01 
 overplot( RQ ~ Conc..ug.ml. | Test.Substance,
          data=rtPCR,
-         subset=Detector=="ProbeType 7" & Conc..ug.ml. > 0,
+         subset=Detector=="ProbeType 8" & Conc..ug.ml. > 0,
          log="xy",
          f=3/4,
-         main="Detector=ProbeType 7",
+         main="Detector=ProbeType 8",
          xlab="Concentration (ug/ml)",
          ylab="Relative Gene Quantification",
          min.y=0.01
