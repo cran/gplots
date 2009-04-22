@@ -1,6 +1,3 @@
-
-##!!! BROKEN !!!
-
 plot.lm2 <- function(
                      x,
                      which = 1:5,
@@ -15,7 +12,10 @@ plot.lm2 <- function(
                      id.n = 3,
                      labels.id = names(residuals(x)),
                      cex.id = 0.75,
-                     band=TRUE,rug=TRUE
+                     band=TRUE,
+                     rug=TRUE,
+                     width=1/10,
+                     max.n=5000
                      )
 {
     if (!inherits(x, "lm"))
@@ -26,7 +26,10 @@ plot.lm2 <- function(
     show[which] <- TRUE
     r <- residuals(x)
     n <- length(r)
-    yh <- predict(x) # != fitted() for glm
+    if(inherits(x,"glm"))
+       yh <- predict(x) # != fitted() for glm
+    else
+       yh <- fitted(x)
     if (any(show[2:4]))
         s <- if(inherits(x, "rlm")) x$s else sqrt(deviance(x)/df.residual(x))
     if (any(show[2:3])) {
@@ -73,8 +76,8 @@ plot.lm2 <- function(
 	plot(yh, r, xlab = l.fit, ylab = "Residuals", main = main,
 	     ylim = ylim, type = "n", ...)
 	panel(yh, r, ...)
-        if(rug)  rug(yh)                    ## GRW 2001-06-08
-        if(band) bandplot(yh,r,add=TRUE)    ## GRW 2001-06-08
+        if(rug)  rug(yh)                                 ## GRW 2001-06-08
+        if(band) bandplot(yh,r,add=TRUE,width=width)    ## GRW 2001-06-08
 	if (one.fig)
 	    title(sub = sub.caption, ...)
 	mtext(caption[1], 3, 0.25)

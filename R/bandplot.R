@@ -1,12 +1,12 @@
-# $Id: bandplot.R 1048 2007-02-08 16:56:57Z warnes $
+# $Id: bandplot.R 1272 2008-05-20 01:07:28Z warnes $
 
 bandplot  <-  function(x,y,
                        ...,
                        add=FALSE,
                        sd=c(-2:2),
-                       sd.col=c("lightblue","blue","red",
-                                 "blue","lightblue"),
-                       sd.lwd=c(1,2,3,2,1),
+                       sd.col=c("magenta","blue","red",
+                                 "blue","magenta"),
+                       sd.lwd=c(2,2,3,2,2),
                        sd.lty=c(2,1,1,1,2),
                        method="frac", width=1/5,
                        n=50
@@ -16,7 +16,6 @@ bandplot  <-  function(x,y,
     if(length(sd.col)<length(sd)) sd <-rep(sd.col,length=length(sd))
     if(length(sd.lwd)<length(sd)) sd <-rep(sd.lwd,length=length(sd))
     if(length(sd.lty)<length(sd)) sd <-rep(sd.lty,length=length(sd))    
-
     if(!add)
       {
         m <- match.call(expand.dots = TRUE)
@@ -35,21 +34,22 @@ bandplot  <-  function(x,y,
       else
         mean(x)+sd*sqrt(var(x))
 
-    sdplot <- function(S, COL, LWD, LTY)
-                  {
-                    where <- wapply(x,y,CL,sd=S,width=width,method=method,n=n)
-                    lines(where,col=COL,lwd=LWD,lty=LTY,...)
-                    where
-                  }
+    ord <- order(x)
+    myx <- x[ord]
+    myy <- y[ord]
+    sdVec <- runsd(myy, k=floor(length(x)*width))
+    meanVec <- runmean(myy, k=floor(length(x)*width) )
 
     stdevs <- list()
     for( i in 1:length(sd) )
-      stdevs[[as.character(sd[i])]] <- sdplot(
-                                              sd[i],
-                                              COL=sd.col[i],
-                                              LWD=sd.lwd[i],
-                                              LTY=sd.lty[i]
-                                              )
+      {
+          lines(myx,
+                meanVec + sdVec * sd[i],
+                col=sd.col[i],
+                lwd=sd.lwd[i],
+                lty=sd.lty[i]
+                )
 
-    invisible( stdevs )
+      }
+    
   }

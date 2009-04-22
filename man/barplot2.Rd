@@ -9,7 +9,7 @@
 %%   gamma-corrected grey palette (rather than the heat color
 %%   palette) for coloring its output when given a matrix.
 
-% $Id: barplot2.Rd 1254 2008-04-07 17:09:41Z warnes $
+% $Id: barplot2.Rd 1315 2009-04-22 17:15:11Z warnes $
 %% $Log$
 %% Revision 1.12  2005/12/07 18:48:54  nj7w
 %% Changed the default grey colors to heat colors, if height is matrix
@@ -237,7 +237,7 @@ lines(r, tN, type = 'h', col = 'red', lwd = 2)
 barplot2(tN, space = 1.5, axisnames = FALSE,
         sub = "barplot2(..., space = 1.5, axisnames = FALSE)")
 
-data(VADeaths, package = "base")
+data(VADeaths, package = "datasets")
 barplot2(VADeaths, plot = FALSE)
 barplot2(VADeaths, plot = FALSE, beside = TRUE)
 

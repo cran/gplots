@@ -162,7 +162,7 @@ ooplot(data, ...)
   }
 \seealso{ \code{\link[plot]{plot}}, \code{\link[plot]{boxplot}} }
 \examples{
-     data(VADeaths, package = "base")
+     data(VADeaths, package = "datasets")
 
      VADeaths <- cbind( Age=c(50,55,60,65,70), VADeaths)
 

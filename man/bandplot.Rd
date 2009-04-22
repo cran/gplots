@@ -1,4 +1,4 @@
-% $Id: bandplot.Rd 1215 2007-11-02 18:18:56Z warnes $
+% $Id: bandplot.Rd 1272 2008-05-20 01:07:28Z warnes $
 %
 % $Log$
 % Revision 1.7  2005/12/01 16:46:52  nj7w
@@ -28,8 +28,8 @@
   }
 \usage{
   bandplot(x, y, ..., add = FALSE, sd = c(-2:2),
-           sd.col = c("lightblue", "blue", "red", "blue", "lightblue"),
-           sd.lwd = c(1, 2, 3, 2, 1), sd.lty = c(2, 1, 1, 1, 2),
+           sd.col=c("magenta", "blue", "red", "blue", "magenta"),
+           sd.lwd=c(2, 2, 3, 2, 2),  sd.lty=c(2, 1, 1, 1, 2), 
            method = "frac", width = 1/5, n=50) 
 }
 \arguments{

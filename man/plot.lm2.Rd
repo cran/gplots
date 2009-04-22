@@ -7,14 +7,25 @@
    Plots to assess the goodness of fit for the linear model objects
  }
  \usage{
-        plot.lm2(x, which = 1:5, caption = c("Residuals vs Fitted",
-                 "Normal Q-Q plot", "Scale-Location plot",
-                 "Cook's distance plot"), panel = panel.smooth,
-                 sub.caption = deparse(x$call), main = "",
-                 ask = interactive() && nb.fig < length(which)
-                 && .Device != "postscript", ..., id.n = 3,
-                 labels.id = names(residuals(x)),
-                 cex.id = 0.75, band = TRUE, rug = TRUE)
+   plot.lm2(
+            x,
+            which = 1:5,
+            caption = c("Residuals vs Fitted", "Normal Q-Q plot",
+              "Scale-Location plot", "Cook's distance plot"),
+            panel = panel.smooth,
+            sub.caption = deparse(x$call),
+            main = "",
+            ask = interactive() && nb.fig < length(which)
+            && .Device != "postscript",
+            ...,
+            id.n = 3,
+            labels.id = names(residuals(x)),
+            cex.id = 0.75,
+            band=TRUE,
+            rug=TRUE,
+            width=1/10,
+            max.n=5000
+            )
 }
 \arguments{
   \item{x}{lm object}
@@ -39,16 +50,22 @@
   \item{band}{logical vector indicating whether bandplot should also be plotted }
   \item{rug}{logical vector indicating whether rug should be added to
     the existing plot }
+  \item{width}{Fraction of the data to use for plot smooths}
+  \item{max.n}{Maximum number of points to display in plots}
 }
 \author{Gregory R. Warnes \email{warnes@bst.rochester.edu} and Nitin
   Jain \email{nitin.jain@pfizer.com}}
 \examples{
-  ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
-     trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
-     group <- gl(2,10,20, labels=c("Ctl","Trt"))
-     weight <- c(ctl, trt)
-     x <- lm(weight ~ group)
-    plot.lm2(x, which=1)
-plot.lm2(x, which=1:3)
+ctl <- rnorm(100, 4)
+trt <- rnorm(100, 4.5)
+group <- gl(2,100,200, labels=c("Ctl","Trt"))
+weight <- c(ctl, trt)
+wt.err <- rnorm(length(weight), mean=weight, sd=1/2)
+x <- lm(weight ~ group + wt.err)
+
+plot.lm2(x)
+
+plot.lm2(x, which=1,   width=1/3)
+plot.lm2(x, which=1:3, widht=1/3)
 }
 \keyword{hplot}

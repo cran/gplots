@@ -18,10 +18,15 @@ balloonplot(x, ...)
                                 dotsize=2/max(strwidth(19),strheight(19)),
                                 dotchar=19,
                                 dotcolor="skyblue",
+                                text.size=1,
+                                text.color=par("fg"),
                                 main,
                                 label=TRUE,
                                 label.digits=2,
+                                label.size=1,
+                                label.color=par("fg"),
                                 scale.method=c("volume","diameter"),
+                                scale.range=c("absolute","relative"),
                                 colsrt=par("srt"),
                                 rowsrt=par("srt"),
                                 colmar=1,
@@ -54,12 +59,20 @@ balloonplot(x, ...)
     page for the points function for symbol codes.}
   \item{dotcolor}{Scalar or vector specifying the color(s) of the dots in
     the plot.}
+  \item{text.size, text.color}{Character size and color for row and
+    column headers}
   \item{main}{Plot title text.}
   \item{label}{Boolean flag indicating whether the actual value of the
     elements should be shown on the plot.}
   \item{label.digits}{Number of digits used in formatting value labels.}
+  \item{label.size, label.color}{ Character size and color for value labels.}
   \item{scale.method}{Method of scaling the sizes of the dot, either
     "volume" or "diameter". See below.}
+  \item{scale.range}{Method for scaling original data to compute
+  circle diameter.  \code{scale.range="absolute"} scales the data
+  relative to 0 (i.e, maps [0,max(z)] --> [0,1]), while
+  \code{scale.range="relative"} scales the data relative to min(z)
+  (i.e. maps [min(z), max(z)] --> [0,1]).}
   \item{rowsrt, colsrt}{Angle of rotation for row and column labels.}
   \item{rowmar, colmar}{Space allocated for row and column labels. Each
     unit is the width/height of one cell in the table.}
@@ -159,7 +172,7 @@ colors <- as.character(as.data.frame(Colors)$Freq)
 
 balloonplot(x=list(Age,Sex),
             y=list(Class=Class,
-            Survived=reorder.factor(Survived,c(2,1))),
+            Survived=gdata::reorder.factor(Survived,c(2,1))),
             z=Freq,
             zlab="Number of Passengers",
             sort=TRUE,
