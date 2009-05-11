@@ -4,7 +4,7 @@ Description: Various R programming tools for plotting data
 Depends: R (>= 1.9.0), gtools, gdata, stats, caTools, grid
 Recommends: datasets, grid
 Suggests: gtools
-Version: 2.7.0
+Version: 2.7.1
 Author: Gregory R. Warnes. Includes R source code and/or documentation
         contributed by (in alphabetical order): Ben Bolker, Lodewijk
         Bonebakker, Robert Gentleman, Wolfgang Huber Andy Liaw, Thomas
@@ -12,6 +12,6 @@ Author: Gregory R. Warnes. Includes R source code and/or documentation
         Schwartz, Bill Venables
 Maintainer: Gregory R. Warnes <greg@random-technologies-llc.com>
 License: GPL-2
-Packaged: 2009-04-22 17:44:04 UTC; warnes
+Packaged: 2009-05-11 00:08:06 UTC; warnes
 Repository: CRAN
-Date/Publication: 2009-04-23 07:11:36
+Date/Publication: 2009-05-11 10:10:46

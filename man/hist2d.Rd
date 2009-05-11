@@ -1,4 +1,4 @@
-% $Id: hist2d.Rd 1222 2007-11-06 16:24:50Z warnes $
+% $Id: hist2d.Rd 1319 2009-05-08 22:01:12Z warnes $
 %
 % $Log$
 % Revision 1.6  2005/09/12 15:44:36  nj7w
@@ -63,7 +63,7 @@ hist2d(x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE,
   \item{y}{lower y limit of each bin}
 }
 %\references{ ~put references to the literature/web site here ~ }
-\author{ Gregory R. Warnes \email{warnes@bst.rochester.edu}}
+\author{ Gregory R. Warnes \email{greg@random-technologies-llc.com}}
 %\note{ ~~further notes~~ }
 
 \seealso{ \code{\link{image}}, \code{\link{persp}}, \code{\link{hist}} }

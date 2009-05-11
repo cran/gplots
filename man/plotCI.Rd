@@ -1,4 +1,4 @@
-% $Id: plotCI.Rd 1012 2006-11-14 22:25:06Z ggorjan $
+% $Id: plotCI.Rd 1322 2009-05-08 22:35:25Z warnes $
 %
 % $Log$
 % Revision 1.8  2005/11/08 16:19:42  nj7w
@@ -41,18 +41,18 @@ plotCI(x, y = NULL, uiw, liw = uiw, ui, li, err='y', ylim=NULL,
     defaults to \code{1:n}.}
 
   \item{uiw}{ width of the upper or right error bar. Set to \code{NULL}
-    omit upper bars.}
+    or \code{NA} to omit upper bars.}
 
   \item{liw}{ width of the lower or left error bar.  Defaults to same value as
-    \code{uiw}.  Set to \code{NULL} to omit lower bars. }
+    \code{uiw}.  Set to \code{NULL} or \code{NA} to omit lower bars. }
 
   \item{ui}{ upper end of error bars.  Defaults to \code{y + uiw} or
-    \code{x + uiw} depeding on \code{err}.  Set to \code{NULL} omit
-    upper bars. }
+    \code{x + uiw} depeding on \code{err}.  Set to \code{NULL}  or
+    \code{NA} to omit upper bars. }
 
   \item{li}{ lower end of error bars.  Defaults to \code{y - liw} or
-    \code{x - liw} depedning on \code{err}.  Set to \code{NULL} to omit
-    lower bars.}
+    \code{x - liw} depedning on \code{err}.  Set to \code{NULL}  or
+    \code{NA} to omit lower bars.}
 
   \item{err}{ direction for error bars. Set to "y" for vertical bars.
     Set to "x" for horizontal bars. Defaults to "y".}
@@ -115,7 +115,7 @@ plotCI(x, y = NULL, uiw, liw = uiw, ui, li, err='y', ylim=NULL,
   Sep. 20, 1997.  Enhanced version posted to r-help by Ben Bolker
   \email{ben@zoo.ufl.edu} on Apr. 16, 2001.  This version was modified
   and extended by Gregory R. Warnes
-  \email{warnes@bst.rochester.edu}.  Additional changes
+  \email{greg@random-technologies-llc.com}.  Additional changes
   suggested by Martin Maechler \email{maechler@stat.math.ethz.ch}
   integrated on July 29, 2004.
   }
@@ -146,6 +146,22 @@ plotCI(x, y = NULL, uiw, liw = uiw, ui, li, err='y', ylim=NULL,
 
   # better yet, just use plotmeans ... #
   plotmeans( state.area ~ state.region )
+
+\dontshow{
+## Just for testing
+  plotCI(x=means, uiw=NA)
+  plotCI(x=means, uiw=NULL)
+  plotCI(x=means, uiw=ciw)
+  plotCI(x=means, uiw=ciw, liw=NULL)
+  plotCI(x=means, uiw=ciw, liw=NA)
+  plotCI(x=means, liw=ciw, ciw=NULL)
+  plotCI(x=means, liw=ciw, ciw=NA)
+  ciw.na <- ciw
+  ciw.na[3] <- NA
+  plotCI(x=means, uiw=ciw.na, liw=ciw)
+  plotCI(x=means, liw=ciw.na, uiw=ciw)
+}
+
 
 }
 

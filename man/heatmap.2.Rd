@@ -1,85 +1,92 @@
 \name{heatmap.2}
 \alias{heatmap.2}
-\title{ Draw a Heat Map }
+\title{ Enhanced Heat Map }
 \description{
   A heat map is a false color image (basically
   \code{\link{image}(t(x))}) with a dendrogram added to the left side 
   and/or to the top.  Typically, reordering of the rows and columns
   according to some set of values (row or column means) within the
   restrictions imposed by the dendrogram is carried out.
+
+  This heatmap provides a number of extensions to the standard R
+  \code{\link[stats]{heatmap}} function.
 }
 \usage{
 heatmap.2 (x,
 
-                     # dendrogram control
-                     Rowv = TRUE,
-                     Colv=if(symm)"Rowv" else TRUE,
-                     distfun = dist,
-                     hclustfun = hclust,
-                     dendrogram = c("both","row","column","none"),
-                     symm = FALSE,
+           # dendrogram control
+           Rowv = TRUE,
+           Colv=if(symm)"Rowv" else TRUE,
+           distfun = dist,
+           hclustfun = hclust,
+           dendrogram = c("both","row","column","none"),
+           symm = FALSE,
 
-                     # data scaling
-                     scale = c("none","row", "column"),
-                     na.rm=TRUE,
+           # data scaling
+           scale = c("none","row", "column"),
+           na.rm=TRUE,
 
-                     # image plot
-                     revC = identical(Colv, "Rowv"),
-                     add.expr,
-                     breaks,
-                     col="heat.colors",
+           # image plot
+           revC = identical(Colv, "Rowv"),
+           add.expr,
 
-                     # block sepration
-                     colsep,
-                     rowsep,
-                     sepcolor="white",
-                     sepwidth=c(0.05,0.05),
+           # mapping data to colors
+           breaks,
+           symbreaks=min(x < 0, na.rm=TRUE) || scale!="none",
 
-                     # cell labeling
-                     cellnote,
-                     notecex=1.0,
-                     notecol="cyan",
-                     na.color=par("bg"),
+           # colors
+           col="heat.colors",
 
-                     # level trace
-                     trace=c("column","row","both","none"),
-                     tracecol="cyan",
-                     hline=median(breaks),
-                     vline=median(breaks),
-                     linecol=tracecol,
+           # block sepration
+           colsep,
+           rowsep,
+           sepcolor="white",
+           sepwidth=c(0.05,0.05),
 
-                     # Row/Column Labeling
-                     margins = c(5, 5),
-                     ColSideColors,
-                     RowSideColors,
-                     cexRow = 0.2 + 1/log10(nr),
-                     cexCol = 0.2 + 1/log10(nc),
-                     labRow = NULL,
-                     labCol = NULL,
+           # cell labeling
+           cellnote,
+           notecex=1.0,
+           notecol="cyan",
+           na.color=par("bg"),
 
-                     # color key + density info
-                     key = TRUE,
-                     keysize = 1.5,
-                     density.info=c("histogram","density","none"),
-                     denscol=tracecol,
-                     #symkey = TRUE, # should be something like
-                     symkey = min(x < 0, na.rm=TRUE),
-                     densadj = 0.25,
+           # level trace
+           trace=c("column","row","both","none"),
+           tracecol="cyan",
+           hline=median(breaks),
+           vline=median(breaks),
+           linecol=tracecol,
 
-                     # plot labels
-                     main = NULL,
-                     xlab = NULL,
-                     ylab = NULL,
+           # Row/Column Labeling
+           margins = c(5, 5),
+           ColSideColors,
+           RowSideColors,
+           cexRow = 0.2 + 1/log10(nr),
+           cexCol = 0.2 + 1/log10(nc),
+           labRow = NULL,
+           labCol = NULL,
 
-                     # plot layout
-                     lmat = NULL,
-                     lhei = NULL,
-                     lwid = NULL,
+           # color key + density info
+           key = TRUE,
+           keysize = 1.5,
+           density.info=c("histogram","density","none"),
+           denscol=tracecol,
+           symkey = min(x < 0, na.rm=TRUE) || symbreaks,
+           densadj = 0.25,
 
-                     # extras
-                     ...
-                     )
-               }
+           # plot labels
+           main = NULL,
+           xlab = NULL,
+           ylab = NULL,
+
+           # plot layout
+           lmat = NULL,
+           lhei = NULL,
+           lwid = NULL,
+
+           # extras
+           ...
+           )
+           }
 \arguments{
   % Dendogram Control
   \item{x}{numeric matrix of the values to be plotted. }
@@ -121,6 +128,9 @@ heatmap.2 (x,
     splitting points for binning \code{x} into colors, or a integer
     number of break points to be used, in which case the break points
     will be spaced equally between \code{min(x)} and \code{max(x)}.}
+  \item{symbreaks}{Boolean indicating whether breaks should be
+    made symmetric about 0. Defaults to \code{TRUE} if the data includes
+    negative values, and to \code{FALSE} otherwise.}
   \item{col}{colors used for the image. Defaults to heat colors
     (\code{heat.colors}).}
   % block separation
@@ -178,7 +188,8 @@ heatmap.2 (x,
     display specified by \code{density.info}, defaults to the same value
     as \code{tracecol}.}
   \item{symkey}{Boolean indicating whether the color key should be
-    made symmetric about 0. Defaults to \code{TRUE}.}
+    made symmetric about 0. Defaults to \code{TRUE} if the data includes
+    negative values, and to \code{FALSE} otherwise.}
   \item{densadj}{Numeric scaling value for tuning the kernel width when
     a density plot is drawn on the color key.  (See the \code{adjust}
     parameter for the \code{density} function for details.)  Defaults to
@@ -244,9 +255,26 @@ heatmap.2 (x,
 }
 \value{
   Invisibly, a list with components
-  \item{rowInd}{\bold{r}ow index permutation vector as returned by
+  \item{rowInd}{row index permutation vector as returned by
     \code{\link{order.dendrogram}}.}
-  \item{colInd}{\bold{c}olumn index permutation vector.}
+  \item{colInd}{column index permutation vector.}
+  \item{call}{the matched call}
+  \item{rowMeans, rowSDs}{mean and standard deviation of each row: only
+    present if \code{scale="row"}}
+  \item{colMeans, colSDs}{mean and standard deviation of each column: only
+    present if \code{scale="column"}}
+  \item{carpet}{reordered and scaled 'x' values used generate the main
+    'carpet'}
+  \item{rowDendrogram}{row dendrogram, if present}
+  \item{colDendrogram}{column dendrogram, if present}
+  \item{breaks}{values used for color break points}
+  \item{col}{colors used}
+  \item{vline}{center-line value used for column trace, present only if
+    \code{trace="both"} or \code{trace="column"} }
+  \item{hline}{center-line value used for row trace, present only if
+    \code{trace="both"} or \code{trace="row"} }
+  \item{colorTable}{A three-column data frame providing the lower and upper
+    bound and color for each bin} 
 }
 \author{Andy Liaw, original; R. Gentleman, M. Maechler, W. Huber, 
   G. Warnes, revisions.}
@@ -260,6 +288,9 @@ heatmap.2 (x,
  rc <- rainbow(nrow(x), start=0, end=.3)
  cc <- rainbow(ncol(x), start=0, end=.3)
 
+ ##
+ ## demonstrate the effect of row and column dendogram options
+ ##
  heatmap.2(x)  ## default - dendrogram plotted and reordering done. 
  heatmap.2(x, dendrogram="none") ##  no dendrogram plotted, but reordering done.
  heatmap.2(x, dendrogram="row") ## row dendrogram plotted and row reordering done.
@@ -267,21 +298,44 @@ heatmap.2 (x,
 
  heatmap.2(x, keysize=2)  ## default - dendrogram plotted and reordering done.
 
-
  heatmap.2(x, Rowv=FALSE, dendrogram="both") ## generate warning!
  heatmap.2(x, Rowv=NULL, dendrogram="both")  ## generate warning!
  heatmap.2(x, Colv=FALSE, dendrogram="both") ## generate warning!
 
+ ## 
+ ## Show effect of z-score scaling within columns, blue-red color scale
+ ##
+ hv <- heatmap.2(x, col=bluered, scale="column", tracecol="#303030")
 
+ ###
+ ## Look at the return values
+ ###
+ names(hv)
 
+ ## Show the mapping of z-score values to color bins
+ hv$colorTable
 
- hv <- heatmap.2(x, col=cm.colors(256), scale="column", 
+ ## Extract the range associated with white
+ hv$colorTable[hv$colorTable[,"color"]=="#FFFFFF",]
+
+ ## Determine the original data values that map to white
+ whiteBin <- unlist(hv$colorTable[hv$colorTable[,"color"]=="#FFFFFF",1:2])
+ rbind(whiteBin[1] * hv$colSDs + hv$colMeans,
+       whiteBin[2] * hv$colSDs + hv$colMeans )
+ ##
+ ## A more decorative heatmap, with z-score scaling along columns
+ ##
+ hv <- heatmap.2(x, col=cm.colors(255), scale="column", 
 	       RowSideColors=rc, ColSideColors=cc, margin=c(5, 10), 
 	       xlab="specification variables", ylab= "Car Models", 
 	       main="heatmap(<Mtcars data>, ..., scale=\"column\")", 
                tracecol="green", density="density")
+ ## Note that the breakpoints are now symmetric about 0
 
- str(hv) # the two re-ordering index vectors
+
+ 
+
+
 
 %% want example using the `add.exp' argument!
 

@@ -1,4 +1,4 @@
-% $Id: boxplot.n.Rd 1012 2006-11-14 22:25:06Z ggorjan $
+% $Id: boxplot.n.Rd 1319 2009-05-08 22:01:12Z warnes $
 %
 % $Log$
 % Revision 1.5  2005/12/01 16:46:52  nj7w
@@ -38,7 +38,7 @@ boxplot.n(..., top=FALSE, shrink=1, textcolor=NULL)
   \item{shrink}{ value to shrink character size (cex) when annotating.}
   \item{textcolor}{ text color. }
 }
-\author{ Gregory R. Warnes \email{warnes@bst.rochester.edu}}
+\author{ Gregory R. Warnes \email{greg@random-technologies-llc.com}}
 \seealso{ \code{\link{boxplot}}, \code{\link{text}}}
 
 \examples{

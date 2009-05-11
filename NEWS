@@ -1,7 +1,30 @@
-Release 2.7.0 - 2008-08-05
+Release 2.7.0 - 2009-05-08
 --------------------------
 
 New Features:
+
+
+- Enhancements to heatmap.2()
+
+    - New arguments 'lmat', 'lhei', and 'lwid' that allow controlling
+      component plot layout.  Users can now resize and rearrange plot
+      components.
+
+    - heatmap.2() will now compute color breakpoints that are
+      symmetric about 0 when the new 'symbreak' parameter is TRUE.  This
+      parameter, as well as the symkey parameter now default to TRUE
+      whenever negative values of x are present, and to FALSE othewise.
+
+    - the heatmap.2() return value now includes additional useful
+      information, including: call, rowMeans, rowSDs, colMeans,
+      colSDs, carpet (reordered and scaled 'x' values), rowDendrogram,
+      colDendrogram, breaks, col, vline, hline, and colorTable. Of
+      these, the most useful are breaks, col, and colorTable.  The
+      latter is a three-column data frame providing the lower and
+      upper bound and color for each bin.  
+
+  See the manual page for complete details and examples.
+
 
 - New function venn(), contributed by Steffen Moeller (Thanks
   Steffen!) to generate Venn diagrams for up to 5 sets. See ?venn for
@@ -15,10 +38,6 @@ New Features:
   using the new bandplot() and by using fitted() instead of predict()
   to obtain y-hat.
 
-- New arguments for heatmap.2 ('lmat', 'lhei', and 'lwid') that allow
-  controlling component plot layout.  This allows the user to both
-  resize and rearrange plot components.
-
 - Add 'scale.range' argument to balloonplot(), option to scale
   balloons so [min,max]->[0,1] ('relative') or [0,max] -> [0,1]
   ('absolute').
@@ -29,7 +48,12 @@ Bug Fixes:
 - balloonplot() now properly handles dimension labels provided by
   'xlab' and 'ylab' 
 
+- plotCI now properly handles 'NULL' and 'NA' values for ui, li, uiw,
+  and liw. 
+
 - Corrections of minor typos in man pages
+
+- Update Greg's email address to 'greg@random-technologies-llc.com'
 
 
 Release 2.6.0 - 2008-04-07

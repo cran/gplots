@@ -1,4 +1,4 @@
-% $Id: plotmeans.Rd 1012 2006-11-14 22:25:06Z ggorjan $
+% $Id: plotmeans.Rd 1319 2009-05-08 22:01:12Z warnes $
 
 \name{plotmeans}
 \alias{plotmeans}
@@ -137,7 +137,7 @@ plotmeans(formula, data=NULL, subset, na.action,
   
 }
 
-\author{Gregory R. Warnes \email{warnes@bst.rochester.edu}}
+\author{Gregory R. Warnes \email{greg@random-technologies-llc.com}}
 
 \seealso{\code{\link{plotCI}}, \code{\link{boxplot}}}
 

@@ -1,4 +1,4 @@
-% $Id: residplot.Rd 977 2006-08-02 22:21:49Z warnes $
+% $Id: residplot.Rd 1319 2009-05-08 22:01:12Z warnes $
 
 \name{residplot}
 \alias{residplot}
@@ -20,5 +20,5 @@ residplot(model, formula, ...)
  These functions are undocumented.  Some are internal and not intended
    for direct use.  Others simply haven't been documented yet.
    }
-\author{Gregory R. Warnes \email{warnes@bst.rochester.edu}}
+\author{Gregory R. Warnes \email{greg@random-technologies-llc.com}}
 \keyword{misc}

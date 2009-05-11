@@ -1,4 +1,4 @@
-# $Id: plotCI.R 1012 2006-11-14 22:25:06Z ggorjan $
+# $Id: plotCI.R 1318 2009-05-08 21:56:38Z warnes $
 
 
 plotCI <- function (x,
@@ -67,6 +67,12 @@ plotCI <- function (x,
   else
     z  <- x
 
+  if(invalid(uiw))
+    uiw <- NA
+  if(invalid(liw))
+    liw <- NA
+  
+  
   if(invalid(ui))
     ui <- z + uiw
   if(invalid(li))
