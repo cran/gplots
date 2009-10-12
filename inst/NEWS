@@ -1,4 +1,13 @@
-Release 2.7.0 - 2009-05-08
+Release 2.7.2 - 2009-05-08
+--------------------------
+
+Bug Fixes:
+
+- Correct bug reported by Ken Lo:  cox2hex() had blue and green
+  components swapped.
+
+
+Release 2.7.1 - 2009-05-08
 --------------------------
 
 New Features:

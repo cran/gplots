@@ -43,7 +43,7 @@ redblue(n)
   Vector of HTML-style RGB colors.
 }
 \author{ Gregory R. Warnes \email{greg@random-technologies-llc.com} }
-\seealso{ \code{\link[base]{colors} } }
+\seealso{ \code{\link{colors} } }
 \examples{
 
 showpanel <- function(col)

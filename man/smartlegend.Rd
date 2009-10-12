@@ -24,7 +24,7 @@ smartlegend(x = c("left", "center", "right"),
   Same as \code{legend}
 }
 \author{Gregory R. Warnes \email{greg@random-technologies-llc.com} }
-\seealso{ \code{\link[base]{legend}} }
+\seealso{ \code{\link{legend}} }
 \examples{
 
 x <- rnorm(100)

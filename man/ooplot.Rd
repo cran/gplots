@@ -160,7 +160,7 @@ ooplot(data, ...)
   by Gregory R. Warnes \email{greg@random-technologies-llc.com}.
   Based on barplot2().
   }
-\seealso{ \code{\link[plot]{plot}}, \code{\link[plot]{boxplot}} }
+\seealso{ \code{\link{plot}}, \code{\link{boxplot}} }
 \examples{
      data(VADeaths, package = "datasets")
 

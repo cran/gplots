@@ -1,4 +1,4 @@
-% $Id: space.Rd 1319 2009-05-08 22:01:12Z warnes $
+% $Id: space.Rd 1360 2009-10-10 17:32:26Z warnes $
 %
 % $Log$
 % Revision 1.9  2005/09/12 15:44:37  nj7w
@@ -64,7 +64,7 @@ space(x, y, s=1/50, na.rm=TRUE, direction="x")
   \item{y}{y location of each input point}
 }
 \author{ Gregory R. Warnes \email{greg@random-technologies-llc.com} }
-\seealso{ \code{\link{jitter}}, \code{\link[base]{sunflowerplot}} }
+\seealso{ \code{\link{jitter}}, \code{\link{sunflowerplot}} }
 
 \examples{
    x <- rep(1:5, 10)

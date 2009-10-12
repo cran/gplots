@@ -20,7 +20,7 @@ overplot(formula, data = parent.frame(), same.scale = FALSE, xlab, ylab,
   \item{same.scale}{ Logical value indicating whether the plot region
     should have the same range for all plots.  Defaults to \code{FALSE}.}
   \item{xlab, ylab, xlim, ylim, main}{ Standard plotting parameters.  See
-    \code{\link[base]{plot}} for details}
+    \code{\link{plot}} for details}
   \item{min.y, max.y}{Scalar or vector values used to specify the y
     plotting limits for individual plots.  If a single scalar value is
     provided, it will be used for all plots. These parameters can be
@@ -57,8 +57,8 @@ overplot(formula, data = parent.frame(), same.scale = FALSE, xlab, ylab,
 }
 \author{ Gregory R. Warnes \email{greg@random-technologies-llc.com} }
 \seealso{
-  \code{\link[base]{interaction.plot}},
-  \code{\link[base]{coplot}} for alternative visualizations of 3-way data.}
+  \code{\link{interaction.plot}},
+  \code{\link{coplot}} for alternative visualizations of 3-way data.}
 \examples{
 
 # Example teratogenicity rtPCR data
