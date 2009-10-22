@@ -1,3 +1,12 @@
+Release 2.7.3 - 2009-10-22
+--------------------------
+
+Bug Fixes:
+
+- Correct bug reported by Rudolf Talens: heatmap.2() incorrectly
+  transposed the displayed matrix when the option symm=TRUE.
+
+
 Release 2.7.2 - 2009-05-08
 --------------------------
 

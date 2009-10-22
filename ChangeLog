@@ -1,5 +1,22 @@
+2009-10-22  warnes
+
+	* [r1362] R/heatmap.2.R: Fix transposed display of data (but not
+	  labels) in heatmap.2 when symm=TRUE
+
+2009-10-12  warnes
+
+	* [r1361] DESCRIPTION, inst/NEWS: Update version number to 2.7.2,
+	  2.7.1 was already up but apparently DESCRIPTION wasn't commited
+	  with change.
+
 2009-10-10  warnes
 
+	* [r1360] R/col2hex.R, man/colorpanel.Rd, man/lowess.Rd,
+	  man/ooplot.Rd, man/overplot.Rd, man/smartlegend.Rd, man/space.Rd,
+	  tests/heatmap2Test.Rout.save: Various minor changes to remove new
+	  R CMD CHECK warnings.
+	* [r1359] DESCRIPTION, inst/NEWS: Update DESCRIPTION and NEWS file
+	  for 2.7.1
 	* [r1358] R/col2hex.R: Fix bug reported by Ken Lo: col2hex had blue
 	  and green components swapped.
 
@@ -174,9 +191,8 @@
 	* [r1050] R/col2hex.R, man/col2hex.Rd: Add col2rgb() function to
 	  convert color names to rgb hex codes
 	* [r1049] R/textplot.R: Add paramaeters 'col.data', 'col.rows', and
-	  'col.columns' to
-	  textplot.matrix to allow specification of the color of the matrix
-	  data, rows, and columns.
+	  'col.columns' to textplot.matrix to allow specification of the
+	  color of the matrix data, rows, and columns.
 	* [r1048] R/bandplot.R: Add parameters to control line width and
 	  line type.
 
@@ -408,17 +424,14 @@
 	* [r740] inst/doc/BalloonPlot.R, inst/doc/BalloonPlot.tex: More
 	  edits.
 	* [r739] R/balloonplot.R: Recent changes to align row totals with
-	  the overall total broke how
-	  the marginal cumulative fractions were displayed. This patch
-	  fixes
-	  the problem.
+	  the overall total broke how the marginal cumulative fractions
+	  were displayed. This patch fixes the problem.
 	* [r737] DESCRIPTION, R/balloonplot.R, R/plot.lm.R,
 	  inst/doc/BalloonPlot.pdf, man/balloonplot.Rd: - Update
-	  documentation for balloonplot to match the latest code.
-	  - Correct spelling of 'show.zeroes' to 'show.zeros'
+	  documentation for balloonplot to match the latest code. - Correct
+	  spelling of 'show.zeroes' to 'show.zeros'
 	* [r736] R/colorpanel.R: More changes: colorpanel now allows only 2
-	  colors to be specified if
-	  no 'middle' color is desired.
+	  colors to be specified if no 'middle' color is desired.
 
 2005-11-17  warnes
 
@@ -484,31 +497,29 @@
 2005-10-19  arnima
 
 	* [r697] man/rich.color.Rd: The last example now displays the
-	  correct heat.colors.
-	  Default 'palette' argument is now a single string, not a vector.
+	  correct heat.colors. Default 'palette' argument is now a single
+	  string, not a vector.
 	* [r696] R/rich.color.R: Default 'palette' argument is now a single
 	  string, not a vector.
 
 2005-10-14  warnes
 
 	* [r694] DESCRIPTION, R/balloonplot.R, man/balloonplot.Rd:
-	  Formatting fixes:
-	  - Handle multiple row or column category variables
-	  - Separate rows/columns of category labels by lines
-	  - Fix handling of 'cumsum' plots on row/column labels
-	  - Improve display of row/column sums
+	  Formatting fixes: - Handle multiple row or column category
+	  variables - Separate rows/columns of category labels by lines -
+	  Fix handling of 'cumsum' plots on row/column labels - Improve
+	  display of row/column sums
 
 2005-10-13  warnes
 
 	* [r693] man/balloonplot.Rd: Add example using Titanic data that
-	  exercises the multi-factor
-	  display.
+	  exercises the multi-factor display.
 
 2005-10-11  warnes
 
 	* [r692] R/balloonplot.R: Initial changes to allow multiple x and y
-	  factor variables. Yet to
-	  be done: 1) remove extra 'boxes'. 2) omit duplicated values
+	  factor variables. Yet to be done: 1) remove extra 'boxes'. 2)
+	  omit duplicated values
 
 2005-10-04  warnes
 
@@ -632,16 +643,14 @@
 	* [r621] trunk/gdata/R/read.xls.R, trunk/gmodels/man/CrossTable.Rd,
 	  man/heatmap.2.Rd: 1) Using dQuote.ascii function in read.xls as
 	  the new version of dQuote doesn't work proprly with UTF-8 locale.
-	  2) Modified CrossTable.Rd usage in gmodels
-	  3) Modified heatmap.2 usage in gplots.
+	  2) Modified CrossTable.Rd usage in gmodels 3) Modified heatmap.2
+	  usage in gplots.
 
 2005-04-04  warnes
 
 	* [r603] R/overplot.R: Explicitly reference package containing
-	  lowess.formula in
-	  panel.overplot(). This should fix the error reported by Troels
-	  Ring
-	  <tring@gvdnet.dk>.
+	  lowess.formula in panel.overplot(). This should fix the error
+	  reported by Troels Ring <tring@gvdnet.dk>.
 
 2005-02-26  nj7w
 
@@ -683,27 +692,22 @@
 
 	* [r515] trunk/gdata/DESCRIPTION.in, trunk/gmodels/DESCRIPTION.in,
 	  DESCRIPTION.in, trunk/gtools/DESCRIPTION.in: Add dependency on R
-	  1.9.0+ to prevent poeple from installing on old
-	  versions of R which don't support namespaces.
+	  1.9.0+ to prevent poeple from installing on old versions of R
+	  which don't support namespaces.
 
 2004-11-30  warnes
 
 	* [r495] R/heatmap.2.R, man/heatmap.2.Rd: 1. Add new parameters for
-	  controlling color key:
-	  - If `symkey==TRUE', the color key will be made symmetric about
-	  0.
-	  - The `densadj' parameter can be used to modify the smoother
-	  width
-	  (see the `adjust' parameter under `help(density)') for the
-	  density
-	  plotted in the key.
+	  controlling color key: - If `symkey==TRUE', the color key will be
+	  made symmetric about 0. - The `densadj' parameter can be used to
+	  modify the smoother width (see the `adjust' parameter under
+	  `help(density)') for the density plotted in the key.
 	  
 	  2. Fix handling of rowsep/colsep.
 	  
 	  3. Vector of length 2 giving the width (colsep) or height
-	  (rowsep) the separator box
-	  drawn by colsep and rowsep as a function of the width (colsep) or
-	  height (rowsep) of a cell.
+	  (rowsep) the separator box drawn by colsep and rowsep as a
+	  function of the width (colsep) or height (rowsep) of a cell.
 	  
 	  4. Appropriate changes to the corresponding help page, plus some
 	  minor formatting changes.
@@ -711,9 +715,9 @@
 2004-11-03  warnes
 
 	* [r474] R/heatmap.2.R: Fix bugs in layout of cell notes. They were
-	  being plotted top down
-	  rather than bottom up. Further reordering of the x matrix didn't
-	  also reorder the notes. Both issues should now be resolved.
+	  being plotted top down rather than bottom up. Further reordering
+	  of the x matrix didn't also reorder the notes. Both issues should
+	  now be resolved.
 
 2004-09-27  warneg
 
@@ -782,14 +786,12 @@
 2004-06-28  warnes
 
 	* [r391] R/barplot2.R, man/barplot2.Rd: - Default 2-d color set to
-	  grey as in (v2.0.0) r-devel
-	  - The default (v1.9.1) barplot method now handles vectors and 1-d
-	  arrays
-	  (e.g., obtained by table()) the same, and uses grey instead of
-	  heat color palettes in these cases. (Also fixes PR#6776.)
-	  - Updated to reflect the addition of 'offset' argument in base
-	  - Fix bug in stacked barplots, which would not be plotted
-	  properly
+	  grey as in (v2.0.0) r-devel - The default (v1.9.1) barplot method
+	  now handles vectors and 1-d arrays (e.g., obtained by table())
+	  the same, and uses grey instead of heat color palettes in these
+	  cases. (Also fixes PR#6776.) - Updated to reflect the addition of
+	  'offset' argument in base - Fix bug in stacked barplots, which
+	  would not be plotted properly
 
 2004-06-24  warnes
 
@@ -811,8 +813,7 @@
 2004-05-25  warnes
 
 	* [r338] R/overplot.R: Work around bug in R 1.9.X due to
-	  plot.formula() not having the same
-	  arguments as plot().
+	  plot.formula() not having the same arguments as plot().
 	* [r336] R/rich.color.R, man/rich.color.Rd: Add rich.colors()
 	  submitted by Arni Magnusson <arnima@u.washington.edu>.
 	* [r328] R/ooplot.R, man/ooplot.Rd: ??
@@ -820,8 +821,8 @@
 2004-05-24  warnes
 
 	* [r324] R/plotCI.R, R/plotmeans.R: Modified to use invalid() to
-	  check arguments instead of missing().
-	  This fixes some build errors under R-1.9.0-Patched.
+	  check arguments instead of missing(). This fixes some build
+	  errors under R-1.9.0-Patched.
 
 2004-04-22  warnes
 
@@ -849,58 +850,50 @@
 	* [r305] man/textplot.Rd: Update to match changes in textplot()
 	  code.
 	* [r304] man/ooplot.Rd: Remove Windows EOL characters.
-	* [r302] man/barplot2.Rd: - Remove some commented-out code.
-	  - Remove cvs log tag.
+	* [r302] man/barplot2.Rd: - Remove some commented-out code. -
+	  Remove cvs log tag.
 	* [r300] R/textplot.R: Misc changes.
 
 2004-02-17  warnes
 
 	* [r290] man/ooplot.Rd: Minor fix to ooplot documentation.
 	* [r289] R/ooplot.R, man/ooplot.Rd: Integrate ooplot updates
-	  provided by Lodewijk Bonebakker
-	  <bonebakker@comcast.net>
+	  provided by Lodewijk Bonebakker <bonebakker@comcast.net>
 
 2004-02-02  warnes
 
 	* [r287] R/colorpanel.R, man/colorpanel.Rd: - Add colorpanel
-	  function, which generates a smoothly varying band of
-	  colors over a three color range (lo, mid, high).
+	  function, which generates a smoothly varying band of colors over
+	  a three color range (lo, mid, high).
 
 2004-01-21  warnes
 
 	* [r283] man/textplot.Rd: - Correct arguments to halign to match
 	  code.
 	* [r281] R/lowess.R: Track R 1.9.0's move of 'lowess' from the base
-	  package to the (new)
-	  stats package.
+	  package to the (new) stats package.
 	* [r279] man/sinkplot.Rd: - Fix sinkplot() example by replacing 'T'
 	  with 'TRUE'.
 	* [r278] man/ooplot.Rd: - Add some more details to the ooplot()
-	  documentation. The
-	  documentation is *not* complete.
+	  documentation. The documentation is *not* complete.
 	* [r277] R/textplot.R, trunk/gtools/R/capture.R: - Mark sprint() as
-	  depreciated.
-	  - Replace references to sprint with capture.output()
+	  depreciated. - Replace references to sprint with capture.output()
 	  - Use match.arg for halign and valign arguments to
-	  textplot.default.
-	  - Fix textplot.character so that a vector of characters is
-	  properly
-	  displayed. Previouslt, character vectors were plotted on top of
-	  each
-	  other.
+	  textplot.default. - Fix textplot.character so that a vector of
+	  characters is properly displayed. Previouslt, character vectors
+	  were plotted on top of each other.
 
 2004-01-19  warnes
 
 	* [r276] R/sinkplot.R, man/sinkplot.Rd: New function sinkplot(), as
-	  requested on R-devel by Kevin Wright
-	  <kwright@eskimo.com> in
+	  requested on R-devel by Kevin Wright <kwright@eskimo.com> in
 	  https://www.stat.math.ethz.ch/pipermail/r-devel/2004-January/028483.html.
 
 2004-01-15  warnes
 
 	* [r274] R/ooplot.R, man/ooplot.Rd: Add initial code and docs for
-	  ooplot() function submitted by Lodewijk
-	  Bonebakker <bonebakker@comcast.net>.
+	  ooplot() function submitted by Lodewijk Bonebakker
+	  <bonebakker@comcast.net>.
 
 2003-12-03  warnes
 
@@ -909,8 +902,7 @@
 	  trunk/gtools/man/foldchange.Rd: - match function argument
 	  defaults with 'usage'
 	* [r252] R/heatmap.2.R, man/heatmap.2.Rd: - Fix buglets in heatmap
-	  function
-	  - Make a slight enhancement to the example code.
+	  function - Make a slight enhancement to the example code.
 
 2003-12-02  warnes
 
@@ -928,8 +920,7 @@
 	* [r246] man/barplot2.Rd: - updated to match changes to barplot()
 	  in base.
 	* [r245] data, data/rtPCR.rda: - Renamed rtPCR.Rda to rtPCR.rda so
-	  that R will properly load the file
-	  when data(rtPCR) is executed.
+	  that R will properly load the file when data(rtPCR) is executed.
 	* [r243] R/barplot2.R: - Follow patches applied to barplot() in
 	  base.
 
@@ -945,19 +936,18 @@
 	* [r238] man/rtPCR.Rd: Initial addition of these files. Used in
 	  examples of overplot().
 	* [r236] R/heatmap.2.R, man/heatmap.2.Rd: Applied my enhancements
-	  to the heatmap() code from R 1.8.0, and added
-	  documentation of these changes.
+	  to the heatmap() code from R 1.8.0, and added documentation of
+	  these changes.
 	* [r235] R/overplot.R, man/overplot.Rd: - Discovered that axis(N)
-	  does the right thing without needing to be
-	  given location for tick marks. This allowed simplification of the
-	  code.
+	  does the right thing without needing to be given location for
+	  tick marks. This allowed simplification of the code.
 	  
 	  - Minor other changes for distribution
 	  
 	  - Addition of overplot.Rd documentation.
 	* [r231] R/heatmap.2.R, man/heatmap.2.Rd: - Integrated my
-	  extensions into the R 1.8.0 version of heatmap.
-	  - Add Rd documentation.
+	  extensions into the R 1.8.0 version of heatmap. - Add Rd
+	  documentation.
 
 2003-11-19  warnes
 
@@ -971,8 +961,7 @@
 	* [r224] trunk/gdata/R/elem.R, trunk/gdata/R/env.R,
 	  trunk/gdata/R/is.what.R, trunk/gdata/R/keep.R,
 	  trunk/gdata/R/ll.R, R/overplot.R: - Convert from MS-Dos to Unix
-	  line endings.
-	  - Reformat to 80 columns.
+	  line endings. - Reformat to 80 columns.
 
 2003-11-10  warnes
 
@@ -984,8 +973,7 @@
 	  R/overplot.R, R/plotmeans.R, R/space.R, R/wapply.R,
 	  trunk/gregmisc/DESCRIPTION, trunk/gtools/R/capture.R,
 	  trunk/gtools/man/capture.Rd: - Add files contributed by Arni
-	  Magnusson
-	  <arnima@u.washington.edu>. As well as some of my own.
+	  Magnusson <arnima@u.washington.edu>. As well as some of my own.
 
 2003-08-19  warnes
 
@@ -1009,26 +997,23 @@
 	* [r187] R/barplot2.R: Update from Marc Schwartz, modified by
 	  Gregory Warnes:
 	  
-	  - Modified dim() checks for 'ci.l' and 'ci.u' against 'height'
-	  to remove R v1.7.0 if() based error msgs for vector conditions.
+	  - Modified dim() checks for 'ci.l' and 'ci.u' against 'height' to
+	  remove R v1.7.0 if() based error msgs for vector conditions.
 
 2003-04-04  warnes
 
 	* [r182] R/balloonplot.R, man/qqnorm.aov.Rd,
 	  trunk/gtools/R/dirichlet.R: - Change occurences of 'T' to 'TRUE'
 	* [r179] man/textplot.Rd: - Updated to match changes in textplot
-	  function:
-	  - Added textplot.character
-	  - Renamed arguments "col.margin" and "row.margin" to "cmar", and
-	  "rmar" so that specifying "col='red'" is possible.
-	  - Fixed R CMD check errors
-	  - Improve comments in example
-	  - Add textplot.matrix example
+	  function: - Added textplot.character - Renamed arguments
+	  "col.margin" and "row.margin" to "cmar", and "rmar" so that
+	  specifying "col='red'" is possible. - Fixed R CMD check errors -
+	  Improve comments in example - Add textplot.matrix example
 	* [r178] R/textplot.R: - Added textplot.character to handle
-	  character strings.
-	  - Moved test for vector and matrix arguments to textplot.default.
-	  - Renamed arguments "col.margin" and "row.margin" to "cmar", and
-	  "rmar" so that specifying "col='red'" is possible.
+	  character strings. - Moved test for vector and matrix arguments
+	  to textplot.default. - Renamed arguments "col.margin" and
+	  "row.margin" to "cmar", and "rmar" so that specifying "col='red'"
+	  is possible.
 
 2003-04-02  warnes
 
@@ -1040,58 +1025,52 @@
 	* [r171] man/balloonplot.Rd: - Forgot to update arglist in \usage
 	  section.
 	* [r169] R/balloonplot.R, man/balloonplot.Rd: - Added parameters
-	  for rotation of and amount of space allocated for
-	  the row and column labels.
+	  for rotation of and amount of space allocated for the row and
+	  column labels.
 
 2003-03-07  warnes
 
 	* [r168] trunk/gmodels/R/fast.prcomp.R, R/hist2d.R, R/qqnorm.aov.R,
 	  trunk/gregmisc/DESCRIPTION, trunk/gtools/R/RSCompat.S: - Minor
-	  changes to code to allow the package to be provided as an
-	  S-Plus chapter.
+	  changes to code to allow the package to be provided as an S-Plus
+	  chapter.
 	* [r167] R/lowess.R: - Add 'NULL' as the last element of if
-	  statement that defines
-	  lowess.default so that when the file is sourced, S-Plus doesn't
-	  display the function definition.
+	  statement that defines lowess.default so that when the file is
+	  sourced, S-Plus doesn't display the function definition.
 	* [r166] R/lowess.R: - Specify where the defualt lowess function
-	  should be found.
-	  - Use getFunction in S-Plus instead of 'get'
+	  should be found. - Use getFunction in S-Plus instead of 'get'
 
 2003-01-30  warnes
 
 	* [r159] R/barplot2.R, man/barplot2.Rd: - Added argument 'add' to
-	  allow for the addition of a barplot to an
-	  existing graphic. Default is FALSE
+	  allow for the addition of a barplot to an existing graphic.
+	  Default is FALSE
 
 2003-01-20  warnes
 
 	* [r156] R/balloonplot.R, man/balloonplot.Rd: - Updated balloonplot
 	  help page.
 	* [r155] R/wapply.R, man/wapply.Rd: - Updated wapply.R to allow
-	  specification of evaluation points when
-	  method is 'width' or 'range' using the 'pts' argument.
-	  - Updated wapply.Rd to add 'pts' argument
-	  - Fixed typos, spelling errors, gramatical errors and lack of
-	  clarity
-	  in wapply.Rd help text.
+	  specification of evaluation points when method is 'width' or
+	  'range' using the 'pts' argument. - Updated wapply.Rd to add
+	  'pts' argument - Fixed typos, spelling errors, gramatical errors
+	  and lack of clarity in wapply.Rd help text.
 
 2003-01-03  warnes
 
 	* [r154] R/balloonplot.R, man/balloonplot.Rd: - Initial checkin of
 	  balloonplot functions and documentation.
 	* [r153] man/space.Rd: - Added reference to and comparison example
-	  of sunflowerplot.
-	  - Added code to put example plots on same plot window using
-	  par(mfrow=...).
+	  of sunflowerplot. - Added code to put example plots on same plot
+	  window using par(mfrow=...).
 
 2003-01-02  warnes
 
 	* [r150] R/barplot2.R: - Changed assignment statements that used
-	  "=" to "<-" to avoid syntax
-	  errors in older versions of the S language.
+	  "=" to "<-" to avoid syntax errors in older versions of the S
+	  language.
 	* [r149] R/lowess.R: - Added wrapper code so that R-specific
-	  fiddling won't be executed
-	  under S-Plus.
+	  fiddling won't be executed under S-Plus.
 	* [r147] R/qqnorm.aov.R, man/qqnorm.aov.Rd: - Renamed first
 	  parameter to match qqnorm generic.
 	* [r146] man/qqnorm.aov.Rd: Added additional help text from Kjeitl.
@@ -1099,28 +1078,23 @@
 2002-12-31  warnes
 
 	* [r145] R/qqnorm.aov.R, man/qqnorm.aov.Rd: Initial checkin of
-	  qqnorm.aov function and documentation submitted by
-	  Kjetil Halvorsen <kjetilh@jupiter.umsanet.edu.bo>.
+	  qqnorm.aov function and documentation submitted by Kjetil
+	  Halvorsen <kjetilh@jupiter.umsanet.edu.bo>.
 
 2002-11-04  warnes
 
 	* [r143] R/barplot2.R, man/barplot2.Rd: Updates from Marc Schwartz:
 	  
 	  - Updated underlying code to be based upon the new barplot() in R
-	  v1.6.1
-	  - This now uses the 'axis.lty' and 'border' arguments
-	  - In R v1.6.0, R Core introduced a new function called axTicks().
-	  This is an R equivalent of the C code for CreateAtVector in
-	  plot.c.
+	  v1.6.1 - This now uses the 'axis.lty' and 'border' arguments - In
+	  R v1.6.0, R Core introduced a new function called axTicks(). This
+	  is an R equivalent of the C code for CreateAtVector in plot.c.
 	  This now enables me to get the axis tick mark positions
-	  consistently
-	  when the 'height' related axis is either linear or log. Thus, I
-	  can
-	  now have consistent tick marks and can plot grid lines in either
-	  situation. If 'plot.grid = TRUE' and 'grid.inc' is specified,
-	  then
-	  I still use pretty() to determine the tick marks and lines.
-	  - This code now depends on R 1.6.0 or later.
+	  consistently when the 'height' related axis is either linear or
+	  log. Thus, I can now have consistent tick marks and can plot grid
+	  lines in either situation. If 'plot.grid = TRUE' and 'grid.inc'
+	  is specified, then I still use pretty() to determine the tick
+	  marks and lines. - This code now depends on R 1.6.0 or later.
 
 2002-10-30  warnes
 
@@ -1139,18 +1113,16 @@
 2002-09-24  warnes
 
 	* [r121] R/plotmeans.R: - Changed digits=options("digits") which
-	  produces a list of length 1
-	  to digits=getOption("digits") which returns a vector of length
-	  one.
-	  The former was causing an error when passed to round().
+	  produces a list of length 1 to digits=getOption("digits") which
+	  returns a vector of length one. The former was causing an error
+	  when passed to round().
 
 2002-09-23  warnes
 
 	* [r119] trunk/gmodels/man/CrossTable.Rd,
 	  trunk/gmodels/man/glh.test.Rd, man/barplot2.Rd: - Fixed syntax
-	  errors in barplot2.Rd and CrossTable.Rd
-	  - Fixed incorrect translation of 'F' (distribution) to 'FALSE' in
-	  glh.test.Rd
+	  errors in barplot2.Rd and CrossTable.Rd - Fixed incorrect
+	  translation of 'F' (distribution) to 'FALSE' in glh.test.Rd
 	* [r117] trunk/gdata/R/aggregate.table.R, trunk/gdata/R/combine.R,
 	  trunk/gdata/R/interleave.R, trunk/gdata/R/nobs.R,
 	  trunk/gdata/man/aggregate.table.Rd, trunk/gdata/man/combine.Rd,
@@ -1166,10 +1138,8 @@
 	  trunk/gmodels/man/CrossTable.Rd, R/barplot2.R, man/barplot2.Rd,
 	  trunk/gregmisc/DESCRIPTION, trunk/gtools/R/combinations.R: -
 	  Added CrossTable() and barplot2() code and docs contributed by
-	  Marc Schwartz.
-	  - Permit combinations() to be used when r>n provided
-	  repeat.allowed=TRUE
-	  - Bumped up version number
+	  Marc Schwartz. - Permit combinations() to be used when r>n
+	  provided repeat.allowed=TRUE - Bumped up version number
 
 2002-08-01  warnes
 
@@ -1182,8 +1152,7 @@
 	  - Replaced all occurences of '_' for assignment with '<-'.
 	  
 	  - Replaced all occurences of 'T' or 'F' for 'TRUE' and 'FALSE'
-	  with
-	  the spelled out version.
+	  with the spelled out version.
 	  
 	  - Updaded version number and date.
 
@@ -1209,16 +1178,15 @@
 	  list of lowess.default.
 	  
 	  - Fixed a wrong default for f in lowess.formula. Was 3, but
-	  should
-	  have been 2/3.
+	  should have been 2/3.
 
 2002-03-26  warneg
 
 	* [r104] trunk/gdata/man/reorder.Rd, trunk/gmodels/R/ci.R,
 	  trunk/gmodels/R/glh.test.R, trunk/gmodels/man/ci.Rd,
 	  trunk/gmodels/man/glh.test.Rd, R/lowess.R, man/lowess.Rd: -
-	  Changed methods to include '...' to match the generic.
-	  - Updated for version 0.5.1
+	  Changed methods to include '...' to match the generic. - Updated
+	  for version 0.5.1
 	* [r100] man/hist2d.Rd: Initial checkin.
 
 2002-03-20  warneg
@@ -1243,22 +1211,18 @@
 	  and formatting fixes.
 	* [r80] R/bandplot.R, man/bandplot.Rd: - Generalized to allow
 	  specification of the multiples of the standard deviation levels
-	  to be plotted (0=mean, 1=1 sd, ..).
-	  - Now (invisibly) returnes computed smooths.
+	  to be plotted (0=mean, 1=1 sd, ..). - Now (invisibly) returnes
+	  computed smooths.
 
 2002-02-16  warneg
 
 	* [r78] man/bandplot.Rd: Added bandplot documentation.
 	* [r77] R/wapply.R: - Fixed Bug: When method=="range", the absolute
-	  range of x was being
-	  used to compute the relative width instead of the (correct)
-	  relative
-	  range.
+	  range of x was being used to compute the relative width instead
+	  of the (correct) relative range.
 	* [r76] R/wapply.R: - Corrected problem removing missing values:
-	  The missing values of $x
-	  and $y were being removed indepdendently, leaving an uneven
-	  number
-	  of points in the result.
+	  The missing values of $x and $y were being removed
+	  indepdendently, leaving an uneven number of points in the result.
 
 2002-02-04  warneg
 
@@ -1272,8 +1236,7 @@
 2001-12-12  warneg
 
 	* [r54] man/space.Rd: - Quoted underscore character in my email
-	  address.
-	  - Added correct keyword.
+	  address. - Added correct keyword.
 	* [r52] man/plotmeans.Rd: Added documentation for xaxt parameter.
 	* [r51] R/lowess.R: Updated to explicitly list control arguments to
 	  lowess.formula.
@@ -1283,8 +1246,7 @@
 2001-12-07  warneg
 
 	* [r46] man/wapply.Rd: Fixed an problem where \code was incorrectly
-	  delimited by parens
-	  rather than curly brackets.
+	  delimited by parens rather than curly brackets.
 	* [r42] R/lowess.R, R/plot.lm.R, R/residplot.R, man/space.Rd:
 	  Initial checkin.
 	* [r41] R/space.R: - Added cvs tags.
@@ -1295,14 +1257,13 @@
 2001-12-05  warneg
 
 	* [r33] R/plotmeans.R: - Added ability to use the t-distribution to
-	  compute confidence
-	  intervals. This is controlled using the 'use.t' parameter.
+	  compute confidence intervals. This is controlled using the
+	  'use.t' parameter.
 	* [r31] man/plotmeans.Rd: - Added documentation of use.t parameter.
 	* [r30] man/wapply.Rd: - Clarified how the width of the window is
 	  computed when method="nobs".
 	* [r29] R/wapply.R: - Added a better default for "width" when
-	  method="nobs". For this case,
-	  width=max(5, length(x)/10).
+	  method="nobs". For this case, width=max(5, length(x)/10).
 	  
 	  - Allow omission of x values which result in missing y values via
 	  'drop.na' parameter.
@@ -1319,8 +1280,8 @@
 	* [r25] man/plotmeans.Rd: Forgot to add minbar and maxbar to usage
 	  section.
 	* [r24] man/plotmeans.Rd: Added description of minbar and maxbar.
-	* [r23] R/plotCI.R: - Added minbar and maxbar parameters
-	  - Added cvs id and log tags to header
+	* [r23] R/plotCI.R: - Added minbar and maxbar parameters - Added
+	  cvs id and log tags to header
 	* [r22] R/plotmeans.R: Added cvs id and log tag to file header
 	* [r21] R/plotmeans.R: Added minbar and maxbar parameters.
 	* [r20] man/plotmeans.Rd: Added description of minsd parameter.

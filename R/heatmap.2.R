@@ -1,4 +1,4 @@
-## $Id: heatmap.2.R 1323 2009-05-08 22:51:07Z warnes $
+## $Id: heatmap.2.R 1364 2009-10-22 20:53:11Z warnes $
 
 heatmap.2 <- function (x,
 
@@ -354,11 +354,11 @@ heatmap.2 <- function (x,
   }
   ## draw the main carpet
   par(mar = c(margins[1], 0, 0, margins[2]))
-  if(!symm || scale != "none")
-    {
+  #if(scale != "none" || !symm)
+  #  {
       x <- t(x)
       cellnote <- t(cellnote)
-    }
+  #  }
   if(revC)
     { ## x columns reversed
       iy <- nr:1
