@@ -1,3 +1,10 @@
+Release 2.7.4 - 2009-11-12
+--------------------------
+
+Bug Fixes:
+
+- Correct bug reported by Alan Yong:  plotmeans() failed when bars=FALSE.
+
 Release 2.7.3 - 2009-10-22
 --------------------------
 
