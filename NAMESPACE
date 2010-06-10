@@ -14,6 +14,7 @@ export(
        overplot,
        panel.overplot,
        plot.lm2,
+       plot.venn,
        plotCI,
        plotmeans,
        qqnorm.aov,

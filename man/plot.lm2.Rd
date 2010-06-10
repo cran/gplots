@@ -53,7 +53,7 @@
   \item{width}{Fraction of the data to use for plot smooths}
   \item{max.n}{Maximum number of points to display in plots}
 }
-\author{Gregory R. Warnes \email{greg@random-technologies-llc.com} and Nitin
+\author{Gregory R. Warnes \email{greg@warnes.net} and Nitin
   Jain \email{nitin.jain@pfizer.com}}
 \examples{
 ctl <- rnorm(100, 4)

@@ -42,7 +42,7 @@ redblue(n)
 \value{
   Vector of HTML-style RGB colors.
 }
-\author{ Gregory R. Warnes \email{greg@random-technologies-llc.com} }
+\author{ Gregory R. Warnes \email{greg@warnes.net} }
 \seealso{ \code{\link{colors} } }
 \examples{
 

@@ -1,75 +1,136 @@
 \name{venn}
 \alias{venn}
+\alias{plot.venn}
 \title{Plot a Venn diagram}
 \description{
-Plot Venn diagrams for up to 5 sets
+  Plot a Venn diagrams for up to 5 sets
 }
 \usage{
 venn(data, universe=NA, small=0.7, showSetLogicLabel=FALSE,
      simplify=FALSE, show.plot=TRUE)
+\method{plot}{venn}(x, y, ..., small=0.7, showSetLogicLabel=FALSE,
+          simplify=FALSE)
 }
 \arguments{
-  \item{data}{data to be plotted (see below)}
-  \item{universe}{??}
-  \item{small}{Character size of group labels}
+  \item{data,x}{Either a list list containing vectors of names or indices
+    of group members, or a data frame containing boolean indicators of
+    group membership (see below)}
+  \item{universe}{Subset of valid name/index elements. Values  ignore values
+    in code{data} not in this list will be ignored. Use \code{NA} to
+    use all elements of \code{data} (the default).}
+  \item{small}{Character scaling of the smallest group counts}
   \item{showSetLogicLabel}{Logical flag indicating whether the internal
     group label should be displayed}
-  \item{simplify}{Logical flag indicating whether unobserved group
+  \item{simplify}{Logical flag indicating whether unobserved groups
     should be omitted.}
   \item{show.plot}{Logical flag indicating whether the plot should be
     displayed.  If false, simply returns the group count matrix.}
+  \item{y,...}{Ignored}
 }
 \details{
   \code{data} should be either a named list of vectors containing
-  indexes of group members (1, 2, 3,..) , or a data frame containing indicator
-  variables (TRUE, FALSE, TRUE, ..) for group membership.  Group names
-  will be taken from the component vector or column names.  
+  character string names ("GeneAABBB", "GeneBBBCY", .., "GeneXXZZ") or
+  indexes of group members (1, 2, .., N), or a data frame containing
+  indicator variables (TRUE, FALSE, TRUE, ..) for group membership.
+  Group names will be taken from the component list element or column
+  names.  
 }
 \value{
-  A matrix of all possible sets of groups, and the observed numer of
-  items beloinging to each set of groups is returned invisibly.
-  The fist column contains observed counts, subsequent columns contain
-  0-1 indicators of group membership.
+  Invisibly returns an object of class "venn", containing a matrix of
+  all possible sets of groups, and the observed count of items belonging
+  to each The fist column contains observed counts, subsequent columns
+  contain 0-1 indicators of group membership.
 }
-\author{Steffen Moeller \email{steffen\_moeller@gmx.de},
+\author{
+  Steffen Moeller \email{steffen\_moeller@gmx.de},
   with cleanup and packaging by Gregory R. Warnes
-  \email{greg@random-technologies-llc.com}.}
+  \email{greg@warnes.net}.}
 \examples{
 
 ##
-## Example using a list of item indexes  belonging to the
+## Example using a list of item names belonging to the
 ## specified group.
 ##
-A<- 1:20
-B<- 1:20
-C<- 2:20
-D<- 3:21
-input<-list(A,B,C,D)
+
+## construct some fake gene names..
+oneName <- function() paste(sample(LETTERS,5,replace=TRUE),collapse="")
+geneNames <- replicate(1000, oneName())
+                       
+## 
+GroupA <- sample(geneNames, 400, replace=FALSE)
+GroupB <- sample(geneNames, 750, replace=FALSE)
+GroupC <- sample(geneNames, 250, replace=FALSE)
+GroupD <- sample(geneNames, 300, replace=FALSE)
+input  <-list(GroupA,GroupB,GroupC,GroupD)
 input
 
 venn(input)
 
+
 ##
-## Example using a data frame of indicator columns
+## Example using a list of item indexes belonging to the
+## specified group.
 ##
-A<- as.logical(rbinom(100, 1, 0.2))
-B<- as.logical(rbinom(100, 1, 0.7))
-C<- as.logical(rbinom(100, 1, 0.2))
-D<- as.logical(rbinom(100, 1, 0.1))
-input<-data.frame(A,B,C,D)
-venn(input)
+GroupA.i <- which(geneNames \%in\% GroupA)
+GroupB.i <- which(geneNames \%in\% GroupB)
+GroupC.i <- which(geneNames \%in\% GroupC)
+GroupD.i <- which(geneNames \%in\% GroupD)
+input.i  <-list(A=GroupA.i,B=GroupB.i,C=GroupC.i,D=GroupD.i)
+input.i
 
+venn(input.i)
 
-## Omit un-observed groupings
-tmp <- venn(input, simplify=TRUE)
+##
+## Example using a data frame of indicator ('f'lag) columns
+##
+GroupA.f <- geneNames \%in\% GroupA
+GroupB.f <- geneNames \%in\% GroupB
+GroupC.f <- geneNames \%in\% GroupC
+GroupD.f <- geneNames \%in\% GroupD
+input.df <- data.frame(A=GroupA.f,B=GroupB.f,C=GroupC.f,D=GroupD.f)
+head(input.df)
+venn(input.df)
 
-## show details
+## smaller set to create empty groupings
+small <- input.df[1:20,]
+
+venn(small, simplify=FALSE) # with empty groupings
+venn(small, simplify=TRUE)  # without empty groupings
+
+## Capture group counts, but don't plot
+tmp <- venn(input, show.plot=FALSE)
 tmp
 
 ## Show internal binary group labels
 venn(input, showSetLogicLabel=TRUE)
 
-## Specify universe
-venn(input, universe=NULL, showSetLogicLabel=TRUE)
+## Limit  universe
+tmp <- venn(input, universe=geneNames[1:100])
+tmp
+
+##
+## Example to determine which elements are in A and B but not in 
+## C and D: first determine the universe, then form indicator columns
+## and perform intersections on these.  R allows using the set operations
+## directly, but some might find this approach more intuitive.
+##
+
+universe <- unique(c(GroupA,GroupB,GroupC,GroupD))
+GroupA.l <-universe \%in\% GroupA
+GroupB.l <-universe \%in\% GroupB
+GroupC.l <-universe \%in\% GroupC
+GroupD.l <-universe \%in\% GroupD
+
+## Genes that are in GroupA and in GroupB but not in GroupD (unification
+## of sets III0 and II00 in the venn diagram:
+universe[GroupA.l & GroupB.l & !GroupD.l]
+
+##
+## Alternatively: construct a function to test for the pattern you want.
+##
+test <- function(x) (x \%in\% GroupA) & (x \%in\% GroupB) & !(x \%in\% GroupC)
+universe[ test(universe) ]
+
+
 }
 \keyword{hplot}

@@ -1,4 +1,4 @@
-# $Id: hist2d.R 625 2005-06-09 14:20:30Z nj7w $
+# $Id: hist2d.R 1420 2010-02-17 14:53:16Z warnes $
 
 if(is.R())
 hist2d <- function( x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE, col=c("black", heat.colors(12)), ... )
@@ -25,13 +25,13 @@ hist2d <- function( x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE
 
     if(same.scale)
       {
-        x.cuts <- seq( from=min(x,y), to=max(x,y), length=nbins[1]+1)
-        y.cuts <- seq( from=min(x,y), to=max(x,y), length=nbins[2]+1)
+        x.cuts <- seq( from=min(x,y), to=max(x,y), length=nbins[1]+1, labels=FALSE)
+        y.cuts <- seq( from=min(x,y), to=max(x,y), length=nbins[2]+1, labels=FALSE)
       }
     else
       {
-        x.cuts <- seq( from=min(x), to=max(x), length=nbins[1]+1)
-        y.cuts <- seq( from=min(y), to=max(y), length=nbins[2]+1)
+        x.cuts <- seq( from=min(x), to=max(x), length=nbins[1]+1, labels=FALSE)
+        y.cuts <- seq( from=min(y), to=max(y), length=nbins[2]+1, labels=FALSE)
       }
 
 

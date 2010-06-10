@@ -1,34 +1,27 @@
 \name{rich.colors}
 \alias{rich.colors}
-\title{
-  Rich color palettes
-}
+\title{Rich Color Palettes}
 \description{
   Create a vector of \code{n} colors that are perceptually equidistant
   and in an order that is easy to interpret.
 }
 \usage{
-rich.colors(n, palette="temperature", rgb.matrix=FALSE,
-            plot.colors=FALSE)
+rich.colors(n, palette="temperature", rgb=FALSE, plot=FALSE)
 }
 \arguments{
   \item{n}{number of colors to generate.}
   \item{palette}{palette to use: \code{"temperature"} contains
     blue-green-yellow-red, and \code{"blues"} contains
     black-blue-white.}
-  \item{rgb.matrix}{if \code{TRUE} then a matrix of RGB values is
-    included as an attribute.}
-  \item{plot.colors}{if \code{TRUE} then a descriptive color diagram is
-    plotted on the current device.}
+  \item{rgb}{if \code{TRUE} then a matrix of RGB values is included as
+    an attribute.}
+  \item{plot}{if \code{TRUE} then a descriptive color diagram is plotted
+    on the current device.}
 }
-\value{
-  A character vector of color codes.
-}
-\author{Arni Magnusson \email{arnima@u.washington.edu}}
+\value{A character vector of color codes.}
+\author{Arni Magnusson}
 \seealso{
-  \code{\link{rgb}},
-  \code{\link{rainbow}},
-  \code{\link{heat.colors}}.
+  \code{\link{rgb}}, \code{\link{rainbow}}, \code{\link{heat.colors}}.
 }
 \examples{
 m <- matrix(1:120+rnorm(120), nrow=15, ncol=8)

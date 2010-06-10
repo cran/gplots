@@ -23,7 +23,7 @@ smartlegend(x = c("left", "center", "right"),
 \value{
   Same as \code{legend}
 }
-\author{Gregory R. Warnes \email{greg@random-technologies-llc.com} }
+\author{Gregory R. Warnes \email{greg@warnes.net} }
 \seealso{ \code{\link{legend}} }
 \examples{
 

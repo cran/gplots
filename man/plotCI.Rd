@@ -1,4 +1,4 @@
-% $Id: plotCI.Rd 1322 2009-05-08 22:35:25Z warnes $
+% $Id: plotCI.Rd 1441 2010-06-11 03:11:54Z warnes $
 %
 % $Log$
 % Revision 1.8  2005/11/08 16:19:42  nj7w
@@ -115,7 +115,7 @@ plotCI(x, y = NULL, uiw, liw = uiw, ui, li, err='y', ylim=NULL,
   Sep. 20, 1997.  Enhanced version posted to r-help by Ben Bolker
   \email{ben@zoo.ufl.edu} on Apr. 16, 2001.  This version was modified
   and extended by Gregory R. Warnes
-  \email{greg@random-technologies-llc.com}.  Additional changes
+  \email{greg@warnes.net}.  Additional changes
   suggested by Martin Maechler \email{maechler@stat.math.ethz.ch}
   integrated on July 29, 2004.
   }
