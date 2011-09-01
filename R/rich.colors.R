@@ -1,4 +1,8 @@
-rich.colors <- function(n, palette="temperature", rgb=FALSE, plot=FALSE)
+rich.colors <- function(n,
+                        palette="temperature",
+                        alpha=1,
+                        rgb=FALSE,
+                        plot=FALSE)
 {
   if(n <= 0)
     return(character(0))
@@ -21,13 +25,12 @@ rich.colors <- function(n, palette="temperature", rgb=FALSE, plot=FALSE)
   }
 
   rgb.m <- matrix(c(r,g,b), ncol=3,
-                  dimnames=list(as.character(seq(length=n)),
-                    c("red","green","blue")))
-  rich.vector <- apply(rgb.m, 1, function(v) rgb(v[1],v[2],v[3]))
+                  dimnames=list(NULL,c("red","green","blue")))
+  col <- mapply(rgb, r, g, b, alpha)
 
-  if(rgb)
-    attr(rich.vector, "rgb") <- rgb.m
-
+  if(rgb) 
+    attr(col, "rgb") <- cbind(rgb.m, alpha)
+  
   if(plot)
   {
     opar <- par("fig", "plt")
@@ -40,10 +43,11 @@ rich.colors <- function(n, palette="temperature", rgb=FALSE, plot=FALSE)
     axis(1, at=0:1)
     axis(2, at=0:1, las=1)
     par(fig=c(0,1,0.75,0.9), plt=c(0.08,0.97,0,1), new=TRUE)
-    midpoints <- barplot(rep(1,n), col=rich.vector, border=FALSE, space=FALSE,
+    midpoints <- barplot(rep(1,n), col=col, border=FALSE, space=FALSE,
                          axes=FALSE)
     axis(1, at=midpoints, labels=1:n, lty=0, cex.axis=0.6)
     par(opar)
   }
-  return(rich.vector)
+
+  return(col)
 }

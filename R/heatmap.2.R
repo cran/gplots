@@ -1,4 +1,4 @@
-## $Id: heatmap.2.R 1364 2009-10-22 20:53:11Z warnes $
+## $Id: heatmap.2.R 1463 2010-12-13 16:44:17Z warnes $
 
 heatmap.2 <- function (x,
 
@@ -493,8 +493,8 @@ heatmap.2 <- function (x,
         {
           max.raw <- max(abs(c(x,breaks)),na.rm=TRUE)
           min.raw <- -max.raw
-          tmpbreaks[1] <- -max(abs(x))
-          tmpbreaks[length(tmpbreaks)] <- max(abs(x))
+          tmpbreaks[1] <- -max(abs(x), na.rm=TRUE)
+          tmpbreaks[length(tmpbreaks)] <- max(abs(x), na.rm=TRUE)
         }
       else
         {

@@ -1,7 +1,14 @@
-# $Id: hist2d.R 1420 2010-02-17 14:53:16Z warnes $
+# $Id: hist2d.R 1501 2011-09-02 18:14:37Z warnes $
 
-if(is.R())
-hist2d <- function( x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE, col=c("black", heat.colors(12)), ... )
+hist2d <- function(x,
+                   y=NULL,
+                   nbins=200,
+                   same.scale=FALSE,
+                   na.rm=TRUE,
+                   show=TRUE,
+                   col=c("black", heat.colors(12)),
+                   FUN=base::length,
+                   ... )
   {
     if(is.null(y))
       {
@@ -34,29 +41,29 @@ hist2d <- function( x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE
         y.cuts <- seq( from=min(y), to=max(y), length=nbins[2]+1, labels=FALSE)
       }
 
-
-
     index.x <- cut( x, x.cuts, include.lowest=TRUE)
     index.y <- cut( y, y.cuts, include.lowest=TRUE)
 
-    m <- matrix( 0, nrow=nbins[1], ncol=nbins[2],
-                dimnames=list( levels(index.x),
-                               levels(index.y) ) )
+    ## tapply is faster than old for() loop, and allows
+    ## use of any user-specified summary function 
+    m <- tapply(x,list(index.x,index.y),FUN)
 
-    for( i in 1:length(index.x) )
-      m[ index.x[i], index.y[i] ] <-  m[ index.x[i], index.y[i] ] + 1
-
+    ## If we're using length, set empty cells to 0 instead of NA
+    if(identical(FUN,base::length))
+      m[is.na(m)] <- 0
+    
     xvals <- x.cuts[1:nbins[1]]
     yvals <- y.cuts[1:nbins[2]]
 
     if(show)
       image( xvals,yvals, m, col=col,...)
 
-    invisible(list(counts=m,x=xvals,y=yvals))
+    retval <- list()
+    retval$counts <- m
+    retval$x=xvals
+    retval$y=yvals
+    retval$nobs=length(x)
+    retval$call <- match.call()
+    class(retval) <- "hist2d"
+    retval
   }
-
-
-
-
-
-

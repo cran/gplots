@@ -1,7 +1,8 @@
 
-R version 2.10.0 alpha (2009-10-08 r49995)
-Copyright (C) 2009 The R Foundation for Statistical Computing
+R version 2.12.1 (2010-12-16)
+Copyright (C) 2010 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: i686-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -18,24 +19,28 @@ Type 'q()' to quit R.
 > library(gplots)
 Loading required package: gtools
 Loading required package: gdata
+gdata: read.xls support for 'XLS' (Excel 97-2004) files ENABLED.
+
+gdata: read.xls support for 'XLSX' (Excel 2007+) files ENABLED.
 
 Attaching package: 'gdata'
 
+The following object(s) are masked from 'package:utils':
 
-	The following object(s) are masked from package:utils :
-
-	 object.size 
+    object.size
 
 Loading required package: caTools
 Loading required package: bitops
 Loading required package: grid
+Loading required package: KernSmooth
+KernSmooth 2.23 loaded
+Copyright M. P. Wand 1997-2009
 
 Attaching package: 'gplots'
 
+The following object(s) are masked from 'package:stats':
 
-	The following object(s) are masked from package:stats :
-
-	 lowess 
+    lowess
 
 > 
 > data(mtcars)

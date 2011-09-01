@@ -1,3 +1,132 @@
+2011-09-02 18:25  warnes
+
+	* [r1505] inst/NEWS: Update NEWS for release 2.10.1.
+
+2011-09-02 18:23  warnes
+
+	* [r1504] DESCRIPTION: Increment version counter.
+
+2011-09-02 18:23  warnes
+
+	* [r1503] man/ci2d.Rd, man/hist2d.Rd: Add necessary alias statment
+	  to man files for for 'hist2d' and 'ci2d'
+	  print methods.
+
+2011-09-02 18:20  warnes
+
+	* [r1502] R/print.hist2d, R/print.hist2d.R: Fix naming error
+
+2011-09-02 18:14  warnes
+
+	* [r1501] NAMESPACE, R/ci2d.R, R/hist2d.R, R/print.ci2d.R,
+	  R/print.hist2d, man/ci2d.Rd, man/hist2d.Rd: Provide print()
+	  methods for 'hist2d' and 'ci2d' objects.
+
+2011-09-02 13:16  warnes
+
+	* [r1498] DESCRIPTION: Correct dependence on R >= 2.10
+
+2011-09-01 21:41  warnes
+
+	* [r1491] NAMESPACE, man/ci2d.Rd: - Correct issues in ci2d() man
+	  page.
+
+2011-09-01 20:10  warnes
+
+	* [r1490] DESCRIPTION, NAMESPACE, tests/heatmap2Test.Rout.save: -
+	  Comment out import from KernSmooth in NAMESPACES, since
+	  KernSmooth
+	  doesn't provide a namespace.
+	  - Update a test output.
+
+2011-09-01 19:47  warnes
+
+	* [r1489] DESCRIPTION, inst/NEWS: - Update NEWS file and correct
+	  version number
+
+2011-09-01 19:41  warnes
+
+	* [r1488] DESCRIPTION: - Depend on KernSmooth package. Increment
+	  version number.
+
+2011-09-01 19:40  warnes
+
+	* [r1487] NAMESPACE: - Depend on KernSmooth package and import
+	  'bkdeD2' and 'dpik'.
+
+2011-09-01 19:37  warnes
+
+	* [r1486] R/ci2d.R, man/ci2d.Rd: Improvements to ci2d():
+	  
+	  - Add option to utilize KernDensity::bkde2D to estimate the 2-d
+	  density (now the default).
+	  
+	  - Add option to display points for original data on generated
+	  plots
+	  
+	  - Name elements of returned contour list according to the
+	  significance
+	  level to make it easier to select desired contours.
+	  
+	  - Improve handling of x and y labels
+
+2011-09-01 19:26  warnes
+
+	* [r1485] man/hist2d.Rd: Remove log tag and comments from top of
+	  the file.
+
+2011-08-26 20:38  warnes
+
+	* [r1478] inst/NEWS: Update NEWS for 2.10.0 release
+
+2011-08-26 20:29  warnes
+
+	* [r1477] DESCRIPTION: Add dependency on R>= 2.10 to handle
+	  compressed Rda data file.
+
+2011-08-26 13:45  warnes
+
+	* [r1476] data/rtPCR.rda: Compress rtPCR example data set to make
+	  distributed package smaller.
+
+2011-08-26 13:39  warnes
+
+	* [r1475] R/ci2d.R: Remove '1.0' confidence line from
+	  ci2d(..,show="contour").
+
+2011-08-25 03:10  warnes
+
+	* [r1474] DESCRIPTION, NAMESPACE, R/ci2d.R, man/ci2d.Rd,
+	  man/rich.colors.Rd: - Add 'ci2d()' to compute 2-dimensional
+	  emipirical confidence interval.
+	  - Fix parse error in help page for 'rich.colors()'.
+
+2011-08-16 01:17  warnes
+
+	* [r1473] DESCRIPTION: Update DESCRIPTION file for 2.8.1.
+
+2011-08-16 01:16  warnes
+
+	* [r1472] R/rich.colors.R, man/rich.colors.Rd: Add 'alpha' argument
+	  to rich.colors() to control transparency.
+
+2011-08-16 01:03  warnes
+
+	* [r1471] R/hist2d.R, man/hist2d.Rd: Accellerate hist2d by
+	  replacing for() loop with tapply(), and allow user to specify
+	  summary function applied, per suggestion by Peter Hagedorn (PHA
+	  -at- santaris -dot- com).
+
+2011-05-02 14:02  arnima
+
+	* [r1470] R/rich.colors.R, man/rich.colors.Rd: Added argument
+	  'alpha' and removed argument 'rgb' in rich.colors()
+
+2010-12-13 16:44  warnes
+
+	* [r1463] R/heatmap.2.R: Correct error that arises when data
+	  includes NA values, identified by Melissa Key
+
 2010-06-11 03:29  warnes
 
 	* [r1446] man/venn.Rd: Fix errors detected by R CMD check
@@ -305,15 +434,7 @@
 
 2007-10-22 02:24  warnes
 
-	* [r1196]
-	  branches/GenerateFORMATSfromFactorObjects/SASxport/DESCRIPTION,
-	  trunk/MSOfficeUtil/DESCRIPTION, trunk/RMCMC/DESCRIPTION,
-	  trunk/Rlsf/DESCRIPTION, trunk/SASxport/DESCRIPTION,
-	  trunk/bwRF/DESCRIPTION, trunk/exp.ssize/DESCRIPTION,
-	  trunk/fork/DESCRIPTION, trunk/gdata/DESCRIPTION,
-	  trunk/gmodels/DESCRIPTION, DESCRIPTION,
-	  trunk/gregmisc/DESCRIPTION, trunk/ssize/DESCRIPTION: Clarify GPL
-	  version
+	* [r1196] DESCRIPTION: Clarify GPL version
 
 2007-08-14 19:14  warnes
 
@@ -363,14 +484,10 @@
 
 2006-11-14 22:25  ggorjan
 
-	* [r1012] trunk/gdata/man/combine.Rd,
-	  trunk/gdata/man/frameApply.Rd, trunk/gmodels/R/ci.R,
-	  trunk/gmodels/R/fast.prcomp.R, trunk/gmodels/man/ci.Rd,
-	  R/bandplot.R, R/boxplot.n.R, R/lowess.R, R/plot.lm.R, R/plotCI.R,
-	  R/plotmeans.R, R/residplot.R, R/wapply.R, man/boxplot.n.Rd,
-	  man/plotCI.Rd, man/plotmeans.Rd, trunk/gtools/R/combinations.R,
-	  trunk/gtools/R/running.R, trunk/gtools/man/ELISA.Rd,
-	  trunk/gtools/man/combinations.Rd: Removed executable property
+	* [r1012] R/bandplot.R, R/boxplot.n.R, R/lowess.R, R/plot.lm.R,
+	  R/plotCI.R, R/plotmeans.R, R/residplot.R, R/wapply.R,
+	  man/boxplot.n.Rd, man/plotCI.Rd, man/plotmeans.Rd: Removed
+	  executable property
 
 2006-11-14 18:29  warnes
 
@@ -398,49 +515,12 @@
 
 2006-08-02 22:21  warnes
 
-	* [r977] trunk/BalloonPlotPaper/BalloonPlot.pdf,
-	  trunk/BalloonPlotPaper/BalloonPlot.tex,
-	  trunk/MSOfficeUtil/DESCRIPTION,
-	  trunk/PathwayModeling/thesispaper/slides.tex,
-	  trunk/RMCMC/DESCRIPTION, trunk/RMCMC/man/make.density.Rd,
-	  trunk/Rlsf/DESCRIPTION, trunk/Rlsf/man/lsf.numcpu.Rd,
-	  trunk/Rlsf/man/lsf.parRapply.Rd, trunk/Rlsf/man/scat.Rd,
-	  trunk/bwRF/DESCRIPTION, trunk/bwRF/man/RF.Rd,
-	  trunk/exp.ssize/inst/doc/ssize.pdf,
-	  trunk/exp.ssize/inst/doc/ssize.tex, trunk/fork/DESCRIPTION,
-	  trunk/fork/man/exit.Rd, trunk/fork/man/fork.Rd,
-	  trunk/fork/man/getpid.Rd, trunk/fork/man/kill.Rd,
-	  trunk/fork/man/signame.Rd, trunk/fork/man/wait.Rd,
-	  trunk/gdata/inst/doc/gregmisc.tex,
-	  trunk/gdata/man/ConvertMedUnits.Rd,
-	  trunk/gdata/man/aggregate.table.Rd, trunk/gdata/man/combine.Rd,
-	  trunk/gdata/man/interleave.Rd, trunk/gdata/man/matchcols.Rd,
-	  trunk/gdata/man/nobs.Rd, trunk/gdata/man/read.xls.Rd,
-	  trunk/gdata/man/rename.vars.Rd, trunk/gdata/man/reorder.Rd,
-	  trunk/gdata/man/trim.Rd, trunk/gdata/man/unmatrix.Rd,
-	  trunk/gdata/man/upperTriangle.Rd,
-	  trunk/gmodels/man/fast.prcomp.Rd,
-	  trunk/gmodels/man/fit.contrast.Rd, trunk/gmodels/man/glh.test.Rd,
-	  trunk/gmodels/man/make.contrasts.Rd, inst/doc/BalloonPlot.pdf,
-	  man/balloonplot.Rd, man/bandplot.Rd, man/boxplot.n.Rd,
-	  man/colorpanel.Rd, man/hist2d.Rd, man/ooplot.Rd, man/overplot.Rd,
-	  man/plot.lm2.Rd, man/plotCI.Rd, man/plotmeans.Rd,
-	  man/residplot.Rd, man/sinkplot.Rd, man/smartlegend.Rd,
-	  man/space.Rd, man/textplot.Rd, man/wapply.Rd,
-	  trunk/gregmisc/DESCRIPTION,
-	  trunk/gregmisc/gregmisc/DESCRIPTION.standalone,
-	  trunk/gregmisc/inst/doc/gregmisc.tex,
-	  trunk/gtools/man/addLast.Rd, trunk/gtools/man/assert.Rd,
-	  trunk/gtools/man/capture.Rd, trunk/gtools/man/combinations.Rd,
-	  trunk/gtools/man/defmacro.Rd, trunk/gtools/man/dirichlet.Rd,
-	  trunk/gtools/man/foldchange.Rd, trunk/gtools/man/invalid.Rd,
-	  trunk/gtools/man/logit.Rd, trunk/gtools/man/mixedsort.Rd,
-	  trunk/gtools/man/oddeven.Rd, trunk/gtools/man/permute.Rd,
-	  trunk/gtools/man/quantcut.Rd, trunk/gtools/man/running.Rd,
-	  trunk/gtools/man/scat.Rd, trunk/gtools/man/setTCPNoDelay.Rd,
-	  trunk/nws/DESCRIPTION, trunk/qvalue/DESCRIPTION,
-	  trunk/qvalue/man/print.qvalue.Rd, trunk/ssize/DESCRIPTION,
-	  trunk/ssize/man/pow.Rd: Update my email address
+	* [r977] inst/doc/BalloonPlot.pdf, man/balloonplot.Rd,
+	  man/bandplot.Rd, man/boxplot.n.Rd, man/colorpanel.Rd,
+	  man/hist2d.Rd, man/ooplot.Rd, man/overplot.Rd, man/plot.lm2.Rd,
+	  man/plotCI.Rd, man/plotmeans.Rd, man/residplot.Rd,
+	  man/sinkplot.Rd, man/smartlegend.Rd, man/space.Rd,
+	  man/textplot.Rd, man/wapply.Rd: Update my email address
 
 2006-06-26 21:08  nj7w
 
@@ -607,8 +687,7 @@
 
 2005-12-13 16:18  nj7w
 
-	* [r809] ChangeLog, NEWS, trunk/gtools/NEWS: Updated NEWS and
-	  removed ChangeLog
+	* [r809] ChangeLog, NEWS: Updated NEWS and removed ChangeLog
 
 2005-12-12 22:20  nj7w
 
@@ -644,17 +723,9 @@
 
 2005-12-01 16:54  nj7w
 
-	* [r776] trunk/gmodels/man/ci.Rd, trunk/gmodels/man/coefFrame.Rd,
-	  trunk/gmodels/man/estimable.Rd,
-	  trunk/gmodels/man/fit.contrast.Rd,
-	  trunk/gmodels/man/make.contrasts.Rd, man/balloonplot.Rd,
-	  man/bandplot.Rd, man/boxplot.n.Rd, man/colorpanel.Rd,
-	  man/overplot.Rd, man/plotmeans.Rd, man/textplot.Rd,
-	  man/wapply.Rd, trunk/gtools/man/combinations.Rd,
-	  trunk/gtools/man/foldchange.Rd, trunk/gtools/man/invalid.Rd,
-	  trunk/gtools/man/logit.Rd, trunk/gtools/man/mixedsort.Rd,
-	  trunk/gtools/man/oddeven.Rd, trunk/gtools/man/quantcut.Rd,
-	  trunk/gtools/man/running.Rd: Updated Greg's email address
+	* [r776] man/balloonplot.Rd, man/bandplot.Rd, man/boxplot.n.Rd,
+	  man/colorpanel.Rd, man/overplot.Rd, man/plotmeans.Rd,
+	  man/textplot.Rd, man/wapply.Rd: Updated Greg's email address
 
 2005-11-23 22:05  nj7w
 
@@ -888,16 +959,9 @@
 
 2005-09-12 15:44  nj7w
 
-	* [r671] trunk/gdata/man/aggregate.table.Rd,
-	  trunk/gdata/man/interleave.Rd, trunk/gdata/man/matchcols.Rd,
-	  trunk/gdata/man/nobs.Rd, trunk/gdata/man/read.xls.Rd,
-	  trunk/gdata/man/rename.vars.Rd, trunk/gdata/man/trim.Rd,
-	  trunk/gdata/man/unmatrix.Rd, trunk/gmodels/man/fast.prcomp.Rd,
-	  trunk/gmodels/man/glh.test.Rd, man/hist2d.Rd, man/ooplot.Rd,
-	  man/residplot.Rd, man/sinkplot.Rd, man/smartlegend.Rd,
-	  man/space.Rd, trunk/gtools/man/assert.Rd,
-	  trunk/gtools/man/dirichlet.Rd, trunk/gtools/man/permute.Rd,
-	  trunk/gtools/man/scat.Rd: Updated Greg's email
+	* [r671] man/hist2d.Rd, man/ooplot.Rd, man/residplot.Rd,
+	  man/sinkplot.Rd, man/smartlegend.Rd, man/space.Rd: Updated Greg's
+	  email
 
 2005-09-12 14:45  nj7w
 
@@ -924,70 +988,28 @@
 
 2005-09-02 23:10  nj7w
 
-	* [r655] trunk/gmodels/ChangeLog, ChangeLog: Added ChangeLog
+	* [r655] ChangeLog: Added ChangeLog
 
 2005-08-31 16:28  nj7w
 
-	* [r644] trunk/gdata/DESCRIPTION, trunk/gmodels/DESCRIPTION,
-	  DESCRIPTION: Added DESCRIPTION file
+	* [r644] DESCRIPTION: Added DESCRIPTION file
 
 2005-08-31 16:27  nj7w
 
-	* [r643] trunk/gdata/DESCRIPTION.in, trunk/gmodels/DESCRIPTION.in,
-	  DESCRIPTION.in: removed DESCRIPTION.in
+	* [r643] DESCRIPTION.in: removed DESCRIPTION.in
 
 2005-06-09 14:20  nj7w
 
-	* [r625] trunk/gdata/R/Args.R, trunk/gdata/R/aggregate.table.R,
-	  trunk/gdata/R/combine.R, trunk/gdata/R/elem.R,
-	  trunk/gdata/R/env.R, trunk/gdata/R/frameApply.R,
-	  trunk/gdata/R/interleave.R, trunk/gdata/R/is.what.R,
-	  trunk/gdata/R/keep.R, trunk/gdata/R/ll.R,
-	  trunk/gdata/R/matchcols.R, trunk/gdata/R/nobs.R,
-	  trunk/gdata/R/read.xls.R, trunk/gdata/R/rename.vars.R,
-	  trunk/gdata/R/reorder.R, trunk/gdata/R/trim.R,
-	  trunk/gdata/R/unmatrix.R, trunk/gdata/inst/perl/IO/AtomicFile.pm,
-	  trunk/gdata/inst/perl/IO/InnerFile.pm,
-	  trunk/gdata/inst/perl/IO/Lines.pm,
-	  trunk/gdata/inst/perl/IO/Scalar.pm,
-	  trunk/gdata/inst/perl/IO/Scalar.pm.html,
-	  trunk/gdata/inst/perl/IO/ScalarArray.pm,
-	  trunk/gdata/inst/perl/IO/Stringy.pm,
-	  trunk/gdata/inst/perl/IO/Wrap.pm,
-	  trunk/gdata/inst/perl/IO/WrapTie.pm,
-	  trunk/gdata/man/aggregate.table.Rd, trunk/gdata/man/combine.Rd,
-	  trunk/gdata/man/drop.levels.Rd, trunk/gdata/man/interleave.Rd,
-	  trunk/gdata/man/nobs.Rd, trunk/gdata/man/rename.vars.Rd,
-	  trunk/gdata/man/reorder.Rd, trunk/gmodels/R/ci.R,
-	  trunk/gmodels/R/coefFrame.R, trunk/gmodels/R/estimable.R,
-	  trunk/gmodels/R/fast.prcomp.R, trunk/gmodels/R/fit.contrast.R,
-	  trunk/gmodels/R/glh.test.R, trunk/gmodels/R/make.contrasts.R,
-	  trunk/gmodels/man/CrossTable.Rd, trunk/gmodels/man/ci.Rd,
-	  trunk/gmodels/man/coefFrame.Rd, trunk/gmodels/man/estimable.Rd,
-	  trunk/gmodels/man/fast.prcomp.Rd,
-	  trunk/gmodels/man/fit.contrast.Rd, trunk/gmodels/man/glh.test.Rd,
-	  trunk/gmodels/man/make.contrasts.Rd, R/balloonplot.R,
-	  R/bandplot.R, R/boxplot.n.R, R/colorpanel.R, R/heatmap.2.R,
-	  R/hist2d.R, R/lowess.R, R/ooplot.R, R/overplot.R, R/plotCI.R,
-	  R/plotmeans.R, R/qqnorm.aov.R, R/residplot.R, R/rich.color.R,
-	  R/sinkplot.R, R/smartlegend.R, R/space.R, R/textplot.R,
-	  R/wapply.R, man/1, man/bandplot.Rd, man/barplot2.Rd,
-	  man/boxplot.n.Rd, man/hist2d.Rd, man/lowess.Rd, man/plotCI.Rd,
-	  man/plotmeans.Rd, man/residplot.Rd, man/space.Rd, man/wapply.Rd,
-	  trunk/gtools/R/RSCompat.S, trunk/gtools/R/combinations.R,
-	  trunk/gtools/R/dirichlet.R, trunk/gtools/R/foldchange.R,
-	  trunk/gtools/R/invalid.R, trunk/gtools/R/logit.R,
-	  trunk/gtools/R/mixedsort.R, trunk/gtools/R/oddeven.R,
-	  trunk/gtools/R/permute.R, trunk/gtools/R/quantcut.R,
-	  trunk/gtools/R/running.R, trunk/gtools/R/scat.R,
-	  trunk/gtools/man/ELISA.Rd, trunk/gtools/man/combinations.Rd,
-	  trunk/gtools/man/dirichlet.Rd, trunk/gtools/man/foldchange.Rd,
-	  trunk/gtools/man/invalid.Rd, trunk/gtools/man/logit.Rd,
-	  trunk/gtools/man/mixedsort.Rd, trunk/gtools/man/oddeven.Rd,
-	  trunk/gtools/man/permute.Rd, trunk/gtools/man/quantcut.Rd,
-	  trunk/gtools/man/running.Rd, trunk/gtools/man/scat.Rd: Updating
-	  the version number, and various help files to synchronize
-	  splitting of gregmisc bundle in 4 individual components.
+	* [r625] R/balloonplot.R, R/bandplot.R, R/boxplot.n.R,
+	  R/colorpanel.R, R/heatmap.2.R, R/hist2d.R, R/lowess.R,
+	  R/ooplot.R, R/overplot.R, R/plotCI.R, R/plotmeans.R,
+	  R/qqnorm.aov.R, R/residplot.R, R/rich.color.R, R/sinkplot.R,
+	  R/smartlegend.R, R/space.R, R/textplot.R, R/wapply.R, man/1,
+	  man/bandplot.Rd, man/barplot2.Rd, man/boxplot.n.Rd,
+	  man/hist2d.Rd, man/lowess.Rd, man/plotCI.Rd, man/plotmeans.Rd,
+	  man/residplot.Rd, man/space.Rd, man/wapply.Rd: Updating the
+	  version number, and various help files to synchronize splitting
+	  of gregmisc bundle in 4 individual components.
 
 2005-06-09 14:15  nj7w
 
@@ -996,9 +1018,9 @@
 
 2005-05-13 18:59  nj7w
 
-	* [r621] trunk/gdata/R/read.xls.R, trunk/gmodels/man/CrossTable.Rd,
-	  man/heatmap.2.Rd: 1) Using dQuote.ascii function in read.xls as
-	  the new version of dQuote doesn't work proprly with UTF-8 locale.
+	* [r621] man/heatmap.2.Rd: 1) Using dQuote.ascii function in
+	  read.xls as the new version of dQuote doesn't work proprly with
+	  UTF-8 locale.
 	  2) Modified CrossTable.Rd usage in gmodels
 	  3) Modified heatmap.2 usage in gplots.
 
@@ -1012,18 +1034,13 @@
 
 2005-02-26 01:15  nj7w
 
-	* [r565] trunk/gdata/NAMESPACE, trunk/gdata/man/elem.Rd,
-	  trunk/gdata/man/env.Rd, trunk/gdata/man/ll.Rd,
-	  trunk/gdata/man/read.xls.Rd, R/heatmap.2.R, man/heatmap.2.Rd,
-	  man/rich.color.Rd, man/sinkplot.Rd, man/textplot.Rd: *** empty
-	  log message ***
+	* [r565] R/heatmap.2.R, man/heatmap.2.Rd, man/rich.color.Rd,
+	  man/sinkplot.Rd, man/textplot.Rd: *** empty log message ***
 
 2005-02-25 23:22  warnes
 
-	* [r563] trunk/gdata/R/elem.R, trunk/gdata/R/env.R,
-	  trunk/gdata/R/ll.R, trunk/gdata/man/Args.Rd,
-	  trunk/gdata/man/env.Rd, trunk/gdata/man/ll.Rd, man/rich.color.Rd:
-	  Integrate changes submitted by Arni Magnusson
+	* [r563] man/rich.color.Rd: Integrate changes submitted by Arni
+	  Magnusson
 
 2005-02-25 22:31  warnes
 
@@ -1054,9 +1071,8 @@
 
 2005-01-12 20:50  warnes
 
-	* [r515] trunk/gdata/DESCRIPTION.in, trunk/gmodels/DESCRIPTION.in,
-	  DESCRIPTION.in, trunk/gtools/DESCRIPTION.in: Add dependency on R
-	  1.9.0+ to prevent poeple from installing on old
+	* [r515] DESCRIPTION.in: Add dependency on R 1.9.0+ to prevent
+	  poeple from installing on old
 	  versions of R which don't support namespaces.
 
 2004-11-30 01:06  warnes
@@ -1090,13 +1106,8 @@
 
 2004-09-27 21:01  warneg
 
-	* [r461] trunk/gdata/DESCRIPTION, trunk/gdata/DESCRIPTION.in,
-	  trunk/gdata/NAMESPACE, trunk/gdata/man/.Rhistory,
-	  trunk/gmodels/DESCRIPTION, trunk/gmodels/DESCRIPTION.in,
-	  DESCRIPTION, DESCRIPTION.in, man/sinkplot.Rd, man/textplot.Rd,
-	  trunk/gregmisc/.Rhistory, trunk/gregmisc/DESCRIPTION,
-	  trunk/gtools/DESCRIPTION, trunk/gtools/DESCRIPTION.in,
-	  trunk/gtools/man/running.Rd: Updated to pass R CMD check.
+	* [r461] DESCRIPTION, DESCRIPTION.in, man/sinkplot.Rd,
+	  man/textplot.Rd: Updated to pass R CMD check.
 
 2004-09-03 22:50  warneg
 
@@ -1109,44 +1120,17 @@
 
 2004-09-03 17:27  warneg
 
-	* [r446] trunk/gdata/DESCRIPTION, trunk/gdata/DESCRIPTION.in,
-	  trunk/gdata/NAMESPACE, trunk/gdata/R/Args.R,
-	  trunk/gdata/R/aggregate.table.R, trunk/gdata/R/combine.R,
-	  trunk/gdata/R/elem.R, trunk/gdata/R/env.R,
-	  trunk/gdata/R/interleave.R, trunk/gdata/R/is.what.R,
-	  trunk/gdata/R/keep.R, trunk/gdata/R/ll.R,
-	  trunk/gdata/R/matchcols.R, trunk/gdata/R/nobs.R,
-	  trunk/gdata/R/read.xls.R, trunk/gdata/R/rename.vars.R,
-	  trunk/gdata/R/reorder.R, trunk/gdata/R/trim.R,
-	  trunk/gdata/man/reorder.Rd, trunk/gmodels/DESCRIPTION,
-	  trunk/gmodels/NAMESPACE, trunk/gmodels/R/CrossTable.R,
-	  trunk/gmodels/R/ci.R, trunk/gmodels/R/estimable.R,
-	  trunk/gmodels/R/fast.prcomp.R, trunk/gmodels/R/fit.contrast.R,
-	  trunk/gmodels/R/glh.test.R, trunk/gmodels/R/make.contrasts.R,
-	  trunk/gmodels/man/estimable.Rd,
-	  trunk/gmodels/man/fit.contrast.Rd, trunk/gmodels/man/glh.test.Rd,
-	  trunk/gmodels/man/make.contrasts.Rd, DESCRIPTION, NAMESPACE,
-	  R/balloonplot.R, R/bandplot.R, R/barplot2.R, R/boxplot.n.R,
-	  R/colorpanel.R, R/heatmap.2.R, R/hist2d.R, R/lowess.R,
-	  R/ooplot.R, R/overplot.R, R/plotCI.R, R/plotmeans.R,
-	  R/qqnorm.aov.R, R/residplot.R, R/rich.color.R, R/sinkplot.R,
-	  R/smartlegend.R, R/space.R, R/textplot.R, R/wapply.R,
-	  trunk/gtools/DESCRIPTION, trunk/gtools/NAMESPACE,
-	  trunk/gtools/R/dirichlet.R, trunk/gtools/R/foldchange.R,
-	  trunk/gtools/R/invalid.R, trunk/gtools/R/mixedsort.R,
-	  trunk/gtools/R/oddeven.R, trunk/gtools/R/permute.R,
-	  trunk/gtools/R/quantcut.R, trunk/gtools/R/running.R,
-	  trunk/gtools/man/running.Rd: initial bundle checkin
+	* [r446] DESCRIPTION, NAMESPACE, R/balloonplot.R, R/bandplot.R,
+	  R/barplot2.R, R/boxplot.n.R, R/colorpanel.R, R/heatmap.2.R,
+	  R/hist2d.R, R/lowess.R, R/ooplot.R, R/overplot.R, R/plotCI.R,
+	  R/plotmeans.R, R/qqnorm.aov.R, R/residplot.R, R/rich.color.R,
+	  R/sinkplot.R, R/smartlegend.R, R/space.R, R/textplot.R,
+	  R/wapply.R: initial bundle checkin
 
 2004-09-02 17:14  warneg
 
-	* [r442] trunk/gdata/DESCRIPTION, trunk/gdata/DESCRIPTION.in,
-	  trunk/gdata/NAMESPACE, trunk/gdata/man/.Rhistory,
-	  trunk/gmodels/DESCRIPTION, trunk/gmodels/DESCRIPTION.in,
-	  trunk/gmodels/NAMESPACE, DESCRIPTION, DESCRIPTION.in, NAMESPACE,
-	  man/1, man/residplot.Rd, trunk/gregmisc/.Rhistory,
-	  trunk/gtools/DESCRIPTION, trunk/gtools/DESCRIPTION.in,
-	  trunk/gtools/NAMESPACE: Initial revision
+	* [r442] DESCRIPTION, DESCRIPTION.in, NAMESPACE, man/1,
+	  man/residplot.Rd: Initial revision
 
 2004-07-29 14:49  warnes
 
@@ -1234,9 +1218,8 @@
 
 2004-03-30 19:04  warnes
 
-	* [r311] R/textplot.R, trunk/gregmisc/DESCRIPTION: - Fix bug in
-	  textplot() reported by Wright, Kevin
-	  <kevin.d.wright@pioneer.com>.
+	* [r311] R/textplot.R: - Fix bug in textplot() reported by Wright,
+	  Kevin <kevin.d.wright@pioneer.com>.
 
 2004-03-26 22:27  warnes
 
@@ -1296,8 +1279,7 @@
 
 2004-01-21 04:31  warnes
 
-	* [r277] R/textplot.R, trunk/gtools/R/capture.R: - Mark sprint() as
-	  depreciated.
+	* [r277] R/textplot.R: - Mark sprint() as depreciated.
 	  - Replace references to sprint with capture.output()
 	  - Use match.arg for halign and valign arguments to
 	  textplot.default.
@@ -1322,10 +1304,8 @@
 
 2003-12-03 02:46  warnes
 
-	* [r253] trunk/gdata/man/elem.Rd, trunk/gdata/man/ll.Rd,
-	  man/lowess.Rd, man/textplot.Rd, man/wapply.Rd,
-	  trunk/gtools/man/foldchange.Rd: - match function argument
-	  defaults with 'usage'
+	* [r253] man/lowess.Rd, man/textplot.Rd, man/wapply.Rd: - match
+	  function argument defaults with 'usage'
 
 2003-12-03 02:42  warnes
 
@@ -1425,23 +1405,13 @@
 
 2003-11-18 18:45  warnes
 
-	* [r224] trunk/gdata/R/elem.R, trunk/gdata/R/env.R,
-	  trunk/gdata/R/is.what.R, trunk/gdata/R/keep.R,
-	  trunk/gdata/R/ll.R, R/overplot.R: - Convert from MS-Dos to Unix
-	  line endings.
+	* [r224] R/overplot.R: - Convert from MS-Dos to Unix line endings.
 	  - Reformat to 80 columns.
 
 2003-11-10 22:11  warnes
 
-	* [r220] trunk/gdata/R/elem.R, trunk/gdata/R/env.R,
-	  trunk/gdata/R/is.what.R, trunk/gdata/R/keep.R,
-	  trunk/gdata/R/ll.R, trunk/gdata/man/elem.Rd,
-	  trunk/gdata/man/env.Rd, trunk/gdata/man/is.what.Rd,
-	  trunk/gdata/man/keep.Rd, trunk/gdata/man/ll.Rd, R/heatmap.2.R,
-	  R/overplot.R, R/plotmeans.R, R/space.R, R/wapply.R,
-	  trunk/gregmisc/DESCRIPTION, trunk/gtools/R/capture.R,
-	  trunk/gtools/man/capture.Rd: - Add files contributed by Arni
-	  Magnusson
+	* [r220] R/heatmap.2.R, R/overplot.R, R/plotmeans.R, R/space.R,
+	  R/wapply.R: - Add files contributed by Arni Magnusson
 	  <arnima@u.washington.edu>. As well as some of my own.
 
 2003-08-19 14:58  warnes
@@ -1480,8 +1450,8 @@
 
 2003-04-04 13:49  warnes
 
-	* [r182] R/balloonplot.R, man/qqnorm.aov.Rd,
-	  trunk/gtools/R/dirichlet.R: - Change occurences of 'T' to 'TRUE'
+	* [r182] R/balloonplot.R, man/qqnorm.aov.Rd: - Change occurences of
+	  'T' to 'TRUE'
 
 2003-04-04 13:44  warnes
 
@@ -1520,9 +1490,8 @@
 
 2003-03-07 15:48  warnes
 
-	* [r168] trunk/gmodels/R/fast.prcomp.R, R/hist2d.R, R/qqnorm.aov.R,
-	  trunk/gregmisc/DESCRIPTION, trunk/gtools/R/RSCompat.S: - Minor
-	  changes to code to allow the package to be provided as an
+	* [r168] R/hist2d.R, R/qqnorm.aov.R: - Minor changes to code to
+	  allow the package to be provided as an
 	  S-Plus chapter.
 
 2003-03-07 15:43  warnes
@@ -1642,44 +1611,30 @@
 
 2002-09-23 14:27  warnes
 
-	* [r119] trunk/gmodels/man/CrossTable.Rd,
-	  trunk/gmodels/man/glh.test.Rd, man/barplot2.Rd: - Fixed syntax
-	  errors in barplot2.Rd and CrossTable.Rd
+	* [r119] man/barplot2.Rd: - Fixed syntax errors in barplot2.Rd and
+	  CrossTable.Rd
 	  - Fixed incorrect translation of 'F' (distribution) to 'FALSE' in
 	  glh.test.Rd
 
 2002-09-23 13:59  warnes
 
-	* [r117] trunk/gdata/R/aggregate.table.R, trunk/gdata/R/combine.R,
-	  trunk/gdata/R/interleave.R, trunk/gdata/R/nobs.R,
-	  trunk/gdata/man/aggregate.table.Rd, trunk/gdata/man/combine.Rd,
-	  trunk/gdata/man/interleave.Rd, trunk/gdata/man/nobs.Rd,
-	  trunk/gdata/man/rename.vars.Rd, trunk/gdata/man/reorder.Rd,
-	  trunk/gmodels/R/ci.R, trunk/gmodels/man/estimable.Rd,
-	  trunk/gmodels/man/glh.test.Rd, R/boxplot.n.R, R/hist2d.R,
-	  R/lowess.R, R/residplot.R, man/bandplot.Rd, man/hist2d.Rd,
-	  man/lowess.Rd, man/plotCI.Rd, man/space.Rd,
-	  trunk/gtools/man/combinations.Rd, trunk/gtools/man/quantcut.Rd: -
-	  Modified all files to include CVS Id and Log tags.
+	* [r117] R/boxplot.n.R, R/hist2d.R, R/lowess.R, R/residplot.R,
+	  man/bandplot.Rd, man/hist2d.Rd, man/lowess.Rd, man/plotCI.Rd,
+	  man/space.Rd: - Modified all files to include CVS Id and Log
+	  tags.
 
 2002-09-23 13:38  warnes
 
-	* [r116] trunk/gmodels/R/CrossTable.R,
-	  trunk/gmodels/man/CrossTable.Rd, R/barplot2.R, man/barplot2.Rd,
-	  trunk/gregmisc/DESCRIPTION, trunk/gtools/R/combinations.R: -
-	  Added CrossTable() and barplot2() code and docs contributed by
-	  Marc Schwartz.
+	* [r116] R/barplot2.R, man/barplot2.Rd: - Added CrossTable() and
+	  barplot2() code and docs contributed by Marc Schwartz.
 	  - Permit combinations() to be used when r>n provided
 	  repeat.allowed=TRUE
 	  - Bumped up version number
 
 2002-08-01 19:37  warnes
 
-	* [r114] trunk/gmodels/R/ci.R, trunk/gmodels/man/ci.Rd,
-	  trunk/gmodels/man/estimable.Rd, trunk/gmodels/man/glh.test.Rd,
-	  R/hist2d.R, R/wapply.R, trunk/gregmisc/DESCRIPTION,
-	  trunk/gtools/R/running.R: - Corrected documentation mismatch for
-	  ci, ci.default.
+	* [r114] R/hist2d.R, R/wapply.R: - Corrected documentation mismatch
+	  for ci, ci.default.
 	  
 	  - Replaced all occurences of '_' for assignment with '<-'.
 	  
@@ -1691,18 +1646,11 @@
 
 2002-04-09 00:51  warneg
 
-	* [r109] trunk/gdata/R/rename.vars.R,
-	  trunk/gdata/man/aggregate.table.Rd,
-	  trunk/gdata/man/interleave.Rd, trunk/gdata/man/reorder.Rd,
-	  trunk/gmodels/R/ci.R, trunk/gmodels/R/estimable.R,
-	  trunk/gmodels/R/glh.test.R, trunk/gmodels/man/glh.test.Rd,
-	  R/bandplot.R, R/boxplot.n.R, R/hist2d.R, R/plot.lm.R, R/plotCI.R,
-	  R/plotmeans.R, R/residplot.R, R/space.R, R/wapply.R,
+	* [r109] R/bandplot.R, R/boxplot.n.R, R/hist2d.R, R/plot.lm.R,
+	  R/plotCI.R, R/plotmeans.R, R/residplot.R, R/space.R, R/wapply.R,
 	  man/bandplot.Rd, man/boxplot.n.Rd, man/hist2d.Rd,
-	  man/plotmeans.Rd, man/space.Rd, man/wapply.Rd,
-	  trunk/gregmisc/DESCRIPTION, trunk/gtools/R/combinations.R,
-	  trunk/gtools/man/combinations.Rd, trunk/gtools/man/running.Rd:
-	  Checkin for version 0.5.3
+	  man/plotmeans.Rd, man/space.Rd, man/wapply.Rd: Checkin for
+	  version 0.5.3
 
 2002-03-27 20:51  warneg
 
@@ -1719,10 +1667,8 @@
 
 2002-03-26 21:22  warneg
 
-	* [r104] trunk/gdata/man/reorder.Rd, trunk/gmodels/R/ci.R,
-	  trunk/gmodels/R/glh.test.R, trunk/gmodels/man/ci.Rd,
-	  trunk/gmodels/man/glh.test.Rd, R/lowess.R, man/lowess.Rd: -
-	  Changed methods to include '...' to match the generic.
+	* [r104] R/lowess.R, man/lowess.Rd: - Changed methods to include
+	  '...' to match the generic.
 	  - Updated for version 0.5.1
 
 2002-03-26 19:24  warneg
@@ -1751,10 +1697,8 @@
 
 2002-02-20 20:09  warneg
 
-	* [r81] trunk/gdata/man/rename.vars.Rd, trunk/gmodels/man/ci.Rd,
-	  trunk/gmodels/man/estimable.Rd, trunk/gmodels/man/glh.test.Rd,
-	  man/lowess.Rd, man/plotCI.Rd, man/space.Rd: Minor changes, typo
-	  and formatting fixes.
+	* [r81] man/lowess.Rd, man/plotCI.Rd, man/space.Rd: Minor changes,
+	  typo and formatting fixes.
 
 2002-02-20 20:06  warneg
 
@@ -1872,8 +1816,7 @@
 
 2001-10-16 23:15  warneg
 
-	* [r27] trunk/gmodels/man/ci.Rd, man/wapply.Rd: Fixed unbalanced
-	  brace.
+	* [r27] man/wapply.Rd: Fixed unbalanced brace.
 
 2001-10-16 23:06  warneg
 
@@ -1911,14 +1854,11 @@
 
 2001-09-18 14:15  warneg
 
-	* [r18] R/plotCI.R, R/plotmeans.R, trunk/gregmisc/DESCRIPTION,
-	  trunk/gtools/R/RSCompat.S: Release 0.3.2
+	* [r18] R/plotCI.R, R/plotmeans.R: Release 0.3.2
 
 2001-09-01 00:01  warneg
 
-	* [r16] man/wapply.Rd, trunk/gregmisc/DESCRIPTION,
-	  trunk/gtools/R/running.R, trunk/gtools/man/running.Rd: Release
-	  0.3.0
+	* [r16] man/wapply.Rd: Release 0.3.0
 
 2001-08-31 23:45  warneg
 
@@ -1944,9 +1884,7 @@
 
 2001-05-30 13:23  warneg
 
-	* [r2] trunk/gmodels, trunk/gmodels/R, trunk/gmodels/R/ci.R,
-	  trunk/gmodels/man, trunk/gmodels/man/ci.Rd, ., R, R/boxplot.n.R,
-	  R/plotCI.R, R/plotmeans.R, man, man/boxplot.n.Rd, man/plotCI.Rd,
-	  man/plotmeans.Rd, trunk/gregmisc, trunk/gregmisc/DESCRIPTION:
-	  Initial revision
+	* [r2] ., R, R/boxplot.n.R, R/plotCI.R, R/plotmeans.R, man,
+	  man/boxplot.n.Rd, man/plotCI.Rd, man/plotmeans.Rd: Initial
+	  revision
 

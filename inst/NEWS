@@ -1,3 +1,34 @@
+Release 2.10.1 - 2011-09-02
+---------------------------
+
+New features:
+
+- Make results of hist2d() and ci2d() into objects, and add print()
+  methods to display them.
+
+Release 2.10.0 - 2011-08-26
+---------------------------
+
+New Features:
+
+- New ci2d() function to create 2-dimensional empirical confidence
+  intervals utilizing KernSmooth:bkde2D and gplots::hist2d().  
+  See ?ci2d for details.
+
+- Add 'alpha' argument to rich.colors() to control transparency.
+
+Improvements:
+
+- Accellerate hist2d by replacing for() loop with tapply(), and allow
+  user to specify summary function applied (per suggestion by Peter
+  Hagedorn).
+
+Bug Fixes:
+
+- Correct error in heatmap.2() that arises when data includes NA values
+  (identified by Melissa Key).
+
+
 Release 2.8.0 - 2010-06-10
 --------------------------
 
@@ -15,7 +46,7 @@ Release 2.7.5 - ??
 
 Improvements:
 
-- Performance of 'hist2d' improved thanks to a suggestion from i
+- Performance of 'hist2d' improved thanks to a suggestion from 
   Joerg van den Hoff.
 
 Release 2.7.4 - 2009-11-12

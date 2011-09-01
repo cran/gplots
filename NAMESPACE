@@ -4,6 +4,7 @@ export(
        barplot2,
        bluered,
        boxplot.n,
+       ci2d,
        col2hex,
        colorpanel,
        greenred,
@@ -42,6 +43,9 @@ importFrom(stats, na.omit)
 #importFrom(caTools, runsd)
 #importFrom(caTools, runmean)
 
+# No Namespace
+#importFrom(KernSmooth, bkdeD2)
+#importFrom(KernSmooth, dpik)
 
 S3method(balloonplot,default)
 S3method(balloonplot,table)
@@ -58,3 +62,5 @@ S3method(textplot,data.frame)
 S3method(textplot,default)
 S3method(textplot,matrix)
 
+S3method(print,ci2d)
+S3method(print,hist2d)

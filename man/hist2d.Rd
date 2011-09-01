@@ -1,35 +1,16 @@
-% $Id: hist2d.Rd 1441 2010-06-11 03:11:54Z warnes $
-%
-% $Log$
-% Revision 1.6  2005/09/12 15:44:36  nj7w
-% Updated Greg's email
-%
-% Revision 1.5  2005/06/09 14:20:28  nj7w
-% Updating the version number, and various help files to synchronize splitting of gregmisc bundle in 4 individual components.
-%
-% Revision 1.1.1.1  2005/05/25 22:15:30  nj7w
-% Initial submission as an individual package
-%
-% Revision 1.4  2002/10/01 18:16:47  warnes
-%
-% - Added examples of using 'contour' and 'filled.contour' for display.
-%
-% Revision 1.3  2002/09/23 13:59:30  warnes
-% - Modified all files to include CVS Id and Log tags.
-%
-%
-
+% $Id: hist2d.Rd 1503 2011-09-02 18:23:11Z warnes $
 \name{hist2d}
 \alias{hist2d}
+\alias{print.hist2d}
 \title{ Compute and Plot a 2-Dimensional Histogram }
 \description{
   Compute and plot a 2-dimensional histogram.
 }
 \usage{
 hist2d(x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE,
-       col=c("black", heat.colors(12)), ... )
+       col=c("black", heat.colors(12)), FUN=base::length, ... )
+\method{print}{hist2d}(x, ...)
 }
-%- maybe also `usage' for other objects documented here.
 \arguments{
   \item{x}{either a vector containing the x coordinates
     or a matrix with 2 columns. }
@@ -45,6 +26,10 @@ hist2d(x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE,
     been computed. Defaults to TRUE.}
   \item{col}{ Colors for the histogram. Defaults to "black" for
     bins containing no elements, a set of 16 heat colors for other bins.}
+  \item{FUN}{Function used to summarize bin contents.  Defaults to
+    \code{base::length}. Use, e.g., \code{mean} to calculate means for each bin
+    instead of counts.
+    }
   \item{\dots}{ Parameters passed to the image function. }
 }
 \details{
@@ -61,10 +46,8 @@ hist2d(x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE,
     bin}
   \item{x}{lower x limit of each bin}
   \item{y}{lower y limit of each bin}
-}
-%\references{ ~put references to the literature/web site here ~ }
+  }
 \author{ Gregory R. Warnes \email{greg@warnes.net}}
-%\note{ ~~further notes~~ }
 
 \seealso{ \code{\link{image}}, \code{\link{persp}}, \code{\link{hist}} }
 
