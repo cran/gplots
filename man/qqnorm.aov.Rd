@@ -8,7 +8,7 @@
   class \code{aov}. One can interactively label the points in the plot.
 }
 \usage{
-qqnorm.aov(y, full=FALSE, label=FALSE, omit=NULL,
+\method{qqnorm}{aov}(y, full=FALSE, label=FALSE, omit=NULL,
            xlab=paste(if (full) "" else "Half", " Normal plot"), 
            ylab="Effects", ...)
 }
@@ -56,6 +56,8 @@ library(MASS)
 data(npk)
 npk.aov <- aov(yield ~ block + N*P*K, npk)
 qqnorm(npk.aov)
+
+## interactive labeling of points.  Click mouse on points to show label.
 if (dev.interactive()) qqnorm(npk.aov, omit=2:6, label=TRUE)
 }
 \keyword{ hplot }%

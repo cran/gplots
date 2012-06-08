@@ -1,4 +1,4 @@
-% $Id: plotmeans.Rd 1441 2010-06-11 03:11:54Z warnes $
+% $Id: plotmeans.Rd 1553 2012-06-07 15:03:24Z warnes $
 
 \name{plotmeans}
 \alias{plotmeans}
@@ -11,7 +11,8 @@ plotmeans(formula, data=NULL, subset, na.action,
           xlab=names(mf)[2], ylab=names(mf)[1], mean.labels=FALSE,
           ci.label=FALSE, n.label=TRUE, digits=getOption("digits"),
           col="black", barwidth=1, barcol="blue",
-          connect=TRUE, ccol=col, legends=names(means), xaxt, use.t=TRUE, ...)
+          connect=TRUE, ccol=col, legends=names(means), xaxt,
+          use.t=TRUE, lwd=par("lwd"), ...)
 }
 %
 %\usage{
@@ -91,7 +92,9 @@ plotmeans(formula, data=NULL, subset, na.action,
     default, a t distribution will the correct number of degrees of
     freedom for each group be used.  If \code{FALSE}, the a normal
     distribution will be used.}
-
+  
+  \item{lwd}{Width of connecting lines  }
+  
   \item{\dots}{ optional plotting parameters. }
 
   }

@@ -2,7 +2,7 @@
 
 print.hist2d <- function(x, ...)
   {
-        cat("\n")
+    cat("\n")
     cat("----------------------------\n")    
     cat("2-D Histogram Object\n")
     cat("----------------------------\n")    
@@ -11,9 +11,8 @@ print.hist2d <- function(x, ...)
     print(x$call)
     cat("\n")
     cat("Number of data points: ", x$nobs, "\n")
-    cat("Number of grid points: ", length(x$x), "x", length(x$y), "\n")
-    cat("X range: (", min(x$x), ",", max(x$x), ")\n")
-    cat("Y range: (", min(x$y), ",", max(x$y), ")\n")        
+    cat("Number of grid bins: ", length(x$x), "x", length(x$y), "\n")
+    cat("X range: (", min(x$x.breaks), ",", max(x$x.breaks), ")\n")
+    cat("Y range: (", min(x$y.breaks), ",", max(x$y.breaks), ")\n")        
     cat("\n")
-
   }

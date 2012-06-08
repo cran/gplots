@@ -1,4 +1,4 @@
-# $Id: plotCI.R 1318 2009-05-08 21:56:38Z warnes $
+# $Id: plotCI.R 1557 2012-06-08 17:56:37Z warnes $
 
 
 plotCI <- function (x,
@@ -111,18 +111,6 @@ plotCI <- function (x,
           text(x, y, label=labels, col=col, ... )
         }
     }
-  if(is.R())
-    myarrows <- function(...) arrows(...)
-  else
-    myarrows <- function(x1,y1,x2,y2,angle,code,length,...)
-      {
-        segments(x1,y1,x2,y2,open=TRUE,...)
-        if(code==1)
-          segments(x1-length/2,y1,x1+length/2,y1,...)
-        else
-          segments(x2-length/2,y2,x2+length/2,y2,...)
-      }
-
   if(err=="y")
     {
       if(gap!=FALSE)
@@ -132,11 +120,11 @@ plotCI <- function (x,
 
       # draw upper bar
       if(!is.null(li))
-          myarrows(x , li, x, pmax(y-gap,li), col=barcol, lwd=lwd,
+          arrows(x , li, x, pmax(y-gap,li), col=barcol, lwd=lwd,
                  lty=lty, angle=90, length=smidge, code=1)
       # draw lower bar
       if(!is.null(ui))
-          myarrows(x , ui, x, pmin(y+gap,ui), col=barcol,
+          arrows(x , ui, x, pmin(y+gap,ui), col=barcol,
                  lwd=lwd, lty=lty, angle=90, length=smidge, code=1)
     }
   else
@@ -147,10 +135,10 @@ plotCI <- function (x,
 
       # draw left bar
       if(!is.null(li))
-        myarrows(li, y, pmax(x-gap,li), y, col=barcol, lwd=lwd,
+        arrows(li, y, pmax(x-gap,li), y, col=barcol, lwd=lwd,
                  lty=lty, angle=90, length=smidge, code=1)
       if(!is.null(ui))
-        myarrows(ui, y, pmin(x+gap,ui), y, col=barcol, lwd=lwd,
+        arrows(ui, y, pmin(x+gap,ui), y, col=barcol, lwd=lwd,
                  lty=lty, angle=90, length=smidge, code=1)
 
     }

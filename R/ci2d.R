@@ -1,4 +1,4 @@
-# $Id: hist2d.R 1471 2011-08-16 01:03:31Z warnes $
+# $Id: ci2d.R 1471 2011-08-16 01:03:31Z warnes $
 
 ## first(...) selects the first element of which(...)
 first <- function(x,...)

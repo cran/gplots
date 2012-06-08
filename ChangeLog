@@ -1,3 +1,45 @@
+2012-06-08 17:56  warnes
+
+	* [r1557] DESCRIPTION, R/barplot2.R, R/ooplot.R, R/plotCI.R,
+	  R/sinkplot.R, man/qqnorm.aov.Rd, tests/heatmap2Test.Rout.save:
+	  Fix R CMD check warnings.
+
+2012-06-08 17:49  warnes
+
+	* [r1556] man/hist2d.Rd: Move incorrectly placed closing brace.
+
+2012-06-07 16:08  warnes
+
+	* [r1555] R/ci2d.R, R/hist2d.R, R/print.hist2d.R, man/hist2d.Rd:
+	  Object returned by hist2d() has been changed:
+	  - $x and $y now contain the n midpoints of the bins in each
+	  direction
+	  - $x.breaks, $y.breaks now contain the n+1 limits of the bins in
+	  each direction
+	  The function print.hist2d() has been updated appropriately.
+
+2012-06-07 15:19  warnes
+
+	* [r1554] R/hist2d.R: Correct error in handling binning:
+	  (N+1)x(N+1) bins were being created
+	  instead of NxN bins, and the highest row/column in each direction
+	  was
+	  being omitted from the results and plot.
+
+2012-06-07 15:03  warnes
+
+	* [r1553] R/plotmeans.R, man/plotmeans.Rd: Add default value for
+	  lwd argument to plotmeans()
+
+2012-05-31 22:03  warnes
+
+	* [r1533] man/qqnorm.aov.Rd: Properly mark up S3 method.
+
+2011-12-09 09:22  warnes
+
+	* [r1519] R/plotmeans.R, man/plotmeans.Rd: Add 'lwd' (linewidth) to
+	  arguments handled by plotmeans.
+
 2011-09-02 18:25  warnes
 
 	* [r1505] inst/NEWS: Update NEWS for release 2.10.1.

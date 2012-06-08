@@ -233,7 +233,7 @@ barplot2.default <-
     }
 
     if (beside)
-      w.m <- matrix(w.m, nc = NC)
+      w.m <- matrix(w.m, ncol = NC)
 
     if(plot) ##-------- Plotting :
     {

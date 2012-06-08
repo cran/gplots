@@ -1,4 +1,4 @@
-# $Id: sinkplot.R 625 2005-06-09 14:20:30Z nj7w $
+# $Id: sinkplot.R 1557 2012-06-08 17:56:37Z warnes $
 
 sinkplot <- function(operation=c("start","plot","cancel"),...)
   {
@@ -6,8 +6,8 @@ sinkplot <- function(operation=c("start","plot","cancel"),...)
 
     if( operation=="start" )
       {
-        if (exists(".sinkplot.conn", env=globalenv()) &&
-            get(".sinkplot.conn", env=globalenv()) )
+        if (exists(".sinkplot.conn", envir=globalenv()) &&
+            get(".sinkplot.conn", envir=globalenv()) )
           stop("sinkplot already in force")
 
 
@@ -20,22 +20,22 @@ sinkplot <- function(operation=c("start","plot","cancel"),...)
       }
     else
       {
-        if (!exists(".sinkplot.conn", env=globalenv()) || !.sinkplot.conn )
+        if (!exists(".sinkplot.conn", envir=globalenv()) || !.sinkplot.conn )
           stop("No sinkplot currently in force")
 
         sink()
 
-        data <- get(".sinkplot.data", env=globalenv())
+        data <- get(".sinkplot.data", envir=globalenv())
 
         if( operation=="plot" )
             textplot( paste( data, collapse="\n"), ... )
 
-        close(get(".sinkplot.conn", env=globalenv()))
+        close(get(".sinkplot.conn", envir=globalenv()))
 
-        if(exists(".sinkplot.data", env=globalenv()))
+        if(exists(".sinkplot.data", envir=globalenv()))
           rm(".sinkplot.data", pos=globalenv())
 
-        if(exists(".sinkplot.conn", env=globalenv()))
+        if(exists(".sinkplot.conn", envir=globalenv()))
           rm(".sinkplot.conn", pos=globalenv())
 
         invisible(data)

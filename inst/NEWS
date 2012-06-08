@@ -1,3 +1,24 @@
+Release 2.11.0 - 2011-06-08
+---------------------------
+
+New Features:
+
+- Objects returned by hist2d() have been changed:
+  1) $x and $y now contain the n midpoints of the bins in each direction
+  2) $x.breaks, $y.breaks now contain the n+1 limits of the bins in
+  each direction.
+
+- Add lwd argument to plotmeans().
+
+Bug Fixes:
+
+- Correct error in handling binning in hist2d(): (N+1)x(N+1) bins were
+   being created instead of NxN bins, and the highest row/column in
+   each direction was being omitted from the results and plot.
+
+- Changes to fix R CMD check warnings
+
+
 Release 2.10.1 - 2011-09-02
 ---------------------------
 

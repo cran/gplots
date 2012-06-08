@@ -1,4 +1,4 @@
-# $Id: ooplot.R 625 2005-06-09 14:20:30Z nj7w $
+# $Id: ooplot.R 1557 2012-06-08 17:56:37Z warnes $
 
 ooplot <- function(data, ...) UseMethod("ooplot")
 
@@ -313,7 +313,7 @@ ooplot.default <- function(data, width=1, space=NULL, names.arg=NULL,
     }
 
   if (beside)
-    w.m <- matrix(w.m, nc=NC)
+    w.m <- matrix(w.m, ncol=NC)
 
   ## check height/ci.l if using log scale to prevent log(<=0) error
   ## adjust appropriate ranges and bar base values
