@@ -23,7 +23,7 @@
 \usage{
 lowess(x, ...)
 \method{lowess}{default}(x, y = NULL, f = 2/3, iter = 3, delta = 0.01 *
-                  diff(range(xy$x[o])), ...)
+                  diff(range(x)), ...)
 \method{lowess}{formula}(formula,data = parent.frame(), subset, na.action, 
                f=2/3,  iter=3, delta=.01*diff(range(mf[-response])), ... )
 }

@@ -1,5 +1,5 @@
 513221847041d5444f0911676b2a3616 *ChangeLog
-577a34ef22d886779e42ca4d3536d2dd *DESCRIPTION
+8d2aa30a453dca6933712d3c871a9d59 *DESCRIPTION
 94df5480b9afc0e8a153304a151755fd *NAMESPACE
 e085660d28567c085d373c7bdc5b2bc9 *NEWS
 4040a0e9adf5cc4b201e9d35ab57154f *R/balloonplot.R
@@ -46,7 +46,7 @@ ab9babb4cca73672c7eae3e46325db28 *man/col2hex.Rd
 1e6e7f6434636be7b28f98867b602bd0 *man/colorpanel.Rd
 1a7d1fb6d6727a31b840a80c427c4be9 *man/heatmap.2.Rd
 6c7736f75ad125bd5e5403ebbecaadb3 *man/hist2d.Rd
-abdb0d00b059a3177a75dcae30e32ef4 *man/lowess.Rd
+0ade122d73a9fc6bc847e5b7a4942580 *man/lowess.Rd
 358b6072d9b08d11e2d4ec40478723b7 *man/ooplot.Rd
 f46f562c6daf8992b39a9201f6095417 *man/overplot.Rd
 64ef2706197f34171c735173e7d561c9 *man/plot.lm2.Rd
@@ -63,6 +63,6 @@ bef75ba8b8a782a6b14b4219faada752 *man/smartlegend.Rd
 64482911b867f1b3ccc6e3318c801b15 *man/venn.Rd
 5bdab99eb81d4c50fd63a9e5f2ab71f1 *man/wapply.Rd
 cff2e7739f6602bb7cece325310e13b5 *tests/heatmap2Test.R
-66bfb152722b53cf113ee23e2cf38108 *tests/heatmap2Test.Rout.save
+9cf72819a9a30a7337277de179ef0960 *tests/heatmap2Test.Rout.save
 d2dbbb722254f78d9038ac8e7f1fbf8e *tests/heatmap_to_heatmap.2_test.R
 fd229af09f15c5f5e920b8a9a21ff0f3 *tests/plotmeans_nobars.R
