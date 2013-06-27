@@ -1,4 +1,4 @@
-% $Id: plotmeans.Rd 1553 2012-06-07 15:03:24Z warnes $
+% $Id: plotmeans.Rd 1676 2013-06-27 20:51:27Z warnes $
 
 \name{plotmeans}
 \alias{plotmeans}
@@ -20,8 +20,8 @@ plotmeans(formula, data=NULL, subset, na.action,
 %}
 
 \arguments{
-  \item{formula}{symbolic expression specifying the outcome and grouping
-    variable.  See lm() for details.}
+  \item{formula}{symbolic expression specifying the outcome (continuous)
+    and grouping variable (factor).  See lm() for details.}
 
   \item{data}{optional data frame containing the variables in the model.}
 

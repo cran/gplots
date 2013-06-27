@@ -50,3 +50,9 @@ hv <- heatmap.2(x, col=cm.colors(256), scale="column",
 
 str(hv) # the two re-ordering index vectors
 
+## Test row and column separators 
+heatmap.2(x,dendrogram="col", colsep=1) ## one colsep
+heatmap.2(x,dendrogram="col", rowsep=1) ## one rowsep
+
+heatmap.2(x,dendrogram="col", colsep=1:2) ## two colseps
+heatmap.2(x,dendrogram="col", rowsep=1:2) ## two rowseps

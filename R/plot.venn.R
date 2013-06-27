@@ -11,7 +11,7 @@ plot.venn <- function(x, y, ...,
                     showSetLogicLabel=showSetLogicLabel,
                     simplify=simplify
                     )
-    }
+  }
 
 ## data should be a matrix.
 ##   - The first column of the matrix is the
@@ -25,6 +25,7 @@ drawVennDiagram <-function(data,small=0.7,
 	numCircles<-NA
 	data.colnames<-NULL
 	data.rownames<-NULL
+
 	if(is.matrix(data)) {
 		numCircles<-ncol(data)-1
 		data.colnames<-colnames(data)[2:(ncol(data))]
@@ -33,10 +34,16 @@ drawVennDiagram <-function(data,small=0.7,
 		data.rownames<-rownames(data)
 	}
 	else {
-		cat("Testing only, presuming first argument to specify",
-                    "the number of circles to draw.\n")
+		if (is.list(data)) {
+			stop("gplots.drawVennDiagram: This internal function is used wrongly. ",
+                             "Please call the function 'venn' with the same arguments, instead.\n")
+		}
+
+		warning("drawVennDiagram: Testing only, presuming first argument to specify",
+		     "the number of circles to draw.\n")
 		numCircles<-data
 	}
+
 
 	m<-(0:(-1+2^numCircles))
 
@@ -70,7 +77,30 @@ drawVennDiagram <-function(data,small=0.7,
 		colnames(data)<-c("num",data.colnames)
 	}
 
+
+	plot.new()
+	h<-400
+	plot.window(c(0,h), c(0,h), ylab="", xlab="")
+
 	if ((2 <= numCircles && numCircles <= 3) || (4 == numCircles && simplify)) {
+
+
+		circle <- function(x,y=NULL,r=1) {
+			elps=cbind(r*cos(seq(0,2*pi,len=1000)), r*sin(seq(0,2*pi,len=1000)));
+			if (!is.null(y)) {
+				if (length(x) != length(y)) stop("circle: both x and y need to be of same length")
+				if (is.matrix(x) && ncol(x)>1) stop("circle: if y is not NULL, then x must not be a matrix")
+				x<-cbind(x,y)
+			}
+			for(i in 1:nrow(x)) {
+				ax<-elps[,1]+rep(x[i,1],1000)
+				ay<-elps[,2]+rep(x[i,2],1000)
+				polygon(ax,ay)
+			}
+		}
+
+		#nolongerreguired#require(grid)
+
 		##cat("drawing circles\n")
 		# draw circles with radius 1.7 equally distributed
 		# with centers on a circle of radius 1
@@ -78,19 +108,15 @@ drawVennDiagram <-function(data,small=0.7,
 		degrees<-2*pi/numCircles*(1:numCircles)
 
 		# scaling factor
-		s<-1/8
+		s<-1/8*h
+		# radius for circles
+		r<-3/12*h
 
-		x<-sapply(degrees,FUN=sin)*s + 0.5
-		y<-sapply(degrees,FUN=cos)*s + 0.5
-
-
-		if(!require(grid)) {
-			stop("Need access to 'grid' library.")
-		}
-		grid.newpage()
-		grid.circle(x,y,3/12,name="some name")
+		x<-sapply(degrees,FUN=sin)*s + 0.5*h
+		y<-sapply(degrees,FUN=cos)*s + 0.5*h
 
 		##cat("filling data\n")
+		circle(x,y,r)
 
 		distFromZero<-rep(NA,2^numCircles)
 		degrees<-rep(NA,2^numCircles)
@@ -99,19 +125,18 @@ drawVennDiagram <-function(data,small=0.7,
 		distFromZero[(2^numCircles)]<-0
 
 		for (i in 0:(numCircles-1)) {
-			distFromZero[2^i+1] <- 4/12
+			distFromZero[2^i+1] <- r
 			degrees[2^i+1] <- 2*pi/numCircles*i
 			d<-degrees[2^i+1]
 
 			#print(data.colnames)
 
-			grid.text(
+			text(
 				# starting from the lowest bit, hence reading
 				# lables from the right
 				label=data.colnames[numCircles - i],
-				x=sin(d)*5/12+0.5,
-				y=cos(d)*5/12+0.5,
-				rot=0
+				x=sin(d)*5/12*h+0.5*h,
+				y=cos(d)*5/12*h+0.5*h
 			)
 
 		}
@@ -121,7 +146,8 @@ drawVennDiagram <-function(data,small=0.7,
 				# Current set bit plus the bit left of it and the bit right of it
 				distFromZero[2^i
 						+2^((i+numCircles-1)%%numCircles)
-						+2^((i+1)%%numCircles)+1] <- 2/12
+						+2^((i+1)%%numCircles)+1] <- 2/12*h
+				distFromZero[2^i+1] <- 3.5/12*h
 				degrees[2^i
 						+2^((i+numCircles-1)%%numCircles)
 						+2^((i+1)%%numCircles)+1] <- degrees[2^i+1]
@@ -132,7 +158,8 @@ drawVennDiagram <-function(data,small=0.7,
 			
 		if (3 <=numCircles) {
 			for (i in 0:(numCircles-1)) {
-				distFromZero[(2^i+2^((i+1)%%numCircles))+1]<- 3/12
+				distFromZero[(2^i+2^((i+1)%%numCircles))+1]<- 2.2/12*h
+				distFromZero[2^i+1] <- 3/12*h
 				if (i == (numCircles-1)) {
 					degrees[(2^i+2^((i+1)%%numCircles))+1] <- (
 						degrees[2^i+1] + 2*pi+ degrees[1+1])/2
@@ -141,7 +168,6 @@ drawVennDiagram <-function(data,small=0.7,
 					degrees[(2^i+2^((i+1)%%numCircles))+1] <- (
 						degrees[2^i+1] + degrees[2^((i+1)%%numCircles)+1])/2
 				}
-
 			}
 		}
 
@@ -154,29 +180,29 @@ drawVennDiagram <-function(data,small=0.7,
 			}
 			else {
 				l<-distFromZero[i]
-				x<-sin(d)*l+0.5
-				y<-cos(d)*l+0.5
+				x<-sin(d)*l+0.5*h
+				y<-cos(d)*l+0.5*h
 				#cat("i=",i," x=",x," y=",y," label=",n,"\n")
 				l<-v
 				if (showSetLogicLabel) l<-paste(n,"\n",v,sep="")
-				grid.text(label=l,x=x,y=y,rot=0)
+				text(label=l,x=x,y=y)
 			}
 		}
-	}
-	else if (4 <= numCircles && numCircles <= 5 && !simplify) {
 
-            grid.newpage()          
-	    # Function to turn and move ellipses
-	    relocate_elp <- function(e, alpha, x, y){
+	}
+	else if ( (4 == numCircles && !simplify) || numCircles <= 5 ) {
+
+		# Function to turn and move ellipses/circles
+		relocate_elp <- function(e, alpha, x, y){
 			phi=(alpha/180)*pi;
 			xr=e[,1]*cos(phi)+e[,2]*sin(phi)
 			yr=-e[,1]*sin(phi)+e[,2]*cos(phi)
 			xr=x+xr;
 			yr=y+yr;
 			return(cbind(xr, yr))
-	    }
+		}
 
-	    lab<-function (identifier, data, showLabel=showSetLogicLabel) {
+		lab<-function (identifier, data, showLabel=showSetLogicLabel) {
 			r<-data[identifier,1]
 			if (showLabel) {
 				return(paste(identifier,r,sep="\n"))
@@ -184,17 +210,16 @@ drawVennDiagram <-function(data,small=0.7,
 			else {
 				return(r)
 			}
-	    }
+		}
 
-	    plot(c(0, 400), c(0, 400), type="n", axes=F, ylab="", xlab="")
 	    if (4 == numCircles) {
 	        elps=cbind(162*cos(seq(0,2*pi,len=1000)), 108*sin(seq(0,2*pi,len=1000)));
 
-		plot(c(0, 400), c(0, 400), type="n", axes=F, ylab="", xlab="");
-		polygon(relocate_elp(elps, 45,130, 170));
-		polygon(relocate_elp(elps, 45,200, 200));
-		polygon(relocate_elp(elps, 135,200, 200));
-		polygon(relocate_elp(elps, 135,270, 170));
+		#plot(c(0, 400), c(0, 400), type="n", axes=F, ylab="", xlab="");
+		polygon(relocate_elp(elps, 45,130,170));
+		polygon(relocate_elp(elps, 45,200,200));
+		polygon(relocate_elp(elps,135,200,200));
+		polygon(relocate_elp(elps,135,270,170));
 
 		text( 35, 315, data.colnames[1],cex=1.5)
 		text(138, 347, data.colnames[2],cex=1.5)
@@ -234,10 +259,10 @@ drawVennDiagram <-function(data,small=0.7,
 		polygon(relocate_elp(elps, 306,180, 125))
 		polygon(relocate_elp(elps, 378,145, 200))
 
-		text( 50, 280, data.colnames[1],cex=1.5)
-		text(150, 400, data.colnames[2],cex=1.5)
-		text(350, 300, data.colnames[3],cex=1.5)
-		text(350,  20, data.colnames[4],cex=1.5)
+		text( 20, 295, data.colnames[1],cex=1.5)
+		text(140, 380, data.colnames[2],cex=1.5)
+		text(350, 318, data.colnames[3],cex=1.5)
+		text(350,   2, data.colnames[4],cex=1.5)
 		text( 50,  10, data.colnames[5],cex=1.5)
 
 		text( 61, 228, lab("10000",data));
@@ -278,7 +303,7 @@ drawVennDiagram <-function(data,small=0.7,
 	    }
 	}
 	else {
-		stop(paste("The printing of ",numCircles," circles is not yet supported."))
+		stop(paste("Venn diagrams for ",numCircles," dimensions are not yet supported.\n"))
 	}
 
 }

@@ -12,30 +12,60 @@
 barplot2 <- function(height, ...) UseMethod("barplot2")
 
 barplot2.default <-
-  function(
-           height,
-           width = 1,
-           space = NULL,
-           names.arg = NULL,
-           legend.text = NULL,
-           beside = FALSE,
-           horiz = FALSE,
-           density = NULL,
-           angle = 45,
-           col = NULL,
-           prcol = NULL,
-           border = par("fg"),
-           main = NULL,
-           sub = NULL, xlab = NULL, ylab = NULL,
-       xlim = NULL, ylim = NULL, xpd = TRUE, log = "",
-       axes = TRUE, axisnames = TRUE,
-       cex.axis = par("cex.axis"), cex.names = par("cex.axis"),
-       inside = TRUE, plot = TRUE, axis.lty = 0, offset = 0,
-       plot.ci = FALSE, ci.l = NULL, ci.u = NULL,
-       ci.color = "black", ci.lty = "solid", ci.lwd = 1,
-       plot.grid = FALSE, grid.inc = NULL,
-       grid.lty = "dotted", grid.lwd = 1, grid.col = "black",
-       add = FALSE, panel.first = NULL, panel.last = NULL, ...)
+    function(
+        height,
+        width = 1,
+        space = NULL,
+        names.arg = NULL,
+        legend.text = NULL,
+        beside = FALSE,
+        horiz = FALSE,
+        density = NULL,
+        angle = 45,
+        col = NULL,
+        prcol = NULL,
+        border = par("fg"),
+        main = NULL,
+        sub = NULL,
+         xlab = NULL,
+         ylab = NULL,
+
+        xlim = NULL,
+        ylim = NULL,
+        xpd = TRUE,
+        log = "",
+
+        axes = TRUE,
+        axisnames = TRUE,
+
+        cex.axis = par("cex.axis"),
+        cex.names = par("cex.axis"),
+
+        inside = TRUE,
+        plot = TRUE,
+        axis.lty = 0,
+        offset = 0,
+
+        plot.ci = FALSE,
+        ci.l = NULL,
+        ci.u = NULL,
+
+        ci.color = "black",
+        ci.lty = "solid",
+        ci.lwd = 1,
+        ci.width = 0.5,
+
+        plot.grid = FALSE,
+        grid.inc = NULL,
+
+        grid.lty = "dotted",
+        grid.lwd = 1,
+        grid.col = "black",
+
+        add = FALSE,
+        panel.first = NULL,
+        panel.last = NULL,
+        ...)
 {
     if (!missing(inside)) .NotYetUsed("inside", error = FALSE)# -> help(.)
 
@@ -137,10 +167,10 @@ barplot2.default <-
       # Check for NA values and issue warning if required
       height.na <- sum(is.na(height))
       if (height.na > 0)
-      {  
+      {
          warning(sprintf("%.0f values == NA in 'height' omitted from logarithmic plot",
                           height.na), domain = NA)
-      }   
+      }
 
       # Check for 0 values and issue warning if required
       # _FOR NOW_ change 0's to NA's so that other calculations are not
@@ -148,15 +178,15 @@ barplot2.default <-
       # except for stacked bars, so don't change those.
       height.lte0 <- sum(height <= 0, na.rm = TRUE)
       if (height.lte0 > 0)
-      {  
+      {
         warning(sprintf("%0.f values <=0 in 'height' omitted from logarithmic plot",
                          height.lte0), domain = NA)
-        
+
         # If NOT stacked bars, modify 'height'
         if (beside)
           height[height <= 0] <- NA
-      }  
-      
+      }
+
       if (plot.ci && (min(ci.l) <= 0))
         stop("log scale error: at least one lower c.i. value <= 0")
 
@@ -172,12 +202,12 @@ barplot2.default <-
       {
         rectbase <- c(height[is.finite(height)], ci.l)
         rectbase <- min(0.9 * rectbase[rectbase > 0])
-      }  
+      }
       else
       {
         rectbase <- height[is.finite(height)]
         rectbase <- min(0.9 * rectbase[rectbase > 0])
-      }  
+      }
 
       # if axis limit is set to < above, adjust bar base value
       # to draw a full bar
@@ -253,7 +283,7 @@ barplot2.default <-
       # Execute the panel.first expression. This will work here
       # even if 'add = TRUE'
       panel.first
-      
+
       # Set plot region coordinates
       usr <- par("usr")
 
@@ -335,23 +365,23 @@ barplot2.default <-
 
       # Execute the panel.last expression here
       panel.last
-      
+
       if (plot.ci)
       {
         # CI plot width = barwidth / 2
-        ci.width = width / 4
+        half.ci.width = width * ci.width / 2
 
         if (horiz)
         {
           segments(ci.l, w.m, ci.u, w.m, col = ci.color, lty = ci.lty, lwd = ci.lwd)
-          segments(ci.l, w.m - ci.width, ci.l, w.m + ci.width, col = ci.color, lty = ci.lty, lwd = ci.lwd)
-          segments(ci.u, w.m - ci.width, ci.u, w.m + ci.width, col = ci.color, lty = ci.lty, lwd = ci.lwd)
+          segments(ci.l, w.m - half.ci.width, ci.l, w.m + half.ci.width, col = ci.color, lty = ci.lty, lwd = ci.lwd)
+          segments(ci.u, w.m - half.ci.width, ci.u, w.m + half.ci.width, col = ci.color, lty = ci.lty, lwd = ci.lwd)
         }
         else
         {
           segments(w.m, ci.l, w.m, ci.u, col = ci.color, lty = ci.lty, lwd = ci.lwd)
-          segments(w.m - ci.width, ci.l, w.m + ci.width, ci.l, col = ci.color, lty = ci.lty, lwd = ci.lwd)
-          segments(w.m - ci.width, ci.u, w.m + ci.width, ci.u, col = ci.color, lty = ci.lty, lwd = ci.lwd)
+          segments(w.m - half.ci.width, ci.l, w.m + half.ci.width, ci.l, col = ci.color, lty = ci.lty, lwd = ci.lwd)
+          segments(w.m - half.ci.width, ci.u, w.m + half.ci.width, ci.u, col = ci.color, lty = ci.lty, lwd = ci.lwd)
         }
       }
 

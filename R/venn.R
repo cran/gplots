@@ -13,11 +13,12 @@
 # It works for an arbitrary large set of input sets.
 #
 
-getVennCounts <- function(l, universe, ...)
+getVennCounts <- function(l, universe, verbose=F, ...)
   UseMethod("getVennCounts")
 
-getVennCounts.data.frame <- function(l, universe=NA, ...)
+getVennCounts.data.frame <- function(l, universe=NA, verbose=F, ...)
   {
+    if (verbose) cat("Interpreting data as data.frame.\n")
     if( !all(unique(unlist(l)) %in% c(0,1))  )
       stop("Only indicator columns permitted")
 
@@ -25,10 +26,15 @@ getVennCounts.data.frame <- function(l, universe=NA, ...)
     getVennCounts.list(l)
   }
 
-getVennCounts.list<-function(l,universe=NA) {
+# l offers a list of arrays, their values are to
+# be tested for the size of their intersects.
+getVennCounts.list<-function(l, universe=NA, verbose=F) {
+	if (verbose) cat("Interpreting data as list.\n")
 	numSets<-length(l)
 	result.table<-NULL
 	result.table.names<-NULL
+	# Iteration over all possible intersections involving all sets
+	# or the complement (negation) of those sets.
 	for (i in 0:(-1 + 2^numSets)) {
 		# i2 is a binary representation of that number
 		i2<-baseOf(i,2,numSets)
@@ -44,6 +50,12 @@ getVennCounts.list<-function(l,universe=NA) {
 		# positive selection first
 		for (p.pos in which(1 == i2) ) {
 			current.set<-l[[p.pos]]
+			if (!is.null(dim(current.set))) {
+				# circumventing strange experiences with data.frames
+				warning(paste("List element [[",p.pos,"]] has dimensions, but all elements are considered.\n",sep=""))
+				current.set<-as.character(as.matrix(current.set))
+				dim(current.set)<-NULL
+			}
 			#print(paste("set ",p.pos,", val=1: ",paste(current.set,collapse=",")))
 			if (is.null(sel)) {
 				#print("Sel is null")
@@ -71,6 +83,11 @@ getVennCounts.list<-function(l,universe=NA) {
 			}
 			else {
 				current.set<-l[[p.pos]]
+				if (!is.null(dim(current.set))) {
+					warning(paste("List element [[",p.pos,"]] has dimensions, but all elements are considered.\n",sep=""))
+					current.set<-as.character(as.matrix(current.set))
+					dim(current.set)<-NULL
+				}
 				w<-which( ! sel %in% current.set)
 				#print(paste("set ",p.pos,", val=1: ",paste(current.set,collapse=",")))
 				if (length(w)>0) {

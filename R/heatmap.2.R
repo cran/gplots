@@ -1,4 +1,4 @@
-## $Id: heatmap.2.R 1463 2010-12-13 16:44:17Z warnes $
+## $Id: heatmap.2.R 1625 2012-12-14 21:54:52Z warnes $
 
 heatmap.2 <- function (x,
 
@@ -401,10 +401,10 @@ heatmap.2 <- function (x,
 
   ## add 'background' colored spaces to visually separate sections
   if(!missing(colsep))
-    for(csep in colsep)
-      rect(xleft =csep+0.5,               ybottom=rep(0,length(csep)),
-           xright=csep+0.5+sepwidth[1],     ytop=rep(ncol(x)+1,csep),
-           lty=1, lwd=1, col=sepcolor, border=sepcolor)
+      for(csep in colsep)
+        rect(xleft =csep+0.5,               ybottom=0,
+             xright=csep+0.5+sepwidth[1],   ytop=ncol(x)+1,
+             lty=1, lwd=1, col=sepcolor, border=sepcolor)
 
   if(!missing(rowsep))
     for(rsep in rowsep)

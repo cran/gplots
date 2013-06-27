@@ -1,4 +1,45 @@
-Release 2.11.0 - 2011-06-08
+Release 2.11.3 - 2013-06-27
+---------------------------
+
+Enhancements:
+
+- Modify sinkplot() to use a local environment rather than the global
+  environment, to conform to CRAN policies.
+
+Bug Fixes:
+
+- Fixed typo/spelling error in plotmeans() man page.
+
+Other changes
+
+
+Release 2.11.2 - 2013-03-24
+---------------------------
+
+Enhancements:
+
+- Add ci.width argument to barplot2() to allow varying the length of
+  the 't' at the end of confidence interval bars.
+
+Bug Fixes:
+
+- Fix error in heatmap.2 when colsep argument had length 1.
+
+Updates:
+
+- Update manual page for lowess.default() to
+  match changed argument list for lowess() in R 3.0.0
+
+
+Release 2.11.1 - 2012-12-14
+---------------------------
+
+Bug Fixes:
+
+- Replace corrupted BalloonPlot.pdf in inst/doc.
+
+
+Release 2.11.0 - 2012-06-08
 ---------------------------
 
 New Features:
@@ -33,7 +74,7 @@ Release 2.10.0 - 2011-08-26
 New Features:
 
 - New ci2d() function to create 2-dimensional empirical confidence
-  intervals utilizing KernSmooth:bkde2D and gplots::hist2d().  
+  intervals utilizing KernSmooth:bkde2D and gplots::hist2d().
   See ?ci2d for details.
 
 - Add 'alpha' argument to rich.colors() to control transparency.
@@ -58,7 +99,7 @@ Improvements:
 - venn() now returns an object of class venn() and a plot method for
   this class is provided.
 
-- Manual page for venn has been improved, based on contributions by 
+- Manual page for venn has been improved, based on contributions by
   Steffen Moeller
 
 
@@ -67,7 +108,7 @@ Release 2.7.5 - ??
 
 Improvements:
 
-- Performance of 'hist2d' improved thanks to a suggestion from 
+- Performance of 'hist2d' improved thanks to a suggestion from
   Joerg van den Hoff.
 
 Release 2.7.4 - 2009-11-12
@@ -118,14 +159,14 @@ New Features:
       colDendrogram, breaks, col, vline, hline, and colorTable. Of
       these, the most useful are breaks, col, and colorTable.  The
       latter is a three-column data frame providing the lower and
-      upper bound and color for each bin.  
+      upper bound and color for each bin.
 
   See the manual page for complete details and examples.
 
 
 - New function venn(), contributed by Steffen Moeller (Thanks
   Steffen!) to generate Venn diagrams for up to 5 sets. See ?venn for
-  details. 
+  details.
 
 - Performance of bandplot() has been dramatically improved, in part by
   using runsd() and runmean() from the caTools package.  As a
@@ -143,10 +184,10 @@ New Features:
 Bug Fixes:
 
 - balloonplot() now properly handles dimension labels provided by
-  'xlab' and 'ylab' 
+  'xlab' and 'ylab'
 
 - plotCI now properly handles 'NULL' and 'NA' values for ui, li, uiw,
-  and liw. 
+  and liw.
 
 - Corrections of minor typos in man pages
 
@@ -156,7 +197,7 @@ Bug Fixes:
 Release 2.6.0 - 2008-04-07
 --------------------------
 
-New Features: 
+New Features:
 
 - heatmap() now allows control of the location of individual plot components
    (e.g. color key)
@@ -171,7 +212,7 @@ Bug Fixes:
 
 - Restore plot layout settings to default state at end of ooplot() example
 
-- Various typo fixes 
+- Various typo fixes
 
 Release 2.5.0 - 2007-11-02
 --------------------------
@@ -179,7 +220,7 @@ Release 2.5.0 - 2007-11-02
 New Features:
 
 - textplot() now converts tab characters to spaces before processing to
-  avoid problems with computing height and width of text that includes 
+  avoid problems with computing height and width of text that includes
   tabs.
 
 - Add col2hex() function to convert color names to rgb hex codes
@@ -187,7 +228,7 @@ New Features:
 Bug Fixes:
 
 - Correct balloonplot.default to properly show specified x and y axis
-  labels when explicitly provided 
+  labels when explicitly provided
 
 - R/balloonplot.R: Correct error in balloonplot when z contains NA values.
 
@@ -196,7 +237,7 @@ Bug Fixes:
 Other:
 
 - Clarify GPL version
-  
+
 Release 2.4.0 - 2007-02-08
 --------------------------
 
@@ -210,7 +251,7 @@ New Features:
 Bug Fixes:
 
 
-Other: 
+Other:
 
 
 Release 2.3.2 - 2006-11-14
@@ -246,9 +287,9 @@ Release 2.2.0
 -------------
 
  - plotmeans.R: Fixed bug in plotmeans - based on Stefano Calza's
-	        suggestion (the function didn't account for factors 
+	        suggestion (the function didn't account for factors
 		unused levels, returning an error.)
- 
+
  - exported plot.lm to NAMESPACE, Remove .Alias calls in plot.lm.R
  		since .Alias is defunct.
 

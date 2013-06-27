@@ -9,7 +9,7 @@
 %%   gamma-corrected grey palette (rather than the heat color
 %%   palette) for coloring its output when given a matrix.
 
-% $Id: barplot2.Rd 1315 2009-04-22 17:15:11Z warnes $
+% $Id: barplot2.Rd 1646 2013-03-24 05:19:04Z warnes $
 %% $Log$
 %% Revision 1.12  2005/12/07 18:48:54  nj7w
 %% Changed the default grey colors to heat colors, if height is matrix
@@ -84,8 +84,8 @@
         axes = TRUE, axisnames = TRUE,
         cex.axis = par("cex.axis"), cex.names = par("cex.axis"),
         inside = TRUE, plot = TRUE, axis.lty = 0, offset = 0,
-        plot.ci = FALSE, ci.l = NULL,
-        ci.u = NULL, ci.color = "black", ci.lty = "solid", ci.lwd = 1,
+        plot.ci = FALSE, ci.l = NULL, ci.u = NULL,
+        ci.color = "black", ci.lty = "solid", ci.lwd = 1, ci.width = 0.5,
         plot.grid = FALSE, grid.inc = NULL,
         grid.lty = "dotted", grid.lwd = 1, grid.col = "black",
         add = FALSE, panel.first = NULL, panel.last = NULL, \dots)
@@ -176,7 +176,10 @@
    the same dim structure as \code{height}.}
   \item{ci.color}{the color for the confidence interval line segments}
   \item{ci.lty}{the line type for the confidence interval line segments}
-  \item{ci.lwd}{the line width for the confidence interval line segments}
+  \item{ci.lwd}{the line width for the confidence interval line
+    segments}
+  \item{ci.width}{length of lines used for the "t" at the end of confidence
+    interval line segments, as a multple of \code{width}.  Defaults to 0.5.}
   \item{plot.grid}{if \code{TRUE} a lined grid will be plotted behind the bars}
   \item{grid.inc}{the number of grid increments to be plotted}
   \item{grid.lty}{the line type for the grid}
