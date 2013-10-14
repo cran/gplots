@@ -1,13 +1,13 @@
-# $Id: overplot.R 1212 2007-11-01 20:18:30Z warnes $
+# $Id: overplot.R 1732 2013-10-11 22:09:09Z warnes $
 
 panel.overplot <- function(formula, data, subset, col, lty, ...)
   {
     m <- match.call()
 
-    m[[1]] <- graphics:::plot.formula
+    m[[1]] <- as.name("plot")
     eval(m, parent.frame() )
 
-    m[[1]] <- gplots:::lowess.formula
+    m[[1]] <- as.name("lowess")
     tmp <- eval(m, parent.frame() )
 
     lines( tmp, col=col, lwd=2, lty=lty )
@@ -151,6 +151,10 @@ overplot <- function (formula, data = parent.frame(),
         mycall$lty = i
 
         tmp.y <- y[mycall$subset & cond==level]
+
+        ## If nothing to plot, skip to next level
+        if(!any(is.finite(tmp.y))) next
+        
         min.tmp.y <- min(tmp.y, na.rm=TRUE)
         max.tmp.y <- max(tmp.y, na.rm=TRUE)
 

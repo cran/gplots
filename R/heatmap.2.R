@@ -1,4 +1,4 @@
-## $Id: heatmap.2.R 1625 2012-12-14 21:54:52Z warnes $
+## $Id: heatmap.2.R 1724 2013-10-11 20:19:22Z warnes $
 
 heatmap.2 <- function (x,
 
@@ -52,6 +52,12 @@ heatmap.2 <- function (x,
                        cexCol = 0.2 + 1/log10(nc),
                        labRow = NULL,
                        labCol = NULL,
+                       srtRow = NULL,
+                       srtCol = NULL,
+                       adjRow = c(0,NA),
+                       adjCol = c(NA,0),
+                       offsetRow = 0.5,
+                       offsetCol = 0.5,
 
                        ## color key + density info
                        key = TRUE,
@@ -389,10 +395,79 @@ heatmap.2 <- function (x,
             col=na.color, add=TRUE)
     }
 
-  ## add labels
-  axis(1, 1:nc, labels= labCol, las= 2, line= -0.5, tick= 0, cex.axis= cexCol)
+  ## add column labels
+  if(is.null(srtCol))
+    axis(1,
+         1:nc,
+         labels= labCol,
+         las= 2,
+         line= -0.5 + offsetCol,
+         tick= 0,
+         cex.axis= cexCol,
+         hadj=adjCol[1],
+         padj=adjCol[2]
+         )
+  else
+    {
+      if(is.numeric(srtCol))
+        {
+          if(missing(adjCol) || is.null(adjCol))
+            adjCol=c(1,NA)
+
+          xpd.orig <- par("xpd")
+          par(xpd=NA)
+          xpos <- axis(1, 1:nc, labels=rep("", nc), las=2, tick=0)
+          text(x=xpos,
+               y=par("usr")[3] - (1.0 + offsetCol) * strheight("M"),
+               labels=labCol,
+               ##pos=1,
+               adj=adjCol, 
+               cex=cexCol,
+               srt=srtCol)
+          par(xpd=xpd.orig)
+        }
+      else
+        warning("Invalid value for srtCol ignored.")
+    }
+
+  ## add row labels
+  if(is.null(srtRow))
+    {
+      axis(4,
+           iy,
+           labels=labRow,
+           las=2,
+           line=-0.5+offsetRow,
+           tick=0,
+           cex.axis=cexRow,
+           hadj=adjRow[1],
+           padj=adjRow[2]
+           )
+    }
+  else
+    {
+      if(is.numeric(srtRow))
+        {
+          xpd.orig <- par("xpd")
+          par(xpd=NA)
+          ypos <- axis(4, iy, labels=rep("", nr), las=2, line= -0.5, tick=0)
+          text(x=par("usr")[2] + (1.0 + offsetRow) * strwidth("M"),
+               y=ypos,
+               labels=labRow,
+               adj=adjRow,
+               cex=cexRow,
+               srt=srtRow
+               )
+          par(xpd=xpd.orig)
+        }
+      else
+        warning("Invalid value for srtRow ignored.")
+    }
+
+
+
+  ## add row and column headings (xlab, ylab)
   if(!is.null(xlab)) mtext(xlab, side = 1, line = margins[1] - 1.25)
-  axis(4, iy, labels= labRow, las= 2, line= -0.5, tick= 0, cex.axis= cexRow)
   if(!is.null(ylab)) mtext(ylab, side = 4, line = margins[2] - 1.25)
 
   ## perform user-specified function

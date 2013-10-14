@@ -22,7 +22,7 @@ getVennCounts.data.frame <- function(l, universe=NA, verbose=F, ...)
     if( !all(unique(unlist(l)) %in% c(0,1))  )
       stop("Only indicator columns permitted")
 
-    l <- sapply( l, function(x) which(as.logical(x)))
+    l <- lapply( l, function(x) which(as.logical(x)))
     getVennCounts.list(l)
   }
 

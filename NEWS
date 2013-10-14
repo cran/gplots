@@ -1,3 +1,40 @@
+Release 2.12.0 - 2013-10-14
+---------------------------
+
+API Changes:
+
+- boxplot.n() has been renamed to boxplot2() to avoid potential S3
+  method calling issues.
+
+- plot.lm2() has been rename to lmplot2() to avoid potential S3 method
+  calling issues.
+
+Enhancements:
+
+- Add heatmap.2() parameters to control row and column label rotation
+  ('srtRow', 'srtCol'), justification ('adjRow', 'adjCol'), and space
+  from plot edge ('offsetRow', 'offsetCol').
+
+Bug Fixes:
+
+- Fix error in in venn() when all groups contained the same number of TRUE cases.
+
+- Correct error in overplot() when that occured when a group-category contained no
+  finite values.
+
+Other Changes:
+ 
+- Changes to overplot() to avoid warnings from upcoming enhancements to R CMD check.
+
+- Move several packages from Depends to Imports or Suggests.
+
+- Packages caTools and KernSmooth now have namespaces, so import
+  needed functions in NAMESPACE.
+
+- Mark one example in manual page for ci2d 'dontrun' to avoid timing
+  warning in R CMD check.
+
+
 Release 2.11.3 - 2013-06-27
 ---------------------------
 
@@ -9,8 +46,6 @@ Enhancements:
 Bug Fixes:
 
 - Fixed typo/spelling error in plotmeans() man page.
-
-Other changes
 
 
 Release 2.11.2 - 2013-03-24

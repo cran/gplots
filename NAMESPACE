@@ -3,6 +3,7 @@ export(
        bandplot,
        barplot2,
        bluered,
+       boxplot2,
        boxplot.n,
        ci2d,
        col2hex,
@@ -10,6 +11,7 @@ export(
        greenred,
        heatmap.2,
        hist2d,
+       lmplot2,
        lowess,
        ooplot,
        overplot,
@@ -40,12 +42,12 @@ importFrom(stats, reorder)
 importFrom(stats, na.omit)
 
 # No Namespace
-#importFrom(caTools, runsd)
-#importFrom(caTools, runmean)
+importFrom(caTools, runsd)
+importFrom(caTools, runmean)
 
 # No Namespace
-#importFrom(KernSmooth, bkdeD2)
-#importFrom(KernSmooth, dpik)
+importFrom(KernSmooth, bkde2D)
+importFrom(KernSmooth, dpik)
 
 S3method(balloonplot,default)
 S3method(balloonplot,table)

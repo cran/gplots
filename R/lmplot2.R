@@ -6,6 +6,32 @@ plot.lm2 <- function(
                      panel = panel.smooth,
                      sub.caption = deparse(x$call),
                      main = "",
+                     ask,
+                     ...,
+                     id.n = 3,
+                     labels.id = names(residuals(x)),
+                     cex.id = 0.75,
+                     band=TRUE,
+                     rug=TRUE,
+                     width=1/10,
+                     max.n=5000
+                     )
+{
+    cl <- match.call()
+    mf <- match.call(expand.dots = FALSE)
+    mf[[1L]] <- quote(lmplot2)
+    eval(mf, parent.frame())
+}
+
+
+lmplot2 <- function(
+                     x,
+                     which = 1:5,
+                     caption = c("Residuals vs Fitted", "Normal Q-Q plot",
+                       "Scale-Location plot", "Cook's distance plot"),
+                     panel = panel.smooth,
+                     sub.caption = deparse(x$call),
+                     main = "",
                      ask = interactive() && nb.fig < length(which)
                      && .Device != "postscript",
                      ...,

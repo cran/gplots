@@ -1,6 +1,14 @@
-# $Id: boxplot.n.R 1012 2006-11-14 22:25:06Z ggorjan $
+# $Id: boxplot2.R 1738 2013-10-15 02:09:31Z warnes $
+boxplot.n <- function( ..., top=FALSE, shrink=1.0, textcolor=NULL )
+    {
+        .Deprecated("gboxplot", package="gplots")
+        cl <- match.call()
+        mf <- match.call(expand.dots = FALSE)
+        mf[[1L]] <- quote(boxplot2)
+        eval(mf, parent.frame())
+    }
 
-boxplot.n  <- function( ..., top=FALSE, shrink=1.0, textcolor=NULL )
+boxplot2  <- function( ..., top=FALSE, shrink=1.0, textcolor=NULL )
   {
     boxcall <- match.call()           # get call
     boxcall$top  <- boxcall$shrink  <- boxcall$textcolor  <- NULL

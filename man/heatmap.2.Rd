@@ -64,6 +64,12 @@ heatmap.2 (x,
            cexCol = 0.2 + 1/log10(nc),
            labRow = NULL,
            labCol = NULL,
+           srtRow = NULL,
+           srtCol = NULL,
+           adjRow = c(0,NA),
+           adjCol = c(NA,0),
+           offsetRow = 0.5,
+           offsetCol = 0.5,
 
            # color key + density info
            key = TRUE,
@@ -178,6 +184,12 @@ heatmap.2 (x,
   \item{labRow, labCol}{character vectors with row and column labels to
     use; these default to \code{rownames(x)} or \code{colnames(x)}, 
     respectively.}
+  \item{srtRow, srtCol}{angle of row/column labels, in degrees from horizontal}
+  \item{adjRow, adjCol}{2-element vector giving the (left-right,
+    top-bottom) justification of row/column labels (relative to the text
+           orientation).} 
+  \item{offsetRow, offsetCol}{Number of character-width spaces to place
+           between row/column labels and the edge of the plotting region.}
   % Color key and density info
   \item{key}{logical indicating whether a color-key should be shown.}
   \item{keysize}{numeric value indicating the size of the key}
@@ -301,6 +313,33 @@ heatmap.2 (x,
  heatmap.2(x, Rowv=FALSE, dendrogram="both") ## generate warning!
  heatmap.2(x, Rowv=NULL, dendrogram="both")  ## generate warning!
  heatmap.2(x, Colv=FALSE, dendrogram="both") ## generate warning!
+
+ ## Show effect of row and column label rotation
+ heatmap.2(x, srtCol=NULL)
+ heatmap.2(x, srtCol=0,   adjCol = c(0.5,1) )
+ heatmap.2(x, srtCol=45,  adjCol = c(1,1)   )
+ heatmap.2(x, srtCol=135, adjCol = c(1,0)   )
+ heatmap.2(x, srtCol=180, adjCol = c(0.5,0) )
+ heatmap.2(x, srtCol=225, adjCol = c(0,0)   ) ## not very useful
+ heatmap.2(x, srtCol=270, adjCol = c(0,0.5) )
+ heatmap.2(x, srtCol=315, adjCol = c(0,1)   )
+ heatmap.2(x, srtCol=360, adjCol = c(0.5,1) )
+
+ heatmap.2(x, srtRow=45, adjRow=c(0, 1) )
+ heatmap.2(x, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1) )
+ heatmap.2(x, srtRow=45, adjRow=c(0, 1), srtCol=270, adjCol=c(0,0.5) )
+
+ ## Show effect of offsetRow/offsetCol (only works when srtRow/srtCol is
+ ## not also present)
+ heatmap.2(x, offsetRow=0, offsetCol=0)
+ heatmap.2(x, offsetRow=1, offsetCol=1)
+ heatmap.2(x, offsetRow=2, offsetCol=2)
+ heatmap.2(x, offsetRow=-1, offsetCol=-1)
+
+ heatmap.2(x, srtRow=0, srtCol=90, offsetRow=0, offsetCol=0)
+ heatmap.2(x, srtRow=0, srtCol=90, offsetRow=1, offsetCol=1)
+ heatmap.2(x, srtRow=0, srtCol=90, offsetRow=2, offsetCol=2)
+ heatmap.2(x, srtRow=0, srtCol=90, offsetRow=-1, offsetCol=-1)
 
  ## 
  ## Show effect of z-score scaling within columns, blue-red color scale

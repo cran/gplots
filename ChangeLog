@@ -1,5 +1,50 @@
+2013-10-15  warnes
+
+	* [r1738] R/boxplot.n.R, R/boxplot2.R, R/lmplot2.R, R/plot.lm.R,
+	  man/boxplot.n.Rd, man/boxplot2.Rd, man/gplots-deprecated.Rd,
+	  man/lmplot2.Rd, man/plot.lm2.Rd: Rename boxplot.n to boxplt2 and
+	  plot.lm2 to lmplot2
+	* [r1737] man/lmplot2.Rd: Make lmplot2 manual page from plot.lm.2
+	  manual page.
+	* [r1736] man/boxplot2.Rd: Make boxplot2 manual page from boxplot.n
+	  manual page.
+	* [r1735] man/gplots-deprecated.Rd: Create deprecated man page from
+	  boxplot.n man page
+
+2013-10-12  warnes
+
+	* [r1734] inst/NEWS: Update NEWS with latest changes
+	* [r1733] man/ci2d.Rd: Mark one example dontrun to avoid --as-cran
+	  warning.
+
+2013-10-11  warnes
+
+	* [r1732] R/overplot.R: Allow standard S3 method handling to locate
+	  the correct function.
+	* [r1731] R/overplot.R: Fix error when a subgroup contains no
+	  finite values
+	* [r1730] tests/heatmap2Test.Rout.save: Update test output
+	* [r1729] DESCRIPTION: Move several packages from Depends to
+	  Imports, Suggests
+	* [r1728] man/ci2d.Rd: Use gdata::nobs in example
+	* [r1727] NAMESPACE: caTools and KernSmooth now have namespaces, so
+	  import from them.
+	* [r1726] inst/NEWS: Update files for gplots 2.12.0
+	* [r1725] DESCRIPTION, inst/NEWS: Update files for gplots 2.12.0
+	* [r1724] R/heatmap.2.R, man/heatmap.2.Rd: Add parameters to
+	  control row and column label positioning, rotation,
+	  justification, and offset.
+	* [r1723] R/venn.R: Fix bug in getVennCounts.data.frame when number
+	  of TRUE cases in each variable are equal.
+
+2013-06-28  warnes
+
+	* [r1680] inst/doc/BalloonPlot.pdf: Update PDF file, including new
+	  email addresses
+
 2013-06-27  warnes
 
+	* [r1679] inst/NEWS: Update for gplots 2.11.3
 	* [r1678] DESCRIPTION: Update for release 2.11.3
 	* [r1677] tests/heatmap2Test.Rout.save: Update with tests for only
 	  1 row/column separator
