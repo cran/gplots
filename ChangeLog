@@ -1,5 +1,31 @@
+2014-04-05  warnes
+
+	* [r1780] R/heatmap.2.R, man/heatmap.2.Rd: Add 'extrafun' argument
+	  to heatmap.2 to allow the user to perform
+	  additional customization by providing a function to be called
+	  before
+	  heatmap.2 exits.
+
+2014-04-04  warnes
+
+	* [r1779] DESCRIPTION, inst/NEWS: Update for gplots 2.13.0
+	* [r1778] R/heatmap.2.R: Fix handling of row trace (hline). Bug
+	  report and patch provided by Ilia Kats.
+
+2013-10-21  warnes
+
+	* [r1744] man/gplots-deprecated.Rd: Handle 'ask' argument in
+	  lmplot2 function proper, rather than in (depreciated) plot.lm2
+	  wrapper.
+	* [r1743] inst/NEWS: Correct release number
+	* [r1742] R/lmplot2.R: Handle 'ask' argument in lmplot2 function
+	  proper, rather than in (depreciated) plot.lm2 wrapper.
+	* [r1741] man/lmplot2.Rd: Fix typo
+
 2013-10-15  warnes
 
+	* [r1740] NAMESPACE: Add boxplot2 and lmplot2 to NAMESPACE
+	* [r1739] DESCRIPTION, inst/NEWS: Update for gplots release 2.12.1
 	* [r1738] R/boxplot.n.R, R/boxplot2.R, R/lmplot2.R, R/plot.lm.R,
 	  man/boxplot.n.Rd, man/boxplot2.Rd, man/gplots-deprecated.Rd,
 	  man/lmplot2.Rd, man/plot.lm2.Rd: Rename boxplot.n to boxplt2 and

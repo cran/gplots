@@ -1,4 +1,22 @@
-Release 2.12.0 - 2013-10-14
+Release 2.13.0 - 2014-04-04
+---------------------------
+
+Bug Fixes:
+
+- heatmap.2 was not properly handling row trace reference line ('hline').
+  Patch submitted by Ilia Kats.
+
+Enhancements:
+
+- In heatmap.2, when the row or column trace is enabled, show the
+  corresponding reference line in the color key.
+
+- In heatmap.2, a new 'extrafun' argument is provided that allows the
+  user to specify a function to be called before the function returns.
+  This allows the user to add additional plots to the page.
+
+
+Release 2.12.1 - 2013-10-14
 ---------------------------
 
 API Changes:
@@ -23,7 +41,7 @@ Bug Fixes:
   finite values.
 
 Other Changes:
- 
+
 - Changes to overplot() to avoid warnings from upcoming enhancements to R CMD check.
 
 - Move several packages from Depends to Imports or Suggests.

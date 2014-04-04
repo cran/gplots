@@ -3,7 +3,7 @@
 \title{ Enhanced Heat Map }
 \description{
   A heat map is a false color image (basically
-  \code{\link{image}(t(x))}) with a dendrogram added to the left side 
+  \code{\link{image}(t(x))}) with a dendrogram added to the left side
   and/or to the top.  Typically, reordering of the rows and columns
   according to some set of values (row or column means) within the
   restrictions imposed by the dendrogram is carried out.
@@ -90,6 +90,7 @@ heatmap.2 (x,
            lwid = NULL,
 
            # extras
+           extrafun=NULL,
            ...
            )
            }
@@ -112,7 +113,7 @@ heatmap.2 (x,
   \item{hclustfun}{function used to compute the hierarchical clustering
     when \code{Rowv} or \code{Colv} are not dendrograms.  Defaults to
     \code{\link{hclust}}.}
-  \item{dendrogram}{character string indicating whether to draw 'none', 
+  \item{dendrogram}{character string indicating whether to draw 'none',
     'row', 'column' or 'both' dendrograms.  Defaults to 'both'. However,
   if Rowv (or Colv) is FALSE or NULL and dendrogram is 'both', then a
   warning is issued and Rowv (or Colv) arguments are honoured.}
@@ -182,12 +183,12 @@ heatmap.2 (x,
     for the row or column axis labeling.  The defaults currently only
     use number of rows or columns, respectively.}
   \item{labRow, labCol}{character vectors with row and column labels to
-    use; these default to \code{rownames(x)} or \code{colnames(x)}, 
+    use; these default to \code{rownames(x)} or \code{colnames(x)},
     respectively.}
   \item{srtRow, srtCol}{angle of row/column labels, in degrees from horizontal}
   \item{adjRow, adjCol}{2-element vector giving the (left-right,
     top-bottom) justification of row/column labels (relative to the text
-           orientation).} 
+           orientation).}
   \item{offsetRow, offsetCol}{Number of character-width spaces to place
            between row/column labels and the edge of the plotting region.}
   % Color key and density info
@@ -211,7 +212,9 @@ heatmap.2 (x,
   % figure layout
   \item{lmat, lhei, lwid}{visual layout: position matrix, column height,
     column width.  See below for details}
-  \item{...}{additional arguments passed on to \code{\link{image}} } %
+  \item{extrafun}{A function to be called after all other work. See
+    examples.}
+  \item{...}{additional arguments passed on to \code{\link{image}} }
 }
 \details{
   If either \code{Rowv} or \code{Colv} are dendrograms they are honored
@@ -221,11 +224,11 @@ heatmap.2 (x,
 
   If either is a vector (of \dQuote{weights}) then the appropriate
   dendrogram is reordered according to the supplied values subject to
-  the constraints imposed by the dendrogram, by \code{\link{reorder}(dd, 
+  the constraints imposed by the dendrogram, by \code{\link{reorder}(dd,
     Rowv)}, in the row case.
   %%
   If either is missing, as by default, then the ordering of the
-  corresponding dendrogram is by the mean value of the rows/columns, 
+  corresponding dendrogram is by the mean value of the rows/columns,
   i.e., in the case of rows, \code{Rowv <- rowMeans(x, na.rm=na.rm)}.
   %%
   If either is \code{\link{NULL}}, \emph{no reordering} will be done for
@@ -237,7 +240,7 @@ heatmap.2 (x,
 
   The default colors range from red to white (\code{heat.colors}) and
   are not pretty.  Consider using enhancements such
-  as the \pkg{RColorBrewer} package, 
+  as the \pkg{RColorBrewer} package,
   \url{http://cran.r-project.org/src/contrib/PACKAGES.html#RColorBrewer}
   to select better colors.
 
@@ -286,9 +289,9 @@ heatmap.2 (x,
   \item{hline}{center-line value used for row trace, present only if
     \code{trace="both"} or \code{trace="row"} }
   \item{colorTable}{A three-column data frame providing the lower and upper
-    bound and color for each bin} 
+    bound and color for each bin}
 }
-\author{Andy Liaw, original; R. Gentleman, M. Maechler, W. Huber, 
+\author{Andy Liaw, original; R. Gentleman, M. Maechler, W. Huber,
   G. Warnes, revisions.}
 
 \seealso{\code{\link{image}}, \code{\link{hclust}}}
@@ -303,7 +306,7 @@ heatmap.2 (x,
  ##
  ## demonstrate the effect of row and column dendogram options
  ##
- heatmap.2(x)  ## default - dendrogram plotted and reordering done. 
+ heatmap.2(x)  ## default - dendrogram plotted and reordering done.
  heatmap.2(x, dendrogram="none") ##  no dendrogram plotted, but reordering done.
  heatmap.2(x, dendrogram="row") ## row dendrogram plotted and row reordering done.
  heatmap.2(x, dendrogram="col") ## col dendrogram plotted and col reordering done.
@@ -341,7 +344,21 @@ heatmap.2 (x,
  heatmap.2(x, srtRow=0, srtCol=90, offsetRow=2, offsetCol=2)
  heatmap.2(x, srtRow=0, srtCol=90, offsetRow=-1, offsetCol=-1)
 
- ## 
+ ## Show how to use 'extrafun' to replace the 'key' with a scatterplot
+ lmat <- rbind( c(5,3,4), c(2,1,4) )
+ lhei <- c(1.5, 4)
+ lwid <- c(1.5, 4, 0.75)
+
+ myplot <- function() {
+             oldpar <- par("mar")
+             par(mar=c(5.1, 4.1, 0.5, 0.5))
+             plot(mpg ~ hp, data=x)
+           }
+
+ heatmap.2(x, lmat=lmat, lhei=lhei, lwid=lwid, key=FALSE, extrafun=myplot)
+
+
+ ##
  ## Show effect of z-score scaling within columns, blue-red color scale
  ##
  hv <- heatmap.2(x, col=bluered, scale="column", tracecol="#303030")
@@ -364,15 +381,15 @@ heatmap.2 (x,
  ##
  ## A more decorative heatmap, with z-score scaling along columns
  ##
- hv <- heatmap.2(x, col=cm.colors(255), scale="column", 
-	       RowSideColors=rc, ColSideColors=cc, margin=c(5, 10), 
-	       xlab="specification variables", ylab= "Car Models", 
-	       main="heatmap(<Mtcars data>, ..., scale=\"column\")", 
+ hv <- heatmap.2(x, col=cm.colors(255), scale="column",
+	       RowSideColors=rc, ColSideColors=cc, margin=c(5, 10),
+	       xlab="specification variables", ylab= "Car Models",
+	       main="heatmap(<Mtcars data>, ..., scale=\"column\")",
                tracecol="green", density="density")
  ## Note that the breakpoints are now symmetric about 0
 
 
- 
+
 
 
 
@@ -398,7 +415,7 @@ heatmap.2 (x,
  data(USJudgeRatings)
  symnum( cU <- cor(USJudgeRatings) )
 
- hU <- heatmap.2(cU, Rowv=FALSE, symm=TRUE, col=topo.colors(16), 
+ hU <- heatmap.2(cU, Rowv=FALSE, symm=TRUE, col=topo.colors(16),
               distfun=function(c) as.dist(1 - c), trace="none")
 
  ## The Correlation matrix with same reordering:
@@ -407,8 +424,8 @@ heatmap.2 (x,
 
  # now with the correlation matrix on the plot itself
 
- heatmap.2(cU, Rowv=FALSE, symm=TRUE, col=rev(heat.colors(16)), 
-             distfun=function(c) as.dist(1 - c), trace="none", 
+ heatmap.2(cU, Rowv=FALSE, symm=TRUE, col=rev(heat.colors(16)),
+             distfun=function(c) as.dist(1 - c), trace="none",
              cellnote=hM)
 
  ## genechip data examples
@@ -418,15 +435,15 @@ heatmap.2 (x,
  pms <- SpikeIn@pm
 
  # just the data, scaled across rows
- heatmap.2(pms, col=rev(heat.colors(16)), main="SpikeIn@pm", 
-              xlab="Relative Concentration", ylab="Probeset", 
+ heatmap.2(pms, col=rev(heat.colors(16)), main="SpikeIn@pm",
+              xlab="Relative Concentration", ylab="Probeset",
               scale="row")
 
  # fold change vs "12.50" sample
  data <- pms / pms[, "12.50"]
  data <- ifelse(data>1, data, -1/data)
- heatmap.2(data, breaks=16, col=redgreen, tracecol="blue", 
-               main="SpikeIn@pm Fold Changes\nrelative to 12.50 sample", 
+ heatmap.2(data, breaks=16, col=redgreen, tracecol="blue",
+               main="SpikeIn@pm Fold Changes\nrelative to 12.50 sample",
                xlab="Relative Concentration", ylab="Probeset")
  }
 

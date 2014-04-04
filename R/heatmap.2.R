@@ -1,4 +1,4 @@
-## $Id: heatmap.2.R 1724 2013-10-11 20:19:22Z warnes $
+## $Id: heatmap.2.R 1780 2014-04-05 00:10:13Z warnes $
 
 heatmap.2 <- function (x,
 
@@ -78,6 +78,7 @@ heatmap.2 <- function (x,
                        lwid = NULL,
 
                        ## extras
+                       extrafun=NULL,
                        ...
                        )
 {
@@ -86,9 +87,9 @@ heatmap.2 <- function (x,
       x <- (x-low)/(high - low)
       x
     }
-  
+
   retval <- list()
-  
+
   scale <- if(symm && missing(scale)) "none" else match.arg(scale)
   dendrogram <- match.arg(dendrogram)
   trace <- match.arg(trace)
@@ -115,8 +116,8 @@ heatmap.2 <- function (x,
     Colv <- FALSE
   else if( Colv=="Rowv" && !isTRUE(Rowv) )
     Colv <- FALSE
-  
-  
+
+
   if(length(di <- dim(x)) != 2 || !is.numeric(x))
     stop("`x' must be a numeric matrix")
 
@@ -141,10 +142,10 @@ heatmap.2 <- function (x,
           dendrogram <- "column"
         else
           dedrogram <- "none"
-        
+
         warning("Discrepancy: Rowv is FALSE, while dendrogram is `",
                 dendrogram, "'. Omitting row dendogram.")
-        
+
       }
   }
 
@@ -157,13 +158,13 @@ heatmap.2 <- function (x,
           dendrogram <- "row"
         else
           dendrogram <- "none"
-        
+
         warning("Discrepancy: Colv is FALSE, while dendrogram is `",
                 dendrogram, "'. Omitting column dendogram.")
       }
   }
-  
-  
+
+
   ## by default order by row/col mean
   ## if(is.null(Rowv)) Rowv <- rowMeans(x, na.rm = na.rm)
   ## if(is.null(Colv)) Colv <- colMeans(x, na.rm = na.rm)
@@ -175,32 +176,32 @@ heatmap.2 <- function (x,
   if(inherits(Rowv, "dendrogram"))
     {
       ddr <- Rowv ## use Rowv 'as-is', when it is dendrogram
-      rowInd <- order.dendrogram(ddr)      
+      rowInd <- order.dendrogram(ddr)
     }
   else if (is.integer(Rowv))
     { ## Compute dendrogram and do reordering based on given vector
       hcr <- hclustfun(distfun(x))
       ddr <- as.dendrogram(hcr)
       ddr <-  reorder(ddr, Rowv)
-      
+
       rowInd <- order.dendrogram(ddr)
       if(nr != length(rowInd))
         stop("row dendrogram ordering gave index of wrong length")
     }
-  else if (isTRUE(Rowv)) 
+  else if (isTRUE(Rowv))
     { ## If TRUE, compute dendrogram and do reordering based on rowMeans
       Rowv <- rowMeans(x, na.rm = na.rm)
       hcr <- hclustfun(distfun(x))
       ddr <- as.dendrogram(hcr)
       ddr <- reorder(ddr, Rowv)
-      
+
       rowInd <- order.dendrogram(ddr)
       if(nr != length(rowInd))
         stop("row dendrogram ordering gave index of wrong length")
     } else {
       rowInd <- nr:1
     }
-  
+
   ## if( dendrogram %in% c("both","column") )
   ##   {
   if(inherits(Colv, "dendrogram"))
@@ -247,7 +248,7 @@ heatmap.2 <- function (x,
   retval$colInd <- colInd
   retval$call <- match.call()
 
-  
+
   ## reorder x & cellnote
   x <- x[rowInd, colInd]
   x.unscaled <- x
@@ -281,10 +282,10 @@ heatmap.2 <- function (x,
     {
       if( missing(col) ||  is.function(col) )
         breaks <- 16
-      else 
+      else
         breaks <- length(col)+1
     }
-  
+
   if(length(breaks)==1)
     {
       if(!symbreaks)
@@ -308,7 +309,7 @@ heatmap.2 <- function (x,
   x[x<min.breaks] <- min.breaks
   x[x>max.breaks] <- max.breaks
 
-  
+
   ## Calculate the plot layout
   if( missing(lhei) || is.null(lhei) )
     lhei <- c(keysize, 4)
@@ -319,7 +320,7 @@ heatmap.2 <- function (x,
   if( missing(lmat) || is.null(lmat) )
     {
       lmat <- rbind(4:3, 2:1)
-      
+
       if(!missing(ColSideColors)) { ## add middle row to layout
         if(!is.character(ColSideColors) || length(ColSideColors) != nc)
           stop("'ColSideColors' must be a character vector of length ncol(x)")
@@ -336,7 +337,7 @@ heatmap.2 <- function (x,
 
       lmat[is.na(lmat)] <- 0
     }
-  
+
   if(length(lhei) != nrow(lmat))
     stop("lhei must have length = nrow(lmat) = ", nrow(lmat))
 
@@ -386,7 +387,7 @@ heatmap.2 <- function (x,
     retval$colDendrogram <- ddc
   retval$breaks <- breaks
   retval$col <- col
-  
+
   ## fill 'na' positions with na.color
   if(!invalid(na.color) & any(is.na(x)))
     {
@@ -421,7 +422,7 @@ heatmap.2 <- function (x,
                y=par("usr")[3] - (1.0 + offsetCol) * strheight("M"),
                labels=labCol,
                ##pos=1,
-               adj=adjCol, 
+               adj=adjCol,
                cex=cexCol,
                srt=srtCol)
           par(xpd=xpd.orig)
@@ -487,7 +488,7 @@ heatmap.2 <- function (x,
            xright=nrow(x)+1,  ytop   = (ncol(x)+1-rsep)-0.5 - sepwidth[2],
            lty=1, lwd=1, col=sepcolor, border=sepcolor)
 
-  
+
   ## show traces
   min.scale <- min(breaks)
   max.scale <- max(breaks)
@@ -510,7 +511,7 @@ heatmap.2 <- function (x,
         }
     }
 
-  
+
   if(trace %in% c("both","row") )
     {
       retval$hline <- hline
@@ -519,7 +520,7 @@ heatmap.2 <- function (x,
         {
           if(!is.null(hline))
             {
-              abline(h=i + hline, col=linecol, lty=2)
+              abline(h=i - 0.5 + hline.vals, col=linecol, lty=2)
             }
           yv <- rep(i, ncol(x.scaled)) + x.scaled[i,] - 0.5
           yv <- rev(c(yv[1], yv))
@@ -573,7 +574,7 @@ heatmap.2 <- function (x,
         }
       else
         {
-          min.raw <- min(x, na.rm=TRUE) ## Again, modified to use scaled 
+          min.raw <- min(x, na.rm=TRUE) ## Again, modified to use scaled
           max.raw <- max(x, na.rm=TRUE) ## or unscaled (SD 12/2/03)
         }
 
@@ -595,12 +596,11 @@ heatmap.2 <- function (x,
 
       if(density.info=="density")
         {
-          ## Experimental : also plot density of data
           dens <- density(x, adjust=densadj, na.rm=TRUE)
           omit <- dens$x < min(breaks) | dens$x > max(breaks)
           dens$x <- dens$x[-omit]
           dens$y <- dens$y[-omit]
-          dens$x <- scale01(dens$x,min.raw,max.raw)
+          dens$x <- scale01(dens$x, min.raw, max.raw)
           lines(dens$x, dens$y / max(dens$y) * 0.95, col=denscol, lwd=1)
           axis(2, at=pretty(dens$y)/max(dens$y) * 0.95, pretty(dens$y) )
           title("Color Key\nand Density Plot")
@@ -610,7 +610,7 @@ heatmap.2 <- function (x,
       else if(density.info=="histogram")
         {
           h <- hist(x, plot=FALSE, breaks=breaks)
-          hx <- scale01(breaks,min.raw,max.raw)
+          hx <- scale01(breaks, min.raw, max.raw)
           hy <- c(h$counts, h$counts[length(h$counts)])
           lines(hx, hy/max(hy)*0.95, lwd=1, type="s", col=denscol)
           axis(2, at=pretty(hy)/max(hy) * 0.95, pretty(hy) )
@@ -621,6 +621,27 @@ heatmap.2 <- function (x,
       else
         title("Color Key")
 
+
+      if(trace %in% c("both","column") )
+          {
+              vline.vals <- scale01(vline, min.raw, max.raw)
+              if(!is.null(vline))
+                  {
+                      abline(v=vline.vals, col=linecol, lty=2)
+                  }
+          }
+
+
+      if(trace %in% c("both","row") )
+          {
+              hline.vals <- scale01(hline, min.raw, max.raw)
+              if(!is.null(hline))
+                  {
+                      abline(v=hline.vals, col=linecol, lty=2)
+
+                  }
+          }
+
     }
   else
     plot.new()
@@ -630,8 +651,11 @@ heatmap.2 <- function (x,
                              low=retval$breaks[-length(retval$breaks)],
                              high=retval$breaks[-1],
                              color=retval$col
-                             ) 
+                             )
 
-  
+  ## If user has provided an extra function, call it.
+  if(!is.null(extrafun))
+      extrafun()
+
   invisible( retval )
 }

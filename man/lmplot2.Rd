@@ -74,6 +74,6 @@ x <- lm(weight ~ group + wt.err)
 lmplot2(x)
 
 lmplot2(x, which=1,   width=1/3)
-lmplot2(x, which=1:3, widht=1/3)
+lmplot2(x, which=1:3, width=1/3)
 }
 \keyword{hplot}

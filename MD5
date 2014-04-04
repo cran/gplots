@@ -1,7 +1,7 @@
-524c8526263c7edd4f2b43670fea49e8 *ChangeLog
-87e673e54456de8afe4515ff693e226b *DESCRIPTION
+55ee5dbcdffc87bcf3932dba3f6a13a9 *ChangeLog
+874c51ffe289fc38a12a10eeaf5da0ed *DESCRIPTION
 3c2b9321b21479252d2c62e50d8ce431 *NAMESPACE
-9b5f044c93d4ee01d0b54ebb7d0f85a8 *NEWS
+c4dad1128ed311f445f0d83e0346ed70 *NEWS
 4040a0e9adf5cc4b201e9d35ab57154f *R/balloonplot.R
 4772437d361717fb85db247dd2c1e078 *R/bandplot.R
 0a8af37ac076fafb2d055495ea1359b0 *R/barplot2.R
@@ -10,7 +10,7 @@
 a6370e76fc39377d1da08507b03e219f *R/ci2d.R
 6d3d19d92abdf9638c5b5313cde8eacc *R/col2hex.R
 36b2f3fe28745943577ad95f07142cab *R/colorpanel.R
-41f9899e2b36658d3a68c99ff0b2143c *R/heatmap.2.R
+ebf5e41785f2772431a8f9656fb06b37 *R/heatmap.2.R
 69b838cf6230b0394a4ef3565a8c8d75 *R/hist2d.R
 8f96994f11b744ed00c3118dee2b445a *R/lmplot2.R
 b243250687022dbed682354421d77461 *R/lowess.R
@@ -34,8 +34,8 @@ dde8f47321c837268c65a37cc374482f *R/textplot.R
 e28142fd2631d8aba7e5b1ec828908f6 *TODO
 ac2e350f1c5a570c556c2f36768085ad *build/vignette.rds
 8e85b44acb8b180ab2234c85ed73b157 *data/rtPCR.rda
-524c8526263c7edd4f2b43670fea49e8 *inst/ChangeLog
-9b5f044c93d4ee01d0b54ebb7d0f85a8 *inst/NEWS
+55ee5dbcdffc87bcf3932dba3f6a13a9 *inst/ChangeLog
+c4dad1128ed311f445f0d83e0346ed70 *inst/NEWS
 e28142fd2631d8aba7e5b1ec828908f6 *inst/TODO
 2c9123e15bef4d1c31aef40043cc731a *inst/doc/BalloonPlot.pdf
 db3835b477154387393e0896b865599b *inst/doc/venn.R
@@ -49,10 +49,10 @@ a04e345d06c3c530f184bb018ee82c1c *man/boxplot2.Rd
 ab9babb4cca73672c7eae3e46325db28 *man/col2hex.Rd
 1e6e7f6434636be7b28f98867b602bd0 *man/colorpanel.Rd
 249487165d4c801cad5f7e0175d32f22 *man/gplots-deprecated.Rd
-26b5a002b515bd3a714ad79458943e97 *man/heatmap.2.Rd
+0cbe04f16a1e64dd4c63ec485fdab9be *man/heatmap.2.Rd
 6c7736f75ad125bd5e5403ebbecaadb3 *man/hist2d.Rd
-66b4b0109aefaadf86cd4c8b66828f4c *man/lmplot2.Rd
-0ade122d73a9fc6bc847e5b7a4942580 *man/lowess.Rd
+b2d63377bf9d3818f200fc31039b3a25 *man/lmplot2.Rd
+bfcaf2d8b033a358605e0245974c354d *man/lowess.Rd
 358b6072d9b08d11e2d4ec40478723b7 *man/ooplot.Rd
 f46f562c6daf8992b39a9201f6095417 *man/overplot.Rd
 f6692d0456ee55bc29adec44c165b197 *man/plotCI.Rd

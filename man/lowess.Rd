@@ -1,4 +1,4 @@
-% $Id: lowess.Rd 1360 2009-10-10 17:32:26Z warnes $
+% $Id: lowess.Rd 1641 2013-03-24 04:18:22Z warnes $
 %
 % $Log$
 % Revision 1.7  2005/06/09 14:20:28  nj7w
