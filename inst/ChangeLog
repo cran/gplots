@@ -1,5 +1,34 @@
+2014-06-17  warnes
+
+	* [r1820] man/heatmap.2.Rd: - Document new 'key.title', 'key.xlab',
+	  'key.ylab', 'key.xtickfun',
+	  'key.ytickfun', 'key.par' arguments to heatmap.2 (belated
+	  commit).
+	  - Document new 'reorderfun' argument to heatmap.2.
+	* [r1819] R/heatmap.2.R: Allow user to specify function used to
+	  reorder based on the dendogram
+	  via a new 'reorderfun' argument. Suggested by Yuanhua Liu.
+	* [r1818] R/heatmap.2.R: Fix typo in heatmap.2() reported by
+	  Yuanhua Liu.
+
+2014-06-05  warnes
+
+	* [r1817] R/heatmap.2.R: Check size of Rowv and Colv dendogram
+	  objects to ensure they matches data.
+
+2014-04-17  warnes
+
+	* [r1812] man/hist2d.Rd: Add see also to r2d2::freq2d.
+	* [r1811] man/ci2d.Rd: Add reference to r2d2::conf2d.
+
+2014-04-09  warnes
+
+	* [r1802] R/heatmap.2.R: Add padj=0.5 to better align margin
+	  labels.
+
 2014-04-05  warnes
 
+	* [r1781] inst/NEWS: Update NEWS
 	* [r1780] R/heatmap.2.R, man/heatmap.2.Rd: Add 'extrafun' argument
 	  to heatmap.2 to allow the user to perform
 	  additional customization by providing a function to be called

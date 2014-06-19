@@ -1,3 +1,27 @@
+Release 2.14.0 - 2014-06-18
+---------------------------
+
+Bug Fixes:
+
+- heatmap.2(): Fix typo in heatmap.2() that caused an error when
+  'Rowv=FALSE'. (Reported by Yuanhua Liu.)
+
+Enhancements:
+
+- heatmap.2(): Add new 'reorderfun' argument to allow the user to
+  specify an alternative function to reorder rows/columns based on
+  row/column dendrogram. (Suggested by Yuanhua Liu.)
+
+- heatmap.2(): Center margin labels.
+
+- heatmap.2(): Check size of user-provided Rowv and Colv dendrogram
+  objects to ensure they match the dimensions of the data.
+
+- Add references to man page for hist2d() and ci2d() to the new r2d2
+  package which implements an improved algorithm for 2-dimensional
+  emprical confidence regions.
+
+
 Release 2.13.0 - 2014-04-04
 ---------------------------
 

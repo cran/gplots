@@ -1,4 +1,4 @@
-% $Id: hist2d.Rd 1556 2012-06-08 17:49:30Z warnes $
+% $Id: hist2d.Rd 1812 2014-04-17 19:05:11Z warnes $
 \name{hist2d}
 \alias{hist2d}
 \alias{print.hist2d}
@@ -39,7 +39,6 @@ hist2d(x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE,
   then constucted which holds the counts of the number of observed (x,y) pairs
   that fall into each bin.  If \code{show=TRUE}, this matrix is then
   then passed to \code{image} for display.
-
 }
 \value{
   A list containing 5 elements:
@@ -50,7 +49,10 @@ hist2d(x,y=NULL, nbins=200, same.scale=FALSE, na.rm=TRUE, show=TRUE,
   }
 \author{ Gregory R. Warnes \email{greg@warnes.net}}
 
-\seealso{ \code{\link{image}}, \code{\link{persp}}, \code{\link{hist}} }
+\seealso{
+  \code{\link{image}}, \code{\link{persp}}, \code{\link{hist}},
+  \code{\link[r2d2]{freq2d}} 
+  }
 
 \examples{
    ## example data, bivariate normal, no correlation

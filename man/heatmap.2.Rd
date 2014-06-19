@@ -20,6 +20,7 @@ heatmap.2 (x,
            distfun = dist,
            hclustfun = hclust,
            dendrogram = c("both","row","column","none"),
+           reorderfun = function(d, w) reorder(d, w),
            symm = FALSE,
 
            # data scaling
@@ -78,6 +79,12 @@ heatmap.2 (x,
            denscol=tracecol,
            symkey = min(x < 0, na.rm=TRUE) || symbreaks,
            densadj = 0.25,
+           key.title = NULL,
+           key.xlab = NULL,
+           key.ylab = NULL,
+           key.xtickfun = NULL,
+           key.ytickfun = NULL,
+           key.par=list(),
 
            # plot labels
            main = NULL,
@@ -95,7 +102,7 @@ heatmap.2 (x,
            )
            }
 \arguments{
-  % Dendogram Control
+  % Dendrogram Control
   \item{x}{numeric matrix of the values to be plotted. }
   \item{Rowv}{determines if and how the \emph{row} dendrogram should be
     reordered.	By default, it is TRUE, which implies dendrogram is
@@ -115,15 +122,17 @@ heatmap.2 (x,
     \code{\link{hclust}}.}
   \item{dendrogram}{character string indicating whether to draw 'none',
     'row', 'column' or 'both' dendrograms.  Defaults to 'both'. However,
-  if Rowv (or Colv) is FALSE or NULL and dendrogram is 'both', then a
-  warning is issued and Rowv (or Colv) arguments are honoured.}
+    if Rowv (or Colv) is FALSE or NULL and dendrogram is 'both', then a
+    warning is issued and Rowv (or Colv) arguments are honoured.}
+  \item{reorderfun}{\code{function(d, w)} of dendrogram and weights for
+    reordering the row and column dendrograms.  The default uses
+    \code{\link{stats}{reorder.dendrogram}} }.
   \item{symm}{logical indicating if \code{x} should be treated
     \bold{symm}etrically; can only be true when \code{x} is a square matrix.}
   % data scaling
   \item{scale}{character indicating if the values should be centered and
     scaled in either the row direction or the column direction, or
-    none.  The default is \code{"row"} if \code{symm} false, and
-    \code{"none"} otherwise.}
+    none.  The default is \code{"none"}.}
   \item{na.rm}{logical indicating whether \code{NA}'s should be removed.}
   % image plot
   \item{revC}{logical indicating if the column order should be
@@ -207,6 +216,20 @@ heatmap.2 (x,
     a density plot is drawn on the color key.  (See the \code{adjust}
     parameter for the \code{density} function for details.)  Defaults to
     0.25.}
+  \item{key.title}{main title of the color key. If set to NA no title
+    will be plotted.}
+  \item{key.xlab}{x axis label of the color key. If set to NA no label
+    will be plotted.}
+  \item{key.ylab}{y axis label of the color key. If set to NA no label
+    will be plotted.}
+  \item{key.xtickfun}{function computing tick location and labels for
+    the xaxis of the color key. Returns a named list containing
+    parameters that can be passed to \code{axis}. See examples.}
+  \item{key.ytickfun}{function computing tick location and labels for
+      the y axis of the color key. Returns a named list containing
+      parameters that can be passed to \code{axis}.  See examples.}
+  \item{key.par}{graphical parameters for the color key. Named list that
+    can be passed to \code{par}.}
   % plot labels
   \item{main, xlab, ylab}{main, x- and y-axis titles; defaults to none.}
   % figure layout
@@ -234,19 +257,19 @@ heatmap.2 (x,
   If either is \code{\link{NULL}}, \emph{no reordering} will be done for
   the corresponding side.
 
-  If \code{scale="row"} the rows are scaled to have mean
-  zero and standard deviation one.  There is some empirical evidence
-  from genomic plotting that this is useful.
+  If \code{scale="row"} (or \code{scale="col"}) the rows (columns) are
+  scaled to have mean zero and standard deviation one.  There is some
+  empirical evidence from genomic plotting that this is useful.
 
   The default colors range from red to white (\code{heat.colors}) and
-  are not pretty.  Consider using enhancements such
-  as the \pkg{RColorBrewer} package,
+  are not pretty.  Consider using enhancements such as the
+  \pkg{RColorBrewer} package,
   \url{http://cran.r-project.org/src/contrib/PACKAGES.html#RColorBrewer}
   to select better colors.
 
   By default four components will be displayed in the plot.  At the top
-  left is the color key, top right is the column dendogram, bottom left
-  is the row dendogram, bottom right is the image plot.  When
+  left is the color key, top right is the column dendrogram, bottom left
+  is the row dendrogram, bottom right is the image plot.  When
   RowSideColor or ColSideColor are provided, an additional row or column
   is inserted in the appropriate location.   This layout can be
   overriden by specifiying appropriate values for \code{lmat},
@@ -257,16 +280,13 @@ heatmap.2 (x,
   arguments.
 }
 \note{
-  The original rows and columns are reordered \emph{in any case} to
-  match the dendrogram, e.g., the rows by
-  \code{\link{order.dendrogram}(Rowv)} where \code{Rowv} is the
-  (possibly \code{\link{reorder}()}ed) row dendrogram.
+  The original rows and columns are reordered to match the dendrograms
+  \code{Rowv} and \code{Colv} (if present).
 
-  \code{heatmap.2()} uses \code{\link{layout}} and draws the
-  \code{\link{image}} in the lower right corner of a 2x2 layout.
-  Consequentially, it can \bold{not} be used in a multi column/row
-  layout, i.e., when \code{\link{par}(mfrow= *)} or \code{(mfcol= *)}
-  has been called.
+  \code{heatmap.2()} uses \code{\link{layout}} to arragent the plot
+  elements. Consequentially, it can \bold{not} be used in a multi
+  column/row layout using \code{\link{layout}(\dots)},
+  \code{\link{par}(mfrow=\dots)} or \code{(mfcol=\dots)}.
 }
 \value{
   Invisibly, a list with components
@@ -304,7 +324,7 @@ heatmap.2 (x,
  cc <- rainbow(ncol(x), start=0, end=.3)
 
  ##
- ## demonstrate the effect of row and column dendogram options
+ ## demonstrate the effect of row and column dendrogram options
  ##
  heatmap.2(x)  ## default - dendrogram plotted and reordering done.
  heatmap.2(x, dendrogram="none") ##  no dendrogram plotted, but reordering done.
@@ -316,6 +336,10 @@ heatmap.2 (x,
  heatmap.2(x, Rowv=FALSE, dendrogram="both") ## generate warning!
  heatmap.2(x, Rowv=NULL, dendrogram="both")  ## generate warning!
  heatmap.2(x, Colv=FALSE, dendrogram="both") ## generate warning!
+
+ ## Reorder dendrogram by branch means rather than sums
+ heatmap.2(x, reorderfun=function(d, w) reorder(d, w, agglo.FUN = mean) )
+
 
  ## Show effect of row and column label rotation
  heatmap.2(x, srtCol=NULL)
@@ -332,6 +356,7 @@ heatmap.2 (x,
  heatmap.2(x, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1) )
  heatmap.2(x, srtRow=45, adjRow=c(0, 1), srtCol=270, adjCol=c(0,0.5) )
 
+
  ## Show effect of offsetRow/offsetCol (only works when srtRow/srtCol is
  ## not also present)
  heatmap.2(x, offsetRow=0, offsetCol=0)
@@ -343,6 +368,7 @@ heatmap.2 (x,
  heatmap.2(x, srtRow=0, srtCol=90, offsetRow=1, offsetCol=1)
  heatmap.2(x, srtRow=0, srtCol=90, offsetRow=2, offsetCol=2)
  heatmap.2(x, srtRow=0, srtCol=90, offsetRow=-1, offsetCol=-1)
+
 
  ## Show how to use 'extrafun' to replace the 'key' with a scatterplot
  lmat <- rbind( c(5,3,4), c(2,1,4) )
@@ -356,6 +382,41 @@ heatmap.2 (x,
            }
 
  heatmap.2(x, lmat=lmat, lhei=lhei, lwid=lwid, key=FALSE, extrafun=myplot)
+
+ ## show how to customize the color key
+ heatmap.2(x,
+           key.title=NA, # no title
+           key.xlab=NA,  # no xlab
+           key.par=list(mgp=c(1.5, 0.5, 0),
+                        mar=c(2.5, 2.5, 1, 0)),
+           key.xtickfun=function() {
+                 breaks <- parent.frame()$breaks
+                 return(list(
+                      at=parent.frame()$scale01(c(breaks[1],
+                                                  breaks[length(breaks)])),
+                      labels=c(as.character(breaks[1]),
+                               as.character(breaks[length(breaks)]))
+                      ))
+           })
+
+ heatmap.2(x,
+          breaks=256,
+          key.title=NA,
+          key.xlab=NA,
+          key.par=list(mgp=c(1.5, 0.5, 0),
+                       mar=c(1, 2.5, 1, 0)),
+          key.xtickfun=function() {
+               cex <- par("cex")*par("cex.axis")
+               side <- 1
+               line <- 0
+               col <- par("col.axis")
+               font <- par("font.axis")
+               mtext("low", side=side, at=0, adj=0,
+                     line=line, cex=cex, col=col, font=font)
+               mtext("high", side=side, at=1, adj=1,
+                     line=line, cex=cex, col=col, font=font)
+               return(list(labels=FALSE, tick=FALSE))
+          })
 
 
  ##
