@@ -1,3 +1,12 @@
+Release 2.14.1 - 2014-06-30
+---------------------------
+
+Bug Fixes:
+
+- Correct bug in Colv dentrogram object dimension checking introduced
+  in 2.14.0.  (Reported by Yong Fuga Li.)
+
+
 Release 2.14.0 - 2014-06-18
 ---------------------------
 

@@ -1,7 +1,7 @@
 b25a0e2af32d0314ee8f29f4c4ee6d39 *ChangeLog
-86d358fb9aa5ce1fcf252455d93591aa *DESCRIPTION
+9b9b71be71291ca357a70ca6c2bab1cc *DESCRIPTION
 3c2b9321b21479252d2c62e50d8ce431 *NAMESPACE
-b34e9297f98387f6c981c75f359e8758 *NEWS
+6e59474af4c57aac29addd2931f8a413 *NEWS
 4040a0e9adf5cc4b201e9d35ab57154f *R/balloonplot.R
 4772437d361717fb85db247dd2c1e078 *R/bandplot.R
 0a8af37ac076fafb2d055495ea1359b0 *R/barplot2.R
@@ -10,7 +10,7 @@ b34e9297f98387f6c981c75f359e8758 *NEWS
 a6370e76fc39377d1da08507b03e219f *R/ci2d.R
 6d3d19d92abdf9638c5b5313cde8eacc *R/col2hex.R
 36b2f3fe28745943577ad95f07142cab *R/colorpanel.R
-c956611762aae31784eac02de05b0404 *R/heatmap.2.R
+8a20544a12e09f5e7a67b115aea5c2fc *R/heatmap.2.R
 69b838cf6230b0394a4ef3565a8c8d75 *R/hist2d.R
 8f96994f11b744ed00c3118dee2b445a *R/lmplot2.R
 b243250687022dbed682354421d77461 *R/lowess.R
@@ -35,12 +35,12 @@ e28142fd2631d8aba7e5b1ec828908f6 *TODO
 b10480ef5dc3192416dbcd8288a3f8c2 *build/vignette.rds
 8e85b44acb8b180ab2234c85ed73b157 *data/rtPCR.rda
 b25a0e2af32d0314ee8f29f4c4ee6d39 *inst/ChangeLog
-b34e9297f98387f6c981c75f359e8758 *inst/NEWS
+6e59474af4c57aac29addd2931f8a413 *inst/NEWS
 e28142fd2631d8aba7e5b1ec828908f6 *inst/TODO
 2c9123e15bef4d1c31aef40043cc731a *inst/doc/BalloonPlot.pdf
 db3835b477154387393e0896b865599b *inst/doc/venn.R
 6b10e21c8e9d8b500514865ba83990f0 *inst/doc/venn.Rnw
-0fcdb3d1205b30f5d289f0a3487d7728 *inst/doc/venn.pdf
+683d1b93c8a0d36f0b127552f716469e *inst/doc/venn.pdf
 8ab220c517d11be940afd3b99dde33fb *man/balloonplot.Rd
 f2b4192ac81242619d03b725684341da *man/bandplot.Rd
 9d3fdaf3cfff865c2db62bc07d51066c *man/barplot2.Rd

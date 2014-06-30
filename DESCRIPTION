@@ -4,8 +4,8 @@ Description: Various R programming tools for plotting data
 Depends: R (>= 3.0)
 Imports: gtools, gdata, stats, caTools, KernSmooth
 Suggests: grid, MASS
-Version: 2.14.0
-Date: 2014-06-19
+Version: 2.14.1
+Date: 2014-06-30
 Author: Gregory R. Warnes, Ben Bolker, Lodewijk Bonebakker, Robert
 	Gentleman, Wolfgang Huber Andy Liaw, Thomas Lumley, Martin
 	Maechler, Arni Magnusson, Steffen Moeller, Marc Schwartz, Bill
@@ -13,6 +13,6 @@ Author: Gregory R. Warnes, Ben Bolker, Lodewijk Bonebakker, Robert
 Maintainer: Gregory R. Warnes <greg@warnes.net>
 License: GPL-2
 NeedsCompilation: No
-Packaged: 2014-06-19 20:56:01 UTC; warnes
+Packaged: 2014-06-30 19:30:30 UTC; warnes
 Repository: CRAN
-Date/Publication: 2014-06-20 08:37:27
+Date/Publication: 2014-07-01 00:51:32

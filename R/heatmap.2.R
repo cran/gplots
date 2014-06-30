@@ -1,4 +1,4 @@
-## $Id: heatmap.2.R 1822 2014-06-19 18:51:32Z warnes $
+## $Id: heatmap.2.R 1823 2014-06-30 19:26:21Z warnes $
 
 heatmap.2 <- function (x,
 
@@ -210,7 +210,7 @@ heatmap.2 <- function (x,
     {
       ddc <- Colv ## use Colv 'as-is', when it is dendrogram
       colInd <- order.dendrogram(ddc)
-      if(length(colInd)>nr || any(colInd<1 | colInd > nc ))
+      if(length(colInd)>nc || any(colInd<1 | colInd > nc ))
          stop("Colv dendrogram doesn't match size of x")
     }
   else if(identical(Colv, "Rowv")) {
