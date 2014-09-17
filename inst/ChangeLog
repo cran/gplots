@@ -1,3 +1,42 @@
+2014-09-17  warnes
+
+	* [r1892] R/heatmap.2.R, R/plotNode.R: To work around recursion
+	  limit issues triggered by deeply nested
+	  dendrograms, (1) create a local *intepreted* copy of
+	  stats:::plotNode(), (2) detect recursion limit error message
+	  within
+	  heatmap.2() and generate a more user-friendly message.
+	* [r1891] tests/dat.csv, tests/test_plottingDeepDendrogram.R: Add
+	  test case for exceeding recursion limits when plotting deeply
+	  nested dendrograms
+	* [r1890] R/heatmap.2.R: heatmap.2 was not properly handling
+	  integer vectors for Rowv and Colv.
+	* [r1889] R/heatmap.2.R: key.title=NA was not being honored when
+	  density.info=NA.
+
+2014-09-16  warnes
+
+	* [r1888] R/plotNode.R: Add plotNode code to allow modificaiton of
+	  algorithm from recursive to iterative for the purpose of avoiding
+	  node stack overflow.
+	* [r1887] R/heatmap.2.R, man/heatmap.2.Rd: - Correct statement of
+	  default color for 'notecol' argumemt to 'heatmap.2'.
+	  - Modify default arguments to 'symbreaks' and 'symkey' to make
+	  the
+	  logic more evident by replacing min() with any(). (The previous
+	  code executed properly, but relied on implicit coercion of
+	  logicals
+	  to numeric, obscuring the intent.)
+
+2014-06-30  warnes
+
+	* [r1823] R/heatmap.2.R: Fix typo in dendrogram size checking code.
+
+2014-06-19  warnes
+
+	* [r1822] R/heatmap.2.R: Fix typo 'ColInd' --> 'colInd'.
+	* [r1821] DESCRIPTION, inst/NEWS: Update for gplots 2.14.0
+
 2014-06-17  warnes
 
 	* [r1820] man/heatmap.2.Rd: - Document new 'key.title', 'key.xlab',

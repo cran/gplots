@@ -49,20 +49,22 @@ importFrom(caTools, runmean)
 importFrom(KernSmooth, bkde2D)
 importFrom(KernSmooth, dpik)
 
-S3method(balloonplot,default)
-S3method(balloonplot,table)
+S3method(balloonplot, default)
+S3method(balloonplot, table)
 
-S3method(barplot2,default)
+S3method(barplot2, default)
 
-S3method(lowess,default)
-S3method(lowess,formula)
+S3method(lowess, default)
+S3method(lowess, formula)
 
-S3method(ooplot,default)
+S3method(ooplot, default)
 
-S3method(textplot,character)
-S3method(textplot,data.frame)
-S3method(textplot,default)
-S3method(textplot,matrix)
+S3method(plot, venn)
 
-S3method(print,ci2d)
-S3method(print,hist2d)
+S3method(print, ci2d)
+S3method(print, hist2d)
+
+S3method(textplot, character)
+S3method(textplot, data.frame)
+S3method(textplot, default)
+S3method(textplot, matrix)

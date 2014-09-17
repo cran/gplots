@@ -1,4 +1,4 @@
-## $Id: heatmap.2.R 1823 2014-06-30 19:26:21Z warnes $
+## $Id: heatmap.2.R 1892 2014-09-17 22:03:10Z warnes $
 
 heatmap.2 <- function (x,
 
@@ -21,7 +21,7 @@ heatmap.2 <- function (x,
 
                        ## mapping data to colors
                        breaks,
-                       symbreaks=min(x < 0, na.rm=TRUE) || scale!="none",
+                       symbreaks=any(x < 0, na.rm=TRUE) || scale!="none",
 
                        ## colors
                        col="heat.colors",
@@ -65,7 +65,7 @@ heatmap.2 <- function (x,
                        keysize = 1.5,
                        density.info=c("histogram","density","none"),
                        denscol=tracecol,
-                       symkey = min(x < 0, na.rm=TRUE) || symbreaks,
+                       symkey = any(x < 0, na.rm=TRUE) || symbreaks,
                        densadj = 0.25,
                        key.title = NULL,
                        key.xlab = NULL,
@@ -114,8 +114,8 @@ heatmap.2 <- function (x,
     Rowv <- FALSE
   if ( is.null(Colv) || is.na(Colv) )
     Colv <- FALSE
-  else if( Colv=="Rowv" && !isTRUE(Rowv) )
-    Colv <- FALSE
+  else if( all(Colv=="Rowv") )
+    Colv <- Rowv
 
 
   if(length(di <- dim(x)) != 2 || !is.numeric(x))
@@ -135,8 +135,15 @@ heatmap.2 <- function (x,
 
   if(!inherits(Rowv, "dendrogram")) {
     ## Check if Rowv and dendrogram arguments are consistent
-    if ( ( (!isTRUE(Rowv)) || (is.null(Rowv))) &&
-         (dendrogram %in% c("both","row") ) )
+    if (
+          (
+             ( is.logical(Rowv)  && !isTRUE(Rowv) )
+              ||
+             ( is.null(Rowv) )
+          )
+          &&
+          ( dendrogram %in% c("both","row") )
+       )
       {
         if (is.logical(Colv) && (Colv))
           dendrogram <- "column"
@@ -151,8 +158,14 @@ heatmap.2 <- function (x,
 
   if(!inherits(Colv, "dendrogram")) {
     ## Check if Colv and dendrogram arguments are consistent
-    if ( ( (!isTRUE(Colv)) || (is.null(Colv)))
-        && (dendrogram %in% c("both","column")) )
+    if (
+         (
+           (is.logical(Colv) && !isTRUE(Colv) )
+             ||
+            (is.null(Colv))
+         )
+         &&
+         ( dendrogram %in% c("both","column")) )
       {
         if (is.logical(Rowv) && (Rowv))
           dendrogram <- "row"
@@ -182,9 +195,10 @@ heatmap.2 <- function (x,
     }
   else if (is.integer(Rowv))
     { ## Compute dendrogram and do reordering based on given vector
+        browser()
       hcr <- hclustfun(distfun(x))
       ddr <- as.dendrogram(hcr)
-      ddr <-  reorderfun(ddr, Rowv)
+      ddr <- reorderfun(ddr, Rowv)
 
       rowInd <- order.dendrogram(ddr)
       if(nr != length(rowInd))
@@ -546,7 +560,15 @@ heatmap.2 <- function (x,
   par(mar = c(margins[1], 0, 0, 0))
   if( dendrogram %in% c("both","row") )
     {
-      plot(ddr, horiz = TRUE, axes = FALSE, yaxs = "i", leaflab = "none")
+        flag <- try(
+            plot.dendrogram(ddr, horiz = TRUE, axes = FALSE, yaxs = "i", leaflab = "none")
+            )
+        if("try-error" %in% class(flag))
+            {
+                cond <- attr(flag, "condition")
+                if(!is.null(cond) && conditionMessage(cond)=="evaluation nested too deeply: infinite recursion / options(expressions=)?")
+                    stop('Row dendrogram too deeply nested, recursion limit exceeded.  Try increasing option("expressions"=...).')
+            }
     }
   else
     plot.new()
@@ -555,7 +577,15 @@ heatmap.2 <- function (x,
 
   if( dendrogram %in% c("both","column") )
     {
-      plot(ddc, axes = FALSE, xaxs = "i", leaflab = "none")
+        flag <- try(
+            plot.dendrogram(ddc, axes = FALSE, xaxs = "i", leaflab = "none")
+            )
+        if("try-error" %in% class(flag))
+            {
+                cond <- attr(flag, "condition")
+                if(!is.null(cond) && conditionMessage(cond)=="evaluation nested too deeply: infinite recursion / options(expressions=)?")
+                    stop('Column dendrogram too deeply nested, recursion limit exceeded.  Try increasing option("expressions"=...).')
+            }
     }
   else
     plot.new()
@@ -667,7 +697,8 @@ heatmap.2 <- function (x,
             mtext(side=2,key.ylab, line=par("mgp")[1], padj=0.5)
         }
       else
-        title("Color Key")
+          if (is.null(key.title))
+              title("Color Key")
 
 
       if(trace %in% c("both","column") )

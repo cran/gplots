@@ -1,9 +1,29 @@
+Release 2.14.2 - 2014-09-17
+---------------------------
+
+Bug Fixes:
+
+- heatmap.2() was not respecting key.title=NA when density.info="none".
+
+- Correct the man page for heatmap.2 to state that the default color
+  for 'notecol' is cyan.
+
+- In heatmap.2(), modify default arguments to 'symbreaks' and 'symkey'
+  to make the logic more evident by replacing min(...) with
+  any(...). (The previous code executed properly, but relied on
+  implicit coercion of logicals to numeric, obscuring the intent.)
+
+- Calling heatmap.2 with deeply nested dendrograms could trigger a
+  'node stack overflow' error.  Now, this situation is detected, and
+  a message is generated indicating how to increase the relevant
+  recursion limit via options("expressions"=...).
+
 Release 2.14.1 - 2014-06-30
 ---------------------------
 
 Bug Fixes:
 
-- Correct bug in Colv dentrogram object dimension checking introduced
+- Correct heatmap.2() bug in Colv dendrogram object dimension checking introduced
   in 2.14.0.  (Reported by Yong Fuga Li.)
 
 
