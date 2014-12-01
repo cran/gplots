@@ -1,5 +1,29 @@
+2014-12-02  warnes
+
+	* [r1905] tests/test_plottingDeepDendrogram.R: plot.dendrogram
+	  isn't exported by gplots, so it must be referenced using the
+	  ':::' notation.
+	* [r1904] man/bandplot.Rd: Man page fixes.
+	* [r1903] NAMESPACE: Add exports of new bandplot methods to
+	  NAMESPACE file.
+	* [r1902] R/bandplot.R: Code cleanup.
+	* [r1901] R/bandplot.R: Simplify model.frame code for
+	  bandplot.formula.
+
+2014-12-01  warnes
+
+	* [r1900] inst/NEWS: Update for 2.15.0
+	* [r1899] DESCRIPTION, R/bandplot.R, man/bandplot.Rd: Convert
+	  bandplot to S3-method dispatch and add method for class formula.
+	* [r1898] NAMESPACE: Improve whitespace
+
 2014-09-17  warnes
 
+	* [r1895] NAMESPACE: Minor reformatting.
+	* [r1894] R/plotNode.R: Explicitly reset namespace for dendrogram
+	  functions copied from stats.
+	* [r1893] DESCRIPTION, inst/NEWS: Update DESCRIPTION and NEWS for
+	  gplots 2.14.2
 	* [r1892] R/heatmap.2.R, R/plotNode.R: To work around recursion
 	  limit issues triggered by deeply nested
 	  dendrograms, (1) create a local *intepreted* copy of

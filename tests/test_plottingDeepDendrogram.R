@@ -14,6 +14,6 @@ try( gplots:::plot.dendrogram(dend) )
 try( heatmap.2(dat, Rowv=dend) )
 
 ## Increase them and try again
-options("expressions"=40000)
+options("expressions"=20000)
 gplots:::plot.dendrogram(dend)
 heatmap.2(dat, Rowv=dend)

@@ -41,16 +41,17 @@ importFrom(gdata, reorder.factor)
 importFrom(stats, reorder)
 importFrom(stats, na.omit)
 
-# No Namespace
 importFrom(caTools, runsd)
 importFrom(caTools, runmean)
 
-# No Namespace
 importFrom(KernSmooth, bkde2D)
 importFrom(KernSmooth, dpik)
 
 S3method(balloonplot, default)
 S3method(balloonplot, table)
+
+S3method(bandplot, default)
+S3method(bandplot, formula)
 
 S3method(barplot2, default)
 
@@ -58,9 +59,7 @@ S3method(lowess, default)
 S3method(lowess, formula)
 
 S3method(ooplot, default)
-
 S3method(plot, venn)
-
 S3method(print, ci2d)
 S3method(print, hist2d)
 

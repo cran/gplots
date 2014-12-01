@@ -1,3 +1,24 @@
+Release 2.15.0 - 2014-12-01
+---------------------------
+
+New features:
+
+- Convert bandplot() to S3-method dispatch and add method for class
+  formula, so that 'bandplot( y ~ x, data=dataframe )' now works as
+  expected.
+
+Other changes:
+
+- heatmap.2() now uses a local *non-byte-compiled* copy of
+  plot.dengrogram, because the byte-compiled stats:::plot.dendrogram
+  uses a recursive algorithm that generates a 'node stack overflow'
+  error for deeply nested dendrograms and the node stack size cannot
+  be changed at execution time.  Instead, tne local non-byte-compiled
+  gplots:::plot.dendrogram will trigger a recursion limit for such
+  dengrograms.  heatmap.2() will detect this error and recommend that
+  the user increase the recursion limit (via,
+  e.g. 'options("expressions"=20000)' ) and rerun.
+
 Release 2.14.2 - 2014-09-17
 ---------------------------
 
@@ -14,7 +35,7 @@ Bug Fixes:
   implicit coercion of logicals to numeric, obscuring the intent.)
 
 - Calling heatmap.2 with deeply nested dendrograms could trigger a
-  'node stack overflow' error.  Now, this situation is detected, and
+  'node stack overflow' error.  Now, this situation is deteceted, and
   a message is generated indicating how to increase the relevant
   recursion limit via options("expressions"=...).
 
