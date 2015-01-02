@@ -1,24 +1,17 @@
-% $Id: plotmeans.Rd 1676 2013-06-27 20:51:27Z warnes $
-
 \name{plotmeans}
 \alias{plotmeans}
 \title{Plot Group Means and Confidence Intervals}
 \description{Plot group means and confidence intervals.}
-%\synopsis{
 \usage{
 plotmeans(formula, data=NULL, subset, na.action,
           bars=TRUE, p=0.95, minsd=0, minbar, maxbar,
           xlab=names(mf)[2], ylab=names(mf)[1], mean.labels=FALSE,
-          ci.label=FALSE, n.label=TRUE, digits=getOption("digits"),
-          col="black", barwidth=1, barcol="blue",
-          connect=TRUE, ccol=col, legends=names(means), xaxt,
-          use.t=TRUE, lwd=par("lwd"), ...)
+          ci.label=FALSE, n.label=TRUE, text.n.label="n=",
+          digits=getOption("digits"), col="black", barwidth=1,
+          barcol="blue", connect=TRUE, ccol=
+          col, legends=names(means), xaxt, use.t=TRUE,
+          lwd=par("lwd"), ...)
 }
-%
-%\usage{
-%  plotmeans( outcome ~ treatment)
-%}
-
 \arguments{
   \item{formula}{symbolic expression specifying the outcome (continuous)
     and grouping variable (factor).  See lm() for details.}
@@ -42,12 +35,12 @@ plotmeans(formula, data=NULL, subset, na.action,
 
   \item{minbar}{minumum allowed value for bar ends.  If specified,
     values smaller than \code{minbar} will be replaced with
-    \code{minbar}. } 
-  
+    \code{minbar}. }
+
   \item{maxbar}{maximum allowed value for bar ends.  If specified,
     values larger than \code{maxbar} will be replaced with
     \code{maxbar}. }
-  
+
   \item{xlab}{x-axis label.}
   \item{ylab}{y-axis label.}
 
@@ -62,6 +55,9 @@ plotmeans(formula, data=NULL, subset, na.action,
 
   \item{n.label}{ a logical value indicating whether text giving the number of
     observations in each group should should be added to the plot. }
+
+  \item{text.n.label}{Prefix text for labeling observation counts.
+    Defaults to "n=". }
 
   \item{digits}{ number of significant digits to use when displaying
     mean or confidince limit values.}
@@ -86,22 +82,22 @@ plotmeans(formula, data=NULL, subset, na.action,
 
   \item{xaxt}{A character which specifies the axis type. Specifying `"n"'
           causes an axis to be set up, but not plotted.}
-  
+
   \item{use.t}{ a logical value indicating whether the t distribution
     should be used to compute confidence intervals.  If \code{TRUE}, the
     default, a t distribution will the correct number of degrees of
     freedom for each group be used.  If \code{FALSE}, the a normal
     distribution will be used.}
-  
+
   \item{lwd}{Width of connecting lines  }
-  
+
   \item{\dots}{ optional plotting parameters. }
 
   }
 
-%\details{ 
-%  
-%  
+%\details{
+%
+%
 %}
 
 
@@ -109,7 +105,7 @@ plotmeans(formula, data=NULL, subset, na.action,
 
   # show comparison with boxplot
   data(state)
-  plotmeans(state.area ~ state.region)   
+  plotmeans(state.area ~ state.region)
 
   # show some color and mean labels
   plotmeans(state.area ~ state.region,
@@ -121,12 +117,12 @@ plotmeans(formula, data=NULL, subset, na.action,
             ccol="red", pch=7 )
 
   # more complicated example showing how to show an interaction
-  data(esoph)  
+  data(esoph)
   par(las=2,                        # use perpendicular axis labels
       mar=c(10.1,4.1,4.1,2.1),      # create enough space for long x labels
       mgp=c(8,1,0)                  # move x axis legend down to avoid overlap
       )
-  plotmeans(ncases/ncontrols ~ interaction(agegp , alcgp, sep ="   "), 
+  plotmeans(ncases/ncontrols ~ interaction(agegp , alcgp, sep ="   "),
             connect=list(1:6,7:12,13:18,19:24),
             barwidth=2,
             col="dark green",
@@ -137,7 +133,7 @@ plotmeans(formula, data=NULL, subset, na.action,
                    "Ile-et-Vilaine Esophageal Cancer Study")
             )
   abline(v=c(6.5, 12.5, 18.5), lty=2)
-  
+
 }
 
 \author{Gregory R. Warnes \email{greg@warnes.net}}

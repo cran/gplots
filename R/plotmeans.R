@@ -1,10 +1,13 @@
-## $Id: plotmeans.R 1553 2012-06-07 15:03:24Z warnes $
+## $Id: plotmeans.R 1912 2015-01-02 20:10:21Z warnes $
 
 plotmeans  <- function (formula, data = NULL, subset, na.action,
                         bars=TRUE, p=0.95,
                         minsd=0, minbar=NULL, maxbar=NULL,
                         xlab=names(mf)[2], ylab=names(mf)[1],
-                        mean.labels=FALSE, ci.label=FALSE, n.label=TRUE,
+                        mean.labels=FALSE,
+                        ci.label=FALSE,
+                        n.label=TRUE,
+                        text.n.label="n=",
                         digits=getOption("digits"), col="black",
                         barwidth=1,
                         barcol="blue",
@@ -16,56 +19,36 @@ plotmeans  <- function (formula, data = NULL, subset, na.action,
                         lwd=par("lwd"),
                         ...)
 {
-  is.R <- get("is.R")
-  if(is.null(is.R)) is.R <- function(x) FALSE
-
-  if(!is.R())
-    {
-      if(col=="black")
-        col <- 1
-      if(barcol=="blue")
-        barcol <- 2
-    }
-
   if (invalid(formula) || (length(formula) != 3))
     stop("formula missing or incorrect")
   if (invalid(na.action))
     na.action <- options("na.action")
-  m <- match.call(expand.dots = FALSE)
-  if(is.R())
-    {
-      if (is.matrix(eval(m$data, parent.frame())))
-        m$data <- as.data.frame(data)
-    }
-  else
-    {
-      if (is.matrix(eval(m$data, FALSE)))
-        m$data <- as.data.frame(data)
-    }
-  m$... <- m$bars <- m$barcol <- m$p <- NULL
-  m$minsd <- m$minbar <- m$maxbar <- NULL
-  m$xlab <- m$ylab <-  NULL
-  m$col  <- m$barwidth  <- NULL
-  m$digits  <- m$mean.labels  <- m$ci.label  <- m$n.label <- NULL
-  m$connect  <- m$ccol  <-  m$legends <- m$labels<- NULL
-  m$xaxt <- m$use.t <- m$lwd <- NULL
-  m[[1]] <- as.name("model.frame")
-  mf <- eval(m, parent.frame())
+
+  mf <- match.call(expand.dots = FALSE)
+  if (is.matrix(eval(mf$data, parent.frame())))
+        mf$data <- as.data.frame(data)
+
+  m <- match(c("formula", "data", "subset", "na.action"), names(mf), 0L)
+
+  mf <- mf[c(1L, m)]
+
+  mf[[1L]] <- quote(stats::model.frame)
+  mf <- eval(mf, parent.frame())
   response <- attr(attr(mf, "terms"), "response")
 
   ## drop unused levels in factors!!!
-  
+
   wFact <- which(attr(attr(mf, "terms"),"dataClasses") == "factor")
   for(i in wFact)
     mf[,i] <- factor(mf[,i])
-  
+
   means  <-  sapply(split(mf[[response]], mf[[-response]]), mean, na.rm=TRUE)
   ns     <-  sapply(sapply(split(mf[[response]], mf[[-response]]), na.omit,
                            simplify=FALSE), length )
   xlim  <-  c(0.5, length(means)+0.5)
 
 
-  
+
   if(!bars)
     {
       plot( means, ..., col=col, xlim=xlim)
@@ -96,7 +79,7 @@ plotmeans  <- function (formula, data = NULL, subset, na.action,
              xlab=xlab, ylab=ylab, labels=mean.labels, col=col, xlim=xlim,
              lwd=barwidth, barcol=barcol, minbar=minbar, maxbar=maxbar, ... )
       if(invalid(xaxt) || xaxt!="n")
-        axis(1, at = 1:length(means), labels = legends)
+        axis(1, at = 1:length(means), labels = legends, ...)
 
       if(ci.label)
         {
@@ -121,14 +104,11 @@ plotmeans  <- function (formula, data = NULL, subset, na.action,
 
 
   if(n.label)
-    if(is.R())
-      text(x=1:length(means),y=par("usr")[3],
-           labels=paste("n=",ns,"\n",sep=""))
-    else
       {
-        axisadj <- (par("usr")[4] - (par("usr")[3]) )/75
-        text(x=1:length(means),y=par("usr")[3] + axisadj,
-             labels=paste("n=",ns,"\n",sep=""))
+          text(x=1:length(means),
+               y=par("usr")[3],
+               labels=paste(text.n.label, ns, "\n", sep="")
+               )
       }
 
   if(!invalid(connect) & !identical(connect,FALSE))
@@ -144,8 +124,6 @@ plotmeans  <- function (formula, data = NULL, subset, na.action,
       else
         lines(means, ..., lwd=lwd, col=ccol)
     }
-
-
 
 }
 

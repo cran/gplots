@@ -1,5 +1,28 @@
+2015-01-02  warnes
+
+	* [r1912] R/plotmeans.R: Change default group count lable back to
+	  'n='.
+	* [r1911] R/plotmeans.R, man/plotmeans.Rd: - plotmeans: Pass
+	  optional graphical arguments captured in '...' axis function
+	  used to draw the x axis.
+	  - plotmeans: Add an new argument 'text.n.label' to specify the
+	  text
+	  used for labelingthe number of elements in a group.
+	* [r1910] R/plotmeans.R: - Remove S-Plus-specific code
+	  - Simplify model frame code
+
+2014-12-03  warnes
+
+	* [r1909] tests/heatmap2Test.Rout.save: Update stored test output
+	  to account for new startup message from KernSmooth package
+	* [r1908] DESCRIPTION: Fix package title capitalization.
+
 2014-12-02  warnes
 
+	* [r1907] inst/NEWS: Add descrioption of node stack overflow issue
+	  and work-around.
+	* [r1906] R/bandplot.R: Move '...' argument to bandplot.formula to
+	  match man page.
 	* [r1905] tests/test_plottingDeepDendrogram.R: plot.dendrogram
 	  isn't exported by gplots, so it must be referenced using the
 	  ':::' notation.
