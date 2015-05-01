@@ -3,8 +3,8 @@ export(
        bandplot,
        barplot2,
        bluered,
-       boxplot2,
        boxplot.n,
+       boxplot2,
        ci2d,
        col2hex,
        colorpanel,
@@ -62,6 +62,8 @@ S3method(ooplot, default)
 S3method(plot, venn)
 S3method(print, ci2d)
 S3method(print, hist2d)
+
+S3method(qqnorm, aov)
 
 S3method(textplot, character)
 S3method(textplot, data.frame)

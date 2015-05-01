@@ -1,4 +1,4 @@
-# $Id: plotCI.R 1557 2012-06-08 17:56:37Z warnes $
+# $Id: plotCI.R 1948 2015-04-23 21:23:36Z warnes $
 
 
 plotCI <- function (x,
@@ -103,7 +103,7 @@ plotCI <- function (x,
     {
       if(invalid(labels) || labels==FALSE )
         plot(x, y, ylim = ylim, xlim=xlim, col=col,
-             xlab=xlab, ylab=ylab, ...)
+             xlab=xlab, ylab=ylab, type="n", ...)
       else
         {
           plot(x, y, ylim = ylim, xlim=xlim, col=col, type="n",

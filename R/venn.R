@@ -1,7 +1,7 @@
 # This code plots Venn Diagrams for up to 5 sets. The
 # function getVennCounts is passed a list of vectors.
 # This is transformed into a table indicating the
-# number of members for each intersection. This table
+# number of intersections for each intersection. This table
 # is generated for any number of sets.
 
 # The function drawVennDiagram plots circles (up to three
@@ -23,16 +23,19 @@ getVennCounts.data.frame <- function(l, universe=NA, verbose=F, ...)
       stop("Only indicator columns permitted")
 
     l <- lapply( l, function(x) which(as.logical(x)))
-    getVennCounts.list(l)
+    getVennCounts.list(l, universe=universe, verbose=verbose)
   }
 
 # l offers a list of arrays, their values are to
 # be tested for the size of their intersects.
-getVennCounts.list<-function(l, universe=NA, verbose=F) {
+getVennCounts.list<-function(l, universe=NA, verbose=F, intersections=TRUE) {
 	if (verbose) cat("Interpreting data as list.\n")
 	numSets<-length(l)
 	result.table<-NULL
 	result.table.names<-NULL
+
+	memberList <- list()
+
 	# Iteration over all possible intersections involving all sets
 	# or the complement (negation) of those sets.
 	for (i in 0:(-1 + 2^numSets)) {
@@ -104,8 +107,12 @@ getVennCounts.list<-function(l, universe=NA, verbose=F) {
 			sel<-NULL
 		}
 
-		r<-length(sel)
 		r.name<-paste(i2,collapse="")
+		if (intersections) {
+			memberList[[r.name]] <- sel
+		}
+
+		r<-length(sel)
 		result.row<-c(r,i2)
 		dim(result.row)<-c(1,length(result.row))
 		rownames(result.row)<-c(r.name)
@@ -132,6 +139,9 @@ getVennCounts.list<-function(l, universe=NA, verbose=F) {
 	else{
 		colnames(result.table)<-c("num",names(l))
 	}
+	if (intersections) {
+            attr(result.table,"intersections") <- memberList
+	}
         class(result.table) <- "venn"
 	return(result.table)
 }
@@ -144,9 +154,10 @@ venn <- function(data,
                  small=0.7,
                  showSetLogicLabel=FALSE,
                  simplify=FALSE,
-                 show.plot=TRUE)
+                 show.plot=TRUE,
+                 intersections=TRUE)
 {
-  counts <- getVennCounts(data, universe=universe)
+  counts <- getVennCounts(data, universe=universe, intersections=intersections)
   
   if(show.plot)
     drawVennDiagram(data=counts,

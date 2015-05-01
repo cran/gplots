@@ -1,3 +1,49 @@
+Release 2.17.0 - 2015-05-01
+---------------------------
+
+New Features:
+
+- heatmap.2() has two new arguments, 'colRow' and 'colCol' to control
+  the color of row and column text labels. See the man page for
+  examples.
+
+- heatmap.2() has been modified to make it easier to extract and plot
+  subclusters from a large heatmap. Simply pass the dendrogram of the
+  subcluster together with the full data matrix and, optionally, the
+  breaks of the full heatmap in order to obtain the same color
+  scaling. (Suggestion and patch contributed by Ilia Kats.)
+
+- venn() now returns a list of the members of each set intersection in
+  the attribute 'intersections'.  This can be disabled using the
+  argument 'intersection=FALSE' (Patch by Steffen Möller.)
+
+Bug Fixes:
+
+- In heatmap.2(), the color key now properly handles color breaks that
+  are not equally spaced. (Issue reported by Tim Richter-Heitmann.)
+
+- In heatmap.2(), row/column traces in could be plotted on the wrong
+  row/column.
+
+- plotCI() now properly respects the 'type=' argument.  (Bug report
+  and correction by Wiktor Żelazny.)
+
+- Remove stray browser() call from overplot()
+
+- In the balloonplot() examples, explicitly specify the 'neworder'
+  argument to gplots:::reorder.factor to prevent errors.
+
+Other Changes:
+
+- smartlegend() is now deprecated because the relative positioning
+  feature ('top', 'right') has been added to graphics::legend().
+  Calling smartlegend() will generate a warning.
+
+- boxplot.n() and plot.lm2() are defunct have been removed.  Use of
+  these functions will now generate an error.
+
+- Update out-of-date URLs in man pages.
+
 Release 2.16.0 - 2015-01-02
 ---------------------------
 

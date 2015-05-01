@@ -29,7 +29,7 @@
 }
 \arguments{
   \item{x}{lm object}
-  \item{which}{Numerical values between 1 and 5, indicating which plots 
+  \item{which}{Numerical values between 1 and 5, indicating which plots
     to be shown. The codes are:
     \describe{
       \item{1}{Fitted vs residuals}
@@ -43,7 +43,7 @@
   \item{panel}{ function to draw on the existing plot}
   \item{sub.caption}{ SubCaption for the plots }
   \item{main}{Main title of the plot}
-  \item{ask}{whether interactive graphics or postscript }
+  \item{ask}{whether interactive graphics}
   \item{\dots}{ parameters passed to \code{lmplot2}. }
   \item{id.n}{ integer value, less than or equal to residuals of lm object }
   \item{labels.id}{Names of the residuals of the lm object}
@@ -55,8 +55,8 @@
   \item{max.n}{Maximum number of points to display in plots}
 }
 \note{
-  This function replaces \code{boxplot.n}, which has been deprecated
-  avoid potential problems with S3 method dispatching.
+  This function replaces \code{plot.lm2}, which has been deprecated
+  to avoid potential problems with S3 method dispatching.
 }
 \author{Gregory R. Warnes \email{greg@warnes.net} and Nitin
   Jain \email{nitin.jain@pfizer.com}}

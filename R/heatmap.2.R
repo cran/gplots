@@ -1,4 +1,4 @@
-## $Id: heatmap.2.R 1892 2014-09-17 22:03:10Z warnes $
+## $Id: heatmap.2.R 1995 2015-05-01 15:28:33Z warnes $
 
 heatmap.2 <- function (x,
 
@@ -59,6 +59,8 @@ heatmap.2 <- function (x,
                        adjCol = c(NA,0),
                        offsetRow = 0.5,
                        offsetCol = 0.5,
+                       colRow = NULL,
+                       colCol = NULL,
 
                        ## color key + density info
                        key = TRUE,
@@ -192,11 +194,14 @@ heatmap.2 <- function (x,
       rowInd <- order.dendrogram(ddr)
       if(length(rowInd)>nr || any(rowInd<1 | rowInd > nr ))
          stop("Rowv dendrogram doesn't match size of x")
+      if (length(rowInd) < nr)
+          nr <- length(rowInd)
     }
   else if (is.integer(Rowv))
-    { ## Compute dendrogram and do reordering based on given vector
-        browser()
-      hcr <- hclustfun(distfun(x))
+    {
+      ## Compute dendrogram and do reordering based on given vector
+      distr <- distfun(x)
+      hcr <- hclustfun(distr)
       ddr <- as.dendrogram(hcr)
       ddr <- reorderfun(ddr, Rowv)
 
@@ -207,7 +212,8 @@ heatmap.2 <- function (x,
   else if (isTRUE(Rowv))
     { ## If TRUE, compute dendrogram and do reordering based on rowMeans
       Rowv <- rowMeans(x, na.rm = na.rm)
-      hcr <- hclustfun(distfun(x))
+      distr <- distfun(x)
+      hcr <- hclustfun(distr)
       ddr <- as.dendrogram(hcr)
       ddr <- reorderfun(ddr, Rowv)
 
@@ -226,6 +232,8 @@ heatmap.2 <- function (x,
       colInd <- order.dendrogram(ddc)
       if(length(colInd)>nc || any(colInd<1 | colInd > nc ))
          stop("Colv dendrogram doesn't match size of x")
+      if (length(colInd) < nc)
+          nc <- length(colInd)
     }
   else if(identical(Colv, "Rowv")) {
     if(nr != nc)
@@ -238,7 +246,8 @@ heatmap.2 <- function (x,
     colInd <- rowInd
   } else if(is.integer(Colv))
     {## Compute dendrogram and do reordering based on given vector
-      hcc <- hclustfun(distfun(if(symm)x else t(x)))
+      distc <- distfun(if(symm)x else t(x))
+      hcc <- hclustfun(distc)
       ddc <- as.dendrogram(hcc)
       ddc <- reorderfun(ddc, Colv)
 
@@ -249,7 +258,8 @@ heatmap.2 <- function (x,
   else if (isTRUE(Colv))
     {## If TRUE, compute dendrogram and do reordering based on rowMeans
       Colv <- colMeans(x, na.rm = na.rm)
-      hcc <- hclustfun(distfun(if(symm)x else t(x)))
+      distc <- distfun(if(symm)x else t(x))
+      hcc <- hclustfun(distc)
       ddc <- as.dendrogram(hcc)
       ddc <- reorderfun(ddc, Colv)
 
@@ -281,6 +291,12 @@ heatmap.2 <- function (x,
     labCol <- if(is.null(colnames(x))) (1:nc)[colInd] else colnames(x)
   else
     labCol <- labCol[colInd]
+
+  if(!is.null(colRow))
+    colRow <- colRow[rowInd]
+
+  if(!is.null(colCol))
+    colCol <- colCol[colInd]
 
   if(scale == "row") {
     retval$rowMeans <- rm <- rowMeans(x, na.rm = na.rm)
@@ -415,7 +431,7 @@ heatmap.2 <- function (x,
     }
 
   ## add column labels
-  if(is.null(srtCol))
+  if(is.null(srtCol) && is.null(colCol))
     axis(1,
          1:nc,
          labels= labCol,
@@ -428,7 +444,7 @@ heatmap.2 <- function (x,
          )
   else
     {
-      if(is.numeric(srtCol))
+      if(is.null(srtCol) || is.numeric(srtCol))
         {
           if(missing(adjCol) || is.null(adjCol))
             adjCol=c(1,NA)
@@ -442,7 +458,10 @@ heatmap.2 <- function (x,
                ##pos=1,
                adj=adjCol,
                cex=cexCol,
-               srt=srtCol)
+               srt=srtCol,
+               col=colCol
+               )
+          print(colCol)
           par(xpd=xpd.orig)
         }
       else
@@ -450,7 +469,7 @@ heatmap.2 <- function (x,
     }
 
   ## add row labels
-  if(is.null(srtRow))
+  if(is.null(srtRow) && is.null(colRow))
     {
       axis(4,
            iy,
@@ -465,7 +484,7 @@ heatmap.2 <- function (x,
     }
   else
     {
-      if(is.numeric(srtRow))
+      if(is.null(srtRow) || is.numeric(srtRow))
         {
           xpd.orig <- par("xpd")
           par(xpd=NA)
@@ -475,7 +494,8 @@ heatmap.2 <- function (x,
                labels=labRow,
                adj=adjRow,
                cex=cexRow,
-               srt=srtRow
+               srt=srtRow,
+               col=colRow
                )
           par(xpd=xpd.orig)
         }
@@ -516,7 +536,7 @@ heatmap.2 <- function (x,
     {
       retval$vline <- vline
       vline.vals <- scale01(vline, min.scale, max.scale)
-      for( i in colInd )
+      for( i in 1:length(colInd) )
         {
           if(!is.null(vline))
             {
@@ -534,7 +554,7 @@ heatmap.2 <- function (x,
     {
       retval$hline <- hline
       hline.vals <- scale01(hline, min.scale, max.scale)
-      for( i in rowInd )
+      for( i in 1:length(rowInd) )
         {
           if(!is.null(hline))
             {
@@ -617,11 +637,11 @@ heatmap.2 <- function (x,
         }
       else
         {
-          min.raw <- min(x, na.rm=TRUE) ## Again, modified to use scaled
-          max.raw <- max(x, na.rm=TRUE) ## or unscaled (SD 12/2/03)
+          min.raw <- min.breaks
+          max.raw <- max.breaks
         }
 
-      z <- seq(min.raw, max.raw, length=length(col))
+      z <- seq(min.raw, max.raw, by=min(diff(breaks)/4))
       image(z=matrix(z, ncol=1),
             col=col, breaks=tmpbreaks,
             xaxt="n", yaxt="n")
@@ -645,15 +665,16 @@ heatmap.2 <- function (x,
             key.xlab <- "Value"
       }
       if (!is.na(key.xlab)) {
-          mtext(side=1, key.xlab, line=par("mgp")[1], padj=0.5)
+          mtext(side=1, key.xlab, line=par("mgp")[1], padj=0.5, cex=par("cex") * par("cex.lab"))
       }
 
       if(density.info=="density")
         {
-          dens <- density(x, adjust=densadj, na.rm=TRUE)
+          dens <- density(x, adjust=densadj, na.rm=TRUE,
+                          from=min.scale, to=max.scale)
           omit <- dens$x < min(breaks) | dens$x > max(breaks)
-          dens$x <- dens$x[-omit]
-          dens$y <- dens$y[-omit]
+          dens$x <- dens$x[!omit]
+          dens$y <- dens$y[!omit]
           dens$x <- scale01(dens$x, min.raw, max.raw)
           lines(dens$x, dens$y / max(dens$y) * 0.95, col=denscol, lwd=1)
           if (is.null(key.ytickfun)) {
@@ -671,7 +692,7 @@ heatmap.2 <- function (x,
           if (is.null(key.ylab))
               key.ylab <- "Density"
           if (!is.na(key.ylab))
-            mtext(side=2,key.ylab, line=par("mgp")[1], padj=0.5)
+            mtext(side=2,key.ylab, line=par("mgp")[1], padj=0.5, cex=par("cex") * par("cex.lab"))
         }
       else if(density.info=="histogram")
         {
@@ -694,7 +715,7 @@ heatmap.2 <- function (x,
           if (is.null(key.ylab))
               key.ylab <- "Count"
           if (!is.na(key.ylab))
-            mtext(side=2,key.ylab, line=par("mgp")[1], padj=0.5)
+            mtext(side=2,key.ylab, line=par("mgp")[1], padj=0.5, cex=par("cex") * par("cex.lab"))
         }
       else
           if (is.null(key.title))

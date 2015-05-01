@@ -7,14 +7,14 @@
 }
 \usage{
 venn(data, universe=NA, small=0.7, showSetLogicLabel=FALSE,
-     simplify=FALSE, show.plot=TRUE)
+     simplify=FALSE, show.plot=TRUE, intersections=TRUE)
 \method{plot}{venn}(x, y, ..., small=0.7, showSetLogicLabel=FALSE,
           simplify=FALSE)
 }
 \arguments{
   \item{data,x}{Either a list list containing vectors of names or indices
-    of group members, or a data frame containing boolean indicators of
-    group membership (see below)}
+    of group intersections, or a data frame containing boolean indicators of
+    group intersectionship (see below)}
   \item{universe}{Subset of valid name/index elements. Values  ignore values
     in code{data} not in this list will be ignored. Use \code{NA} to
     use all elements of \code{data} (the default).}
@@ -25,21 +25,25 @@ venn(data, universe=NA, small=0.7, showSetLogicLabel=FALSE,
     should be omitted.}
   \item{show.plot}{Logical flag indicating whether the plot should be
     displayed.  If false, simply returns the group count matrix.}
+  \item{intersections}{Logical flag indicating
+    if the returned object should have the attribute
+    "individuals.in.intersections" featuring for every set a list of
+    individuals that are assigned to it.}
   \item{y,...}{Ignored}
 }
 \details{
   \code{data} should be either a named list of vectors containing
   character string names ("GeneAABBB", "GeneBBBCY", .., "GeneXXZZ") or
-  indexes of group members (1, 2, .., N), or a data frame containing
-  indicator variables (TRUE, FALSE, TRUE, ..) for group membership.
+  indexes of group intersections (1, 2, .., N), or a data frame containing
+  indicator variables (TRUE, FALSE, TRUE, ..) for group intersectionship.
   Group names will be taken from the component list element or column
-  names.  
+  names.
 }
 \value{
   Invisibly returns an object of class "venn", containing a matrix of
   all possible sets of groups, and the observed count of items belonging
   to each The fist column contains observed counts, subsequent columns
-  contain 0-1 indicators of group membership.
+  contain 0-1 indicators of group intersectionship.
 }
 \author{
   Steffen Moeller \email{steffen\_moeller@gmx.de},
@@ -55,8 +59,8 @@ venn(data, universe=NA, small=0.7, showSetLogicLabel=FALSE,
 ## construct some fake gene names..
 oneName <- function() paste(sample(LETTERS,5,replace=TRUE),collapse="")
 geneNames <- replicate(1000, oneName())
-                       
-## 
+
+##
 GroupA <- sample(geneNames, 400, replace=FALSE)
 GroupB <- sample(geneNames, 750, replace=FALSE)
 GroupC <- sample(geneNames, 250, replace=FALSE)
@@ -64,8 +68,8 @@ GroupD <- sample(geneNames, 300, replace=FALSE)
 input  <-list(GroupA,GroupB,GroupC,GroupD)
 input
 
-venn(input)
-
+tmp <- venn(input)
+attr(tmp, "intersections")
 
 ##
 ## Example using a list of item indexes belonging to the
@@ -109,7 +113,7 @@ tmp <- venn(input, universe=geneNames[1:100])
 tmp
 
 ##
-## Example to determine which elements are in A and B but not in 
+## Example to determine which elements are in A and B but not in
 ## C and D: first determine the universe, then form indicator columns
 ## and perform intersections on these.  R allows using the set operations
 ## directly, but some might find this approach more intuitive.
@@ -131,6 +135,13 @@ universe[GroupA.l & GroupB.l & !GroupD.l]
 test <- function(x) (x \%in\% GroupA) & (x \%in\% GroupB) & !(x \%in\% GroupC)
 universe[ test(universe) ]
 
+##
+## Intriduced with gplots 2.16, the names of individuals for everz intersection
+## is offered as an attribute to the retrun value.
+##
+a<-venn(list(1:5,3:8), show.plot=FALSE)
+intersections<-attr(a,"intersections")
+print(intersections)
 
 }
 \keyword{hplot}

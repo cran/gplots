@@ -1,4 +1,4 @@
-# $Id: overplot.R 1732 2013-10-11 22:09:09Z warnes $
+# $Id: overplot.R 1947 2015-04-23 21:18:42Z warnes $
 
 panel.overplot <- function(formula, data, subset, col, lty, ...)
   {
@@ -57,8 +57,6 @@ overplot <- function (formula, data = parent.frame(),
 
   x.all.min <- min(x, na.rm=TRUE)
   x.all.max <- max(x, na.rm=TRUE)
-
-  if(y.all.min==y.all.max) browser()
 
   if (length(cond) == 0) {
     cond <- list(as.factor(rep(1, length(x))))

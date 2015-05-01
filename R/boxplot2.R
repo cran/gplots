@@ -1,11 +1,7 @@
-# $Id: boxplot2.R 1738 2013-10-15 02:09:31Z warnes $
+# $Id: boxplot2.R 2006 2015-05-01 17:44:30Z warnes $
 boxplot.n <- function( ..., top=FALSE, shrink=1.0, textcolor=NULL )
     {
-        .Deprecated("gboxplot", package="gplots")
-        cl <- match.call()
-        mf <- match.call(expand.dots = FALSE)
-        mf[[1L]] <- quote(boxplot2)
-        eval(mf, parent.frame())
+        .Defunct("gboxplot", package="gplots")
     }
 
 boxplot2  <- function( ..., top=FALSE, shrink=1.0, textcolor=NULL )

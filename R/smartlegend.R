@@ -1,9 +1,12 @@
-# $Id: smartlegend.R 625 2005-06-09 14:20:30Z nj7w $
+# $Id: smartlegend.R 1998 2015-05-01 16:28:48Z warnes $
 
 smartlegend <- function(x=c("left","center","right"),
                         y=c("top","center","bottom"),
                         ..., inset=0.05 )
   {
+
+    .Deprecated('legend', 'graphics')
+
     x <- match.arg(x)
     y <- match.arg(y)
 

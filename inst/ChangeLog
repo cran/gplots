@@ -1,5 +1,88 @@
+2015-05-01  warnes
+
+	* [r2013] inst/ChangeLog: Update ChangeLog (again)
+	* [r2012] man/gplots-defunct.Rd: Summary: Correct man page name
+	* [r2011] man/gplots-deprecated.Rd: Summary: Forgot to add \alias
+	  for smartlegend.
+	* [r2010] man/lmplot2.Rd: Remove leftover alias
+	* [r2009] inst/ChangeLog: Commit ChangeLog
+	* [r2008] NAMESPACE, inst/NEWS: Update NEWS again.
+	* [r2007] man/gplots-defunct.Rd, man/gplots-deprecated.Rd,
+	  man/lmplot2.Rd, man/smartlegend.Rd: Mark boxplot.n and()
+	  plot.lm2() as defunct.
+	* [r2006] R/boxplot2.R, R/lmplot2.R: Make ballonplot.n() and
+	  plot.lm2() 'defunct'.
+	* [r2005] inst/ChangeLog, inst/NEWS: Update NEWS and ChangeLog
+	  again.
+	* [r2004] man/sinkplot.Rd: Summary: Punctuation.
+	* [r2003] NAMESPACE: Correct URLs in man pages.
+	* [r2002] man/heatmap.2.Rd, man/sinkplot.Rd: Correct URLs in man
+	  pages.
+	* [r2001] inst/NEWS: Update NEWS again.
+	* [r2000] DESCRIPTION: Improve package description.
+	* [r1999] man/smartlegend.Rd: Mark 'smartlegend' as deprecated
+	* [r1998] R/smartlegend.R: Summary: Mark smartlegend() as
+	  deprecated.
+	* [r1997] man/venn.Rd: Summary: venn example used 'F' instead of
+	  'FALSE'.
+	* [r1996] DESCRIPTION, inst/ChangeLog, inst/NEWS: Update
+	  DESCRIPTION, NEWS, and ChangeLog again for gplots 2.17.0.
+	* [r1995] R/heatmap.2.R: - heatmap.2: row traces could be plotted
+	  in the wrong order.
+	* [r1994] R/heatmap.2.R, man/heatmap.2.Rd: - heatmap.2: column
+	  traces could be plotted in the wrong order.
+	  - heatmap.2: add support for plotting sub-clusters of the full
+	  row and
+	  column dendrograms
+
+2015-04-23  warnes
+
+	* [r1955] inst/ChangeLog, inst/NEWS: Update NEWS and ChangeLog
+	* [r1954] DESCRIPTION, R/heatmap.2.R, inst/ChangeLog, inst/NEWS: In
+	  heatmap.2(), the color key now properly handles color breaks that
+	  are not equally spaced. (Issue reported by Tim Richter-Heitmann.)
+	* [r1948] R/plotCI.R: - plotCI() was not properly respecting the
+	  'type=' argument. This has
+	  been corrected.
+	* [r1947] R/overplot.R: - Remove stray browser() call from
+	  overplot()
+	* [r1943] man/balloonplot.Rd: Explicitly specify argument to
+	  gplots:::reorder.factor to prevent error.
+	* [r1942] R/venn.R, man/venn.Rd: - The returned object from venn()
+	  now includes a 'interesection'
+	  attribution containing a list of which items are in each set
+	  intersection. This can be turned off by settting
+	  'intersection=FALSE'.
+	* [r1941] R/heatmap.2.R: Patch submitted by Ilia Kats:
+	  - easily extract and plot subclusters from a big heatmap using
+	  the
+	  same colorkey, by passing a dendgrogram of the subcluster
+	  together
+	  with the full data matrix and, optionally, the breaks of the full
+	  heatmap in order to obtain the same color scaling. This is useful
+	  if
+	  one wants to plot several subclusters as different panels in a
+	  paper, but maintain consistent color coding.
+	  - Improves the behavior of the color key axis labels, as they now
+	  honor par("cex") and par("cex.lab").
+	* [r1940] R/heatmap.2.R: In heatmap.2() split calls to distfun()
+	  and hclustfun() into separate steps to make debugging easier
+
+2015-04-22  warnes
+
+	* [r1931] DESCRIPTION, inst/ChangeLog, inst/NEWS: Update
+	  DESCRIPTION, ChangeLog, and NEWS for gplots 2.17.0
+	* [r1930] R/heatmap.2.R, man/heatmap.2.Rd: heatmap.2: add new
+	  'colRow' and 'colCol' arguments to control the color of row and
+	  column text labels
+
+2015-04-06  warnes
+
+	* [r1916] inst/ChangeLog: Add ChangeLog files to repository
+
 2015-01-02  warnes
 
+	* [r1913] DESCRIPTION, inst/NEWS: Update for gplots release 2.16.0.
 	* [r1912] R/plotmeans.R: Change default group count lable back to
 	  'n='.
 	* [r1911] R/plotmeans.R, man/plotmeans.Rd: - plotmeans: Pass

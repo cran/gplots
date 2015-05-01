@@ -172,7 +172,8 @@ colors <- as.character(as.data.frame(Colors)$Freq)
 
 balloonplot(x=list(Age,Sex),
             y=list(Class=Class,
-            Survived=gdata::reorder.factor(Survived,c(2,1))),
+                   Survived=gdata::reorder.factor(Survived,new.order=c(2,1))
+                   ),
             z=Freq,
             zlab="Number of Passengers",
             sort=TRUE,

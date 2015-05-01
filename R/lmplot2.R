@@ -17,10 +17,7 @@ plot.lm2 <- function(
                      max.n=5000
                      )
 {
-    cl <- match.call()
-    mf <- match.call(expand.dots = FALSE)
-    mf[[1L]] <- quote(lmplot2)
-    eval(mf, parent.frame())
+    .Defunct("lmplot", "gplots")
 }
 
 
