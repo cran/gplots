@@ -276,7 +276,7 @@ heatmap.2 (x,
   The default colors range from red to white (\code{heat.colors}) and
   are not pretty.  Consider using enhancements such as the
   \pkg{RColorBrewer} package,
-  \url{http://cran.r-project.org/web/packages/RColorBrewer}
+  \url{https://cran.r-project.org/package=RColorBrewer}
   to select better colors.
 
   By default four components will be displayed in the plot.  At the top
@@ -322,6 +322,8 @@ heatmap.2 (x,
     \code{trace="both"} or \code{trace="row"} }
   \item{colorTable}{A three-column data frame providing the lower and upper
     bound and color for each bin}
+  \item{layout}{A named numeric vector containing the values used for
+    \code{lmat}, \code{lhei}, and \code{lwid}. }
 }
 \author{Andy Liaw, original; R. Gentleman, M. Maechler, W. Huber,
   G. Warnes, revisions.}

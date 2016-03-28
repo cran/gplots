@@ -1,7 +1,7 @@
-# $Id: boxplot2.R 2006 2015-05-01 17:44:30Z warnes $
+# $Id: boxplot2.R 2052 2015-06-02 19:03:20Z warnes $
 boxplot.n <- function( ..., top=FALSE, shrink=1.0, textcolor=NULL )
     {
-        .Defunct("gboxplot", package="gplots")
+        .Defunct("boxplot2", package="gplots")
     }
 
 boxplot2  <- function( ..., top=FALSE, shrink=1.0, textcolor=NULL )

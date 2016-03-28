@@ -1,4 +1,4 @@
-% $Id: lowess.Rd 1641 2013-03-24 04:18:22Z warnes $
+% $Id: lowess.Rd 2104 2016-03-25 17:27:00Z warnes $
 %
 % $Log$
 % Revision 1.7  2005/06/09 14:20:28  nj7w
@@ -19,13 +19,22 @@
 \alias{lowess}
 \alias{lowess.default}
 \alias{lowess.formula}
+\alias{plot.lowess}
+\alias{plotLowess}
 \title{Scatter Plot Smoothing}
 \usage{
 lowess(x, ...)
-\method{lowess}{default}(x, y = NULL, f = 2/3, iter = 3, delta = 0.01 *
-                  diff(range(x)), ...)
-\method{lowess}{formula}(formula,data = parent.frame(), subset, na.action, 
-               f=2/3,  iter=3, delta=.01*diff(range(mf[-response])), ... )
+
+\method{lowess}{default}(x, y=NULL, f=2/3, iter=3L, delta=0.01 *
+       diff(range(x)), ...)
+
+\method{lowess}{formula}(formula,data=parent.frame(), ..., subset, f=2/3,
+       iter=3L, delta=.01*diff(range(mf[-response])))
+
+\method{plot}{lowess}(x, y, ..., col.lowess="red", lty.lowess=2)
+
+plotLowess(formula, data=parent.frame(), ..., subset=parent.frame(),
+           col.lowess="red", lty.lowess=2  )
 }
 \alias{lowess}
 \arguments{
@@ -33,33 +42,40 @@ lowess(x, ...)
     an single independent variable (x) to use as coordinates in the
     scatter plot.}
   \item{data}{a data.frame (or list) from which the variables in `formula'
-          should be taken.}
-  \item{subset}{ an optional vector specifying a subset of observations to be
-          used in the fitting process. }
-  \item{x, y}{vectors giving the coordinates of the points in the scatter plot.
-    Alternatively a single plotting structure can be specified.}
+    should be taken.}
+  \item{subset}{ an optional vector specifying a subset of observations
+    to be used in the fitting process. }
+  \item{x, y}{vectors giving the coordinates of the points in the scatter
+    plot. Alternatively a single plotting structure can be specified.}
   \item{f}{the smoother span. This gives the proportion of points in
     the plot which influence the smooth at each value.
     Larger values give more smoothness.}
   \item{iter}{the number of robustifying iterations which should be
     performed.
-    Using smaller values of \code{iter} will make \code{lowess} run faster.}
+    Using smaller values of \code{iter} will make \code{lowess} run
+    faster.}
   \item{delta}{values of \code{x} which lie within \code{delta}
     of each other replaced by a single value in the output from
     \code{lowess}.}
-  \item{na.action}{a function which indicates what should happen when the data
-          contain `NA's.  The default is set by the `na.action' setting
-          of `options', and is `na.fail' if that is unset. The
-          ``factory-fresh'' default is `na.omit'.}
   \item{...}{parameters for methods.}
+  \item{col.lowess, lty.lowess}{color and line type for plotted line}
 }
 \description{
-  This function performs the computations for the
+  The \code{lowess} function performs the computations for the
   \emph{LOWESS} smoother (see the reference below).
-  \code{lowess} returns a list containing components
+  \code{lowess} returns a an object containing components
   \code{x} and \code{y} which give the coordinates of the smooth.
-  The smooth should be added to a plot of the original
+  The smooth can then be added to a plot of the original
   points with the function \code{lines}.
+
+  Alternatively, \code{plot} can be called directly on the object
+  returned from \code{lowess} and the 'lowess' method for \code{plot}
+  will generate a scatterplot of the original data with a \code{lowess}
+  line superimposed.
+
+  Finally, the \code{plotLowess} function both calculates the
+  \code{lowess} smooth and plots the original data with a \code{lowess}
+  smooth.
 }
 \references{
   Cleveland, W. S. (1979)
@@ -76,17 +92,33 @@ lowess(x, ...)
 \examples{
 data(cars)
 
-# default method
-plot(cars, main = "lowess(cars)")
-lines(lowess(cars), col = 2)
-lines(lowess(cars, f=.2), col = 3)
-legend(5, 120, c(paste("f = ", c("2/3", ".2"))), lty = 1, col = 2:3)
+#
+# x,y method
+#
+plot(cars$speed, cars$dist, main="lowess(cars)")
+lines(lowess(cars$speed, cars$dist), col=2)
+lines(lowess(cars$speed, cars$dist, f=.2), col=3)
+legend(5, 120, c(paste("f=", c("2/3", ".2"))), lty=1, col=2:3)
 
-# formula method
-plot(dist ~ speed, data=cars, main = "lowess(cars)")
-lines(lowess(dist ~ speed, data=cars), col = 2)
-lines(lowess(dist ~ speed, data=cars, f=.2), col = 3)
-legend(5, 120, c(paste("f = ", c("2/3", ".2"))), lty = 1, col = 2:3)
+#
+# formula method: plot, then calculate the lowess smoother,
+#                 then add smooth to the plot
+#
+plot(dist ~ speed, data=cars, main="lowess(cars)")
+lines(lowess(dist ~ speed, data=cars), col=2, lty=2)
+lines(lowess(dist ~ speed, data=cars, f=.2), col=3) # smaller bandwith
+legend(5, 120, c(paste("f=", c("2/3", ".2"))), lty=1, col=2:3)
 
+#
+# formula method: calculate lowess() smoother, then call plot()
+#                  on the lowess object
+#
+lw <- lowess(dist ~ speed, data=cars)
+plot(lw, main="lowess(cars)"  )
+
+#
+# formula method: calculate and plot in a single command
+#
+plotLowess(dist ~ speed, data=cars, main="lowess(cars)")
 }
 \keyword{smooth}

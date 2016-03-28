@@ -1,4 +1,4 @@
-## $Id: heatmap.2.R 1995 2015-05-01 15:28:33Z warnes $
+## $Id: heatmap.2.R 2103 2016-03-25 17:11:26Z warnes $
 
 heatmap.2 <- function (x,
 
@@ -107,6 +107,9 @@ heatmap.2 <- function (x,
   if(length(col)==1 && is.character(col) )
     col <- get(col, mode="function")
 
+  if(!missing(breaks) && any(duplicated(breaks)) )
+      stop("breaks may not contian duplicate values")
+
   if(!missing(breaks) && (scale!="none"))
     warning("Using scale=\"row\" or scale=\"column\" when breaks are",
             "specified can produce unpredictable results.",
@@ -139,7 +142,7 @@ heatmap.2 <- function (x,
     ## Check if Rowv and dendrogram arguments are consistent
     if (
           (
-             ( is.logical(Rowv)  && !isTRUE(Rowv) )
+             ( is.logical(Rowv) && !isTRUE(Rowv) )
               ||
              ( is.null(Rowv) )
           )
@@ -147,13 +150,13 @@ heatmap.2 <- function (x,
           ( dendrogram %in% c("both","row") )
        )
       {
-        if (is.logical(Colv) && (Colv))
+        warning("Discrepancy: Rowv is FALSE, while dendrogram is `",
+                dendrogram, "'. Omitting row dendogram.")
+
+        if (dendrogram=="both")
           dendrogram <- "column"
         else
           dendrogram <- "none"
-
-        warning("Discrepancy: Rowv is FALSE, while dendrogram is `",
-                dendrogram, "'. Omitting row dendogram.")
 
       }
   }
@@ -169,13 +172,14 @@ heatmap.2 <- function (x,
          &&
          ( dendrogram %in% c("both","column")) )
       {
-        if (is.logical(Rowv) && (Rowv))
+        warning("Discrepancy: Colv is FALSE, while dendrogram is `",
+                dendrogram, "'. Omitting column dendogram.")
+
+        if (dendrogram=="both")
           dendrogram <- "row"
         else
           dendrogram <- "none"
 
-        warning("Discrepancy: Colv is FALSE, while dendrogram is `",
-                dendrogram, "'. Omitting column dendogram.")
       }
   }
 
@@ -220,12 +224,18 @@ heatmap.2 <- function (x,
       rowInd <- order.dendrogram(ddr)
       if(nr != length(rowInd))
         stop("row dendrogram ordering gave index of wrong length")
-    } else {
+    }
+  else if(!isTRUE(Rowv))
+    {
       rowInd <- nr:1
+      ddr <- as.dendrogram(hclust(dist(diag(nr))))
+    }
+  else
+    {
+      rowInd <- nr:1
+      ddr <- as.dendrogram(Rowv)
     }
 
-  ## if( dendrogram %in% c("both","column") )
-  ##   {
   if(inherits(Colv, "dendrogram"))
     {
       ddc <- Colv ## use Colv 'as-is', when it is dendrogram
@@ -267,9 +277,15 @@ heatmap.2 <- function (x,
       if(nc != length(colInd))
         stop("column dendrogram ordering gave index of wrong length")
     }
+  else if(!isTRUE(Colv))
+    {
+      colInd <- 1:nc
+      ddc <- as.dendrogram(hclust(dist(diag(nc))))
+    }
   else
     {
       colInd <- 1:nc
+      ddc <- as.dendrogram(Colv)
     }
 
   retval$rowInd <- rowInd
@@ -384,14 +400,18 @@ heatmap.2 <- function (x,
   on.exit(par(op))
   layout(lmat, widths = lwid, heights = lhei, respect = FALSE)
 
+  plot.index <- 1
+
   ## draw the side bars
   if(!missing(RowSideColors)) {
     par(mar = c(margins[1],0, 0,0.5))
     image(rbind(1:nr), col = RowSideColors[rowInd], axes = FALSE)
+    plot.index <- plot.index + 1
   }
   if(!missing(ColSideColors)) {
     par(mar = c(0.5,0, 0,margins[2]))
     image(cbind(1:nc), col = ColSideColors[colInd], axes = FALSE)
+    plot.index <- plot.index + 1
   }
   ## draw the main carpet
   par(mar = c(margins[1], 0, 0, margins[2]))
@@ -449,6 +469,9 @@ heatmap.2 <- function (x,
           if(missing(adjCol) || is.null(adjCol))
             adjCol=c(1,NA)
 
+          if(is.null(srtCol))
+            srtCol <- 90
+
           xpd.orig <- par("xpd")
           par(xpd=NA)
           xpos <- axis(1, 1:nc, labels=rep("", nc), las=2, tick=0)
@@ -461,7 +484,6 @@ heatmap.2 <- function (x,
                srt=srtCol,
                col=colCol
                )
-          print(colCol)
           par(xpd=xpd.orig)
         }
       else
@@ -576,6 +598,13 @@ heatmap.2 <- function (x,
          col=notecol,
          cex=notecex)
 
+  plot.index <- plot.index + 1
+
+  ## increment plot.index and then do
+  ##   latout_set( lmat, plot.index )
+  ## to set to the correct plot region, instead of
+  ## relying on plot.new().
+
   ## the two dendrograms :
   par(mar = c(margins[1], 0, 0, 0))
   if( dendrogram %in% c("both","row") )
@@ -641,7 +670,7 @@ heatmap.2 <- function (x,
           max.raw <- max.breaks
         }
 
-      z <- seq(min.raw, max.raw, by=min(diff(breaks)/4))
+      z <- seq(min.raw, max.raw, by=min(diff(breaks)/100))
       image(z=matrix(z, ncol=1),
             col=col, breaks=tmpbreaks,
             xaxt="n", yaxt="n")
@@ -721,7 +750,6 @@ heatmap.2 <- function (x,
           if (is.null(key.title))
               title("Color Key")
 
-
       if(trace %in% c("both","column") )
           {
               vline.vals <- scale01(vline, min.raw, max.raw)
@@ -744,14 +772,23 @@ heatmap.2 <- function (x,
 
     }
   else
-    plot.new()
-
+    {
+      par(mar=c(0, 0, 0, 0))
+      plot.new()
+    }
   ## Create a table showing how colors match to (transformed) data ranges
   retval$colorTable <- data.frame(
                              low=retval$breaks[-length(retval$breaks)],
                              high=retval$breaks[-1],
                              color=retval$col
                              )
+
+  # Store layout information, suggested by Jenny Drnevich
+  retval$layout <- list(lmat = lmat,
+                        lhei = lhei,
+                        lwid = lwid
+                        )
+
 
   ## If user has provided an extra function, call it.
   if(!is.null(extrafun))
