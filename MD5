@@ -1,6 +1,6 @@
 3c13bc895d5f867a4cc4568cd6094737 *ChangeLog
-2f17fd85bdf4f36352f459ba6bff8fd3 *DESCRIPTION
-5a76f93000a70bf0133e2d9378fd13a9 *NAMESPACE
+598d519c86511933e52653056d3c5094 *DESCRIPTION
+f97152b849a4b3b7e1344ddbf1be00b4 *NAMESPACE
 be4f21a7b13b75d3d3bae7d80eaa5bda *NEWS
 f30de3e3672ace857495bd9e83ad6783 *R/angleAxis.R
 4040a0e9adf5cc4b201e9d35ab57154f *R/balloonplot.R
@@ -11,7 +11,7 @@ e7563bfb16bf84fd65deb26b4392a5b7 *R/bandplot.R
 a6370e76fc39377d1da08507b03e219f *R/ci2d.R
 6d3d19d92abdf9638c5b5313cde8eacc *R/col2hex.R
 36b2f3fe28745943577ad95f07142cab *R/colorpanel.R
-445e1a5661db863a8d8260fb0bdbc123 *R/heatmap.2.R
+a41fe0b344c9bf3e6382ce8cde9432f3 *R/heatmap.2.R
 69b838cf6230b0394a4ef3565a8c8d75 *R/hist2d.R
 12690b374f6b35445d8a087421e8409d *R/layout_set.R
 cd504b2b384f0c142db36e5c20407d6d *R/lmplot2.R
@@ -20,7 +20,7 @@ a36e8910568c8476351e5dd5c1ce56fa *R/ooplot.R
 3ee488d1e8fdde249a097de645e8c557 *R/overplot.R
 feb2286e91ead55c28817b131de146cc *R/plot.lowess.R
 2316c0b78dc75db34629167387ea9539 *R/plot.venn.R
-27028cb7a1bfc11165846c5e01968f74 *R/plotCI.R
+34877b3ccc43afe22355f96e8cd2ad61 *R/plotCI.R
 3beae4ba97d0db69214e750a5affc5d3 *R/plotNode.R
 d1633902e4c3a75f8a24ef9dab1d82e9 *R/plotmeans.R
 3b72bccb6f4d15624f8aea8f41353d43 *R/print.ci2d.R
@@ -38,7 +38,7 @@ dde8f47321c837268c65a37cc374482f *R/textplot.R
 9dc3e18aa37028e64ad53b8692a0f789 *R/wapply.R
 e28142fd2631d8aba7e5b1ec828908f6 *TODO
 0b73bb1c4dd56da0e5c2a96b9c265236 *build/vignette.rds
-8e85b44acb8b180ab2234c85ed73b157 *data/rtPCR.rda
+911fe14e710b53812c930feb1f2676d4 *data/rtPCR.rda
 3c13bc895d5f867a4cc4568cd6094737 *inst/ChangeLog
 be4f21a7b13b75d3d3bae7d80eaa5bda *inst/NEWS
 e28142fd2631d8aba7e5b1ec828908f6 *inst/TODO
