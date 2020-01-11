@@ -1,5 +1,5 @@
 3c13bc895d5f867a4cc4568cd6094737 *ChangeLog
-598d519c86511933e52653056d3c5094 *DESCRIPTION
+5800448c844989f433fad1acd2c5b184 *DESCRIPTION
 f97152b849a4b3b7e1344ddbf1be00b4 *NAMESPACE
 be4f21a7b13b75d3d3bae7d80eaa5bda *NEWS
 f30de3e3672ace857495bd9e83ad6783 *R/angleAxis.R
@@ -37,7 +37,7 @@ dde8f47321c837268c65a37cc374482f *R/textplot.R
 1ba0dd8cf2a2aa2f56c4cc292b542a13 *R/vennMembers.R
 9dc3e18aa37028e64ad53b8692a0f789 *R/wapply.R
 e28142fd2631d8aba7e5b1ec828908f6 *TODO
-0b73bb1c4dd56da0e5c2a96b9c265236 *build/vignette.rds
+ee0f4c8484407cda0200221fdddd30e9 *build/vignette.rds
 911fe14e710b53812c930feb1f2676d4 *data/rtPCR.rda
 3c13bc895d5f867a4cc4568cd6094737 *inst/ChangeLog
 be4f21a7b13b75d3d3bae7d80eaa5bda *inst/NEWS
@@ -45,7 +45,7 @@ e28142fd2631d8aba7e5b1ec828908f6 *inst/TODO
 2c9123e15bef4d1c31aef40043cc731a *inst/doc/BalloonPlot.pdf
 db3835b477154387393e0896b865599b *inst/doc/venn.R
 6b10e21c8e9d8b500514865ba83990f0 *inst/doc/venn.Rnw
-ddbe4e695b061dc8f4da0390ea1e5b24 *inst/doc/venn.pdf
+501cb092902530bc4d50be17fde36203 *inst/doc/venn.pdf
 ac9a06e0352957b04a5ad4d460ba5049 *man/angleAxis.Rd
 c1164e245c77c5441bd836158188144d *man/balloonplot.Rd
 76fcaaee5e7dfa17c31c406f2c16dda2 *man/bandplot.Rd
@@ -74,8 +74,8 @@ f6692d0456ee55bc29adec44c165b197 *man/plotCI.Rd
 b7255ea739962eb4895183c5d318fdce *man/venn.Rd
 5bdab99eb81d4c50fd63a9e5f2ab71f1 *man/wapply.Rd
 0742f6f621cb8fcabd249c79499e8ab0 *tests/dat.csv
-056bcdd1925f1dcd57deb2491f4115ec *tests/heatmap2Test.R
-bce6c437920e66e011594f96c6b546d4 *tests/heatmap2Test.Rout.save
+1968234edf73cd21c5f1a0ca14f7c7fd *tests/heatmap2Test.R
+68139801b8df9ea55a145c15170ff432 *tests/heatmap2Test.Rout.save
 d2dbbb722254f78d9038ac8e7f1fbf8e *tests/heatmap_to_heatmap.2_test.R
 fd229af09f15c5f5e920b8a9a21ff0f3 *tests/plotmeans_nobars.R
 9b06dee9524b688f4795b0fe6c278d65 *tests/test_plottingDeepDendrogram.R
