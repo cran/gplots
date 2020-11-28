@@ -1,7 +1,7 @@
 3c13bc895d5f867a4cc4568cd6094737 *ChangeLog
-992ed5426742874da571a30b22eeca71 *DESCRIPTION
+42e60b4917b21ab93c8db6f064f0be2b *DESCRIPTION
 fe43ec7f5c0258713ca8c10d48d1aad1 *NAMESPACE
-5d7e890e5ba9b3e3d709eb21036d4458 *NEWS
+b26fcf48aed2704406b9cf796aaf465a *NEWS
 74f573930aa756c15071197a5d0808fc *NEWS.md
 f30de3e3672ace857495bd9e83ad6783 *R/angleAxis.R
 4040a0e9adf5cc4b201e9d35ab57154f *R/balloonplot.R
@@ -49,7 +49,7 @@ be4f21a7b13b75d3d3bae7d80eaa5bda *inst/NEWS
 e28142fd2631d8aba7e5b1ec828908f6 *inst/TODO
 e56b781db37dad15f3dd76f402a38f26 *inst/doc/venn.R
 a5b4d8fe9270825a6f63d5499adf4ece *inst/doc/venn.Rnw
-2e7b68edf87c93383015236609c673f6 *inst/doc/venn.pdf
+2064fedc861e5e370163a5e644225c8e *inst/doc/venn.pdf
 ac9a06e0352957b04a5ad4d460ba5049 *man/angleAxis.Rd
 6ca51490d5d3cd6e9051a4089d5512fc *man/balloonplot.Rd
 76fcaaee5e7dfa17c31c406f2c16dda2 *man/bandplot.Rd
@@ -67,7 +67,7 @@ e24221a6b23f4818519249964931bc42 *man/heatmap.2.Rd
 8bbabb1ce9310650bebee176617e2056 *man/ooplot.Rd
 f46f562c6daf8992b39a9201f6095417 *man/overplot.Rd
 f6692d0456ee55bc29adec44c165b197 *man/plotCI.Rd
-98a7f358dfe0f647d2731466ed0367f6 *man/plotmeans.Rd
+2dcf49fefa25be0d0df503304afdd645 *man/plotmeans.Rd
 5a0523318ce97c93d7ee729cd6b95c22 *man/qqnorm.aov.Rd
 da64c27965060d0f35bed084a416a57a *man/reorder.Rd
 8be9406a3844978e05e5832921e52279 *man/residplot.Rd
