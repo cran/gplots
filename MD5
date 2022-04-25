@@ -1,8 +1,8 @@
 3c13bc895d5f867a4cc4568cd6094737 *ChangeLog
-42e60b4917b21ab93c8db6f064f0be2b *DESCRIPTION
-fe43ec7f5c0258713ca8c10d48d1aad1 *NAMESPACE
-b26fcf48aed2704406b9cf796aaf465a *NEWS
-74f573930aa756c15071197a5d0808fc *NEWS.md
+ac2811b6d1a7a151504f108854765f69 *DESCRIPTION
+465a1229b0565bf09f849649dc210af1 *NAMESPACE
+ccbef2302c282a6a781629c7a79ba004 *NEWS
+ccbef2302c282a6a781629c7a79ba004 *NEWS.md
 f30de3e3672ace857495bd9e83ad6783 *R/angleAxis.R
 4040a0e9adf5cc4b201e9d35ab57154f *R/balloonplot.R
 e7563bfb16bf84fd65deb26b4392a5b7 *R/bandplot.R
@@ -12,7 +12,7 @@ e7563bfb16bf84fd65deb26b4392a5b7 *R/bandplot.R
 a6370e76fc39377d1da08507b03e219f *R/ci2d.R
 6d3d19d92abdf9638c5b5313cde8eacc *R/col2hex.R
 36b2f3fe28745943577ad95f07142cab *R/colorpanel.R
-5554dc1fb6c388d476f501466359b401 *R/heatmap.2.R
+4e49880291269dbf98166fa8c6b6bf3c *R/heatmap.2.R
 69b838cf6230b0394a4ef3565a8c8d75 *R/hist2d.R
 12690b374f6b35445d8a087421e8409d *R/layout_set.R
 cd504b2b384f0c142db36e5c20407d6d *R/lmplot2.R
@@ -49,11 +49,11 @@ be4f21a7b13b75d3d3bae7d80eaa5bda *inst/NEWS
 e28142fd2631d8aba7e5b1ec828908f6 *inst/TODO
 e56b781db37dad15f3dd76f402a38f26 *inst/doc/venn.R
 a5b4d8fe9270825a6f63d5499adf4ece *inst/doc/venn.Rnw
-2064fedc861e5e370163a5e644225c8e *inst/doc/venn.pdf
+23fbe6096b1ea7570f1ec49c2774af31 *inst/doc/venn.pdf
 ac9a06e0352957b04a5ad4d460ba5049 *man/angleAxis.Rd
 6ca51490d5d3cd6e9051a4089d5512fc *man/balloonplot.Rd
 76fcaaee5e7dfa17c31c406f2c16dda2 *man/bandplot.Rd
-9d3fdaf3cfff865c2db62bc07d51066c *man/barplot2.Rd
+7ab792ebd93a21a36a061e4b5b37ae27 *man/barplot2.Rd
 a04e345d06c3c530f184bb018ee82c1c *man/boxplot2.Rd
 ef4ef18b922315a8c64acb393669e54d *man/ci2d.Rd
 ab9babb4cca73672c7eae3e46325db28 *man/col2hex.Rd
@@ -76,7 +76,7 @@ da64c27965060d0f35bed084a416a57a *man/reorder.Rd
 7ea76e2257a7fa7fe96d3ce40e182c5d *man/sinkplot.Rd
 752a53002d3674f2f15ecc8a87f0bfd1 *man/space.Rd
 8544cb97a8f2f6abc64a1535b511b8ba *man/textplot.Rd
-b7255ea739962eb4895183c5d318fdce *man/venn.Rd
+1b86046840fe36a0c59116e2c9479c95 *man/venn.Rd
 5bdab99eb81d4c50fd63a9e5f2ab71f1 *man/wapply.Rd
 0742f6f621cb8fcabd249c79499e8ab0 *tests/dat.csv
 02de40e6b689ba49f4d823ddaf4a4b3f *tests/heatmap2Test.R
