@@ -24,7 +24,7 @@ Depends: R (>= 3.0)
 Imports: gtools, stats, caTools, KernSmooth, methods
 Suggests: grid, MASS, knitr, r2d2
 VignetteBuilder: knitr
-Version: 3.1.3
+Version: 3.1.3.1
 Date: 2022-04-24
 Authors@R: c(
     person("Gregory R.", "Warnes", , role = "aut"),
@@ -45,7 +45,7 @@ License: GPL-2
 URL: https://github.com/talgalili/gplots
 BugReports: https://github.com/talgalili/gplots/issues
 NeedsCompilation: no
-Packaged: 2022-04-24 18:45:25 UTC; talgalili
+Packaged: 2024-02-02 10:08:05 UTC; ripley
 Author: Gregory R. Warnes [aut],
   Ben Bolker [aut],
   Lodewijk Bonebakker [aut],
@@ -61,4 +61,4 @@ Author: Gregory R. Warnes [aut],
   Tal Galili [ctb, cre]
 Maintainer: Tal Galili <tal.galili@gmail.com>
 Repository: CRAN
-Date/Publication: 2022-04-25 07:20:07 UTC
+Date/Publication: 2024-02-02 10:17:06 UTC
