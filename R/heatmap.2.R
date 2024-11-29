@@ -225,15 +225,9 @@ heatmap.2 <- function (x,
       if(nr != length(rowInd))
         stop("row dendrogram ordering gave index of wrong length")
     }
-  else if(!isTRUE(Rowv))
-    {
-      rowInd <- nr:1
-      ddr <- as.dendrogram(hclust(dist(diag(nr))))
-    }
   else
     {
       rowInd <- nr:1
-      ddr <- as.dendrogram(Rowv)
     }
 
   if(inherits(Colv, "dendrogram"))
@@ -277,15 +271,9 @@ heatmap.2 <- function (x,
       if(nc != length(colInd))
         stop("column dendrogram ordering gave index of wrong length")
     }
-  else if(!isTRUE(Colv))
-    {
-      colInd <- 1:nc
-      ddc <- as.dendrogram(hclust(dist(diag(nc))))
-    }
   else
     {
       colInd <- 1:nc
-      ddc <- as.dendrogram(Colv)
     }
 
   retval$rowInd <- rowInd
